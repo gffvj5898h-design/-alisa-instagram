@@ -10,17 +10,19 @@ Before any new task for Alice, read:
 4. `prompts/identity-lock.md`
 5. the files for the specific Reels / post being worked on
 
-`GROK_CONTEXT_AND_LOG.md` contains the current creative direction, approved story continuity and append-only operations log. Keep it updated after meaningful project operations.
+`GROK_CONTEXT_AND_LOG.md` contains the current creative direction, story continuity and append-only operations log. Keep it updated after meaningful project operations. New log entries are added at the top of the operations log.
 
 ## Canonical character
 
-Alice is a persistent fictional AI character. Her canonical face is stored at:
+Alice is a persistent fictional AI character. Her only canonical face is stored at:
 
 `character/references/alice-master-face.jpg`
 
+Do not change the canonical face unless the user explicitly instructs you to do so.
+
 ## Mandatory rule for any Alice video
 
-1. Load `character/references/alice-master-face.jpg` as a visual reference.
+1. Load `character/references/alice-master-face.jpg` as a visual / identity reference.
 2. Prepend `prompts/identity-lock.md` to the generation prompt.
 3. Do not use text-only generation for Alice.
 4. If the generator cannot accept the reference image, stop generation rather than substitute a new face.
@@ -35,3 +37,15 @@ All working prompts for Grok / SuperGrok should be written in Russian. If Alice 
 The account is a serialized lifestyle story with a strong visual-flirt direction, not a gallery of unrelated attractive portraits.
 
 Every output should preserve continuity in character, biography, age, personality, visual identity and the current story arc.
+
+## Production approval gate
+
+Do not call a Reels `approved` or `production-approved` until all conditions are met:
+
+1. The episode folder contains `concept.md`, `prompt-grok.md`, `storyboard.md`, and `result-notes.md`.
+2. Final video is strict 9:16 and at least 720×1280; 1080×1920 is preferred.
+3. Identity is checked against `character/references/alice-master-face.jpg`.
+4. Duration, story beats, hands, skin, lipsync and continuity are checked.
+5. Grok has re-checked the repository files and confirmed the production master.
+
+Existing 512×910 files are candidate / QA reference masters only, even when stored under legacy `output/approved/` paths.
