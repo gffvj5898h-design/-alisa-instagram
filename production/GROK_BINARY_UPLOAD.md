@@ -1,34 +1,54 @@
 # Протокол бинарной выгрузки Grok → GitHub
 
-Цель: дать Grok возможность складывать JPG / PNG / WEBP / MP4 / MOV в repo, даже если его GitHub-инструмент умеет писать только текст.
+Цель: складывать JPG / PNG / WEBP / MP4 / MOV в `content/`, даже если GitHub-инструмент Grok пишет только UTF-8 текст.
 
-## Как это работает
+Grok **не** записывает бинарник через Contents API напрямую.
 
-Grok НЕ пытается записать бинарник через GitHub API напрямую.
+Импорт делает GitHub Actions:
 
-Вместо этого он создаёт один UTF-8 JSON-манифест в:
+- workflow: `.github/workflows/import-generated-assets.yml`
+- importer: `production/import_generated_asset.py`
 
-`production/import-queue/`
-
-GitHub Actions видит новый `*.json`, скачивает бинарный файл по публичной HTTPS-ссылке, проверяет базовую сигнатуру файла, считает SHA-256, кладёт бинарник в `content/...` и создаёт receipt в:
-
-`production/import-receipts/`
-
-Workflow:
-
-`.github/workflows/import-generated-assets.yml`
-
-Importer:
-
-`production/import_generated_asset.py`
+Очередь: один UTF-8 JSON в `production/import-queue/*.json`.
 
 ---
 
-## Основной режим: public HTTPS URL
+## Автоматический режим для локального файла (рекомендуется Grok)
 
-Grok должен иметь прямую ссылку, по которой GitHub Actions может скачать сам бинарный файл без cookie, логина и браузерной сессии.
+Если файл уже есть на диске (Imagine render, скачанный still, сжатый JPEG):
 
-Пример для start-frame Reels 005:
+```bash
+python3 production/prepare_github_import.py /path/to/file.jpg \
+  content/profile/avatar-candidate.jpg \
+  --slug 20260822-avatar-imagine-1080 \
+  --note "short public note" \
+  --replace   # только если target уже существует и его нужно заменить
+```
+
+Скрипт создаёт:
+
+- `production/import-queue/chunks/<slug>/part-NN.txt` — куски base64 по 50k символов;
+- `production/import-queue/<slug>.json` — манифест с `base64_chunks` и `expected_sha256`.
+
+Дальше Grok коммитит **только эти текстовые файлы** одним `push_files` / несколькими `create_or_update_file`.
+
+После push:
+
+1. Дождаться run `Import generated assets`.
+2. Проверить `content/...` в `main`.
+3. Проверить receipt `production/import-receipts/<slug>.md`.
+4. Сверить bytes и SHA-256.
+5. Только после receipt писать в mailbox, что файл загружен.
+
+Не коммитить `*.files.json` и не класть сырой base64 целиком в один огромный JSON, если файл больше ~30 KiB.
+
+Алиас: `production/queue_local_image.py` делает то же самое внутри clone.
+
+---
+
+## Режим public HTTPS URL
+
+Если есть прямая публичная ссылка без cookie / логина / секретного query:
 
 ```json
 {
@@ -36,80 +56,60 @@ Grok должен иметь прямую ссылку, по которой GitH
   "target_path": "content/reels/005-same-restaurant/stills/start-frame.jpg",
   "replace": false,
   "max_bytes": 52428800,
-  "note": "Reels 005 start-frame candidate v2"
+  "note": "Reels 005 start-frame candidate"
 }
 ```
 
-Сохранить как, например:
+Сохранить как `production/import-queue/<slug>.json` и push.
 
-`production/import-queue/20260821-reels-005-start-frame-v2.json`
+Для MP4 / больших файлов это предпочтительный режим.
 
-После commit/push workflow запускается автоматически.
+---
 
-## Режим base64
+## Режим embedded base64
 
-Для небольшого изображения, если Grok реально может получить бинарные bytes и представить их base64, можно использовать:
+Только для очень маленького файла, который целиком влезает в один текстовый commit:
 
 ```json
 {
   "base64": "BASE64_DATA_HERE",
-  "target_path": "content/reels/005-same-restaurant/stills/start-frame.jpg",
-  "replace": false
+  "target_path": "content/profile/avatar-candidate.jpg",
+  "replace": false,
+  "expected_sha256": "..."
 }
 ```
-
-Для MP4 этот режим обычно непрактичен из-за размера. Для видео предпочтителен `source_url`.
 
 ---
 
 ## Что importer проверяет
 
-- только `https://` для URL;
-- URL не должен резолвиться в private / loopback / link-local адрес;
-- target должен находиться только под `content/`;
-- запрещён импорт бинарников напрямую в `character/references/`;
-- разрешённые расширения: `.jpg`, `.jpeg`, `.png`, `.webp`, `.mp4`, `.mov`;
-- максимум 95 MiB, чтобы не пересечь GitHub hard limit;
+- ровно один источник: `source_url` **или** `base64` **или** `base64_chunks`;
+- `source_url` только `https://`, без private / loopback адресов;
+- chunks только под `production/import-queue/chunks/`;
+- target только под `content/`;
+- импорт в `character/references/` запрещён;
+- расширения: `.jpg`, `.jpeg`, `.png`, `.webp`, `.mp4`, `.mov`;
+- максимум 95 MiB;
 - сигнатура файла должна соответствовать расширению;
-- если указан `expected_sha256`, он обязан совпасть;
-- существующий target не заменяется, пока явно не указано `"replace": true`.
-
-После успешного импорта создаётся receipt с размером и SHA-256.
+- `expected_sha256` обязан совпасть, если указан;
+- существующий target не заменяется без `"replace": true`.
 
 ---
 
-## Важно для публичного репозитория
+## Публичный репозиторий
 
-`production/import-queue/*.json` попадает в публичную Git-историю.
+`production/import-queue/` попадает в историю Git. Не класть:
 
-Не помещать туда:
 - приватные URL;
-- bearer-токены;
-- cookie;
-- API keys;
-- ссылки, доступ к которым даёт секретный query parameter, если его раскрытие нежелательно.
-
-Использовать только URL, который безопасно сделать публичным. Если у Grok есть только локальный attachment/chat-id или приватный URL, он должен остановиться и передать бинарник пользователю / ChatGPT для ручного bridge-upload.
+- bearer-токены, cookie, API keys;
+- signed URL с секретом в query.
 
 ---
 
-## Инструкция Grok после генерации файла
+## После генерации
 
-1. Получить прямой downloadable HTTPS URL генерации.
-2. Не менять канон Алисы и не перегенерировать файл ради выгрузки.
-3. Создать JSON в `production/import-queue/`.
-4. Указать точный `target_path`.
-5. Не выставлять `replace: true`, если пользователь явно не просил заменить существующий файл.
-6. Подождать GitHub Actions.
-7. Проверить наличие target и receipt.
-8. Сверить размер и SHA-256 из receipt.
-9. Только после этого обновлять `result-notes.md` и `GROK_CONTEXT_AND_LOG.md`.
-
-## Пример проверки результата
-
-Ожидаемые файлы:
-
-- `content/reels/005-same-restaurant/stills/start-frame.jpg`
-- `production/import-receipts/20260821-reels-005-start-frame-v2.md`
-
-Если receipt не появился, смотреть GitHub Actions run `Import generated assets` и не утверждать, что файл загружен.
+1. Не менять канон Алисы и не перегенерировать файл только ради выгрузки.
+2. Если есть локальные bytes — `prepare_github_import.py` + commit chunks.
+3. Если есть публичный HTTPS — манифест с `source_url`.
+4. Если bytes недоступны ни Grok, ни ChatGPT — `blocked_binary`, переход к следующей задаче backlog. Пользователь не actor.
+5. Не утверждать загрузку до target + receipt в `main`.

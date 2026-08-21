@@ -1,7 +1,17 @@
 # Binary import queue
 
-Grok creates one `*.json` manifest here when it has a generated JPG/PNG/WEBP/MP4/MOV available by a direct public HTTPS download URL.
+Grok кладёт сюда один `*.json` манифест на каждый бинарный импорт.
 
-Full protocol: `production/GROK_BINARY_UPLOAD.md`.
+Три режима (ровно один ключ в JSON):
 
-Do not place credentials, cookies, API keys or private signed URLs in this public repository.
+1. `source_url` — публичный HTTPS.
+2. `base64` — маленький файл целиком.
+3. `base64_chunks` — список текстовых кусков в `chunks/<slug>/`.
+
+Подготовка локального файла:
+
+`python3 production/prepare_github_import.py SRC content/... --slug SLUG`
+
+Полный протокол: `production/GROK_BINARY_UPLOAD.md`.
+
+Не класть credentials, cookie, API keys и private signed URL в этот публичный репозиторий.
