@@ -101,6 +101,14 @@
 
 # Журнал операций
 
+### 2026-08-22 00:33 +03:00 — Автоматизирован handoff ChatGPT ↔ Grok через GitHub
+- Кто/инструмент: ChatGPT + GitHub + ChatGPT Tasks
+- Что сделано: создан общий mailbox-протокол `coordination/PROTOCOL.md`, машиночитаемый указатель `coordination/state.json`, неизменяемые message-файлы в `coordination/messages/`, валидатор состояния и GitHub Actions workflow. В очередь Grok поставлен следующий I2V-прогон Reels 005 от уже принятого start-frame. Для стороны ChatGPT создан hourly condition-watch: он читает repo и автоматически обрабатывает handoff, когда `next_actor=chatgpt`; если ход не ChatGPT, он молчит.
+- Какие файлы изменены: `coordination/PROTOCOL.md`, `coordination/state.json`, `coordination/messages/20260822-0033-chatgpt-to-grok-reels005-rerun.md`, `coordination/validate_state.py`, `.github/workflows/ai-handoff-validate.yml`, `PROJECT_INSTRUCTIONS.md`, `GROK_CONTEXT_AND_LOG.md`
+- Результат: текущий state — `waiting_for_grok`; Grok должен читать сообщение `cg-20260822-0033-001`, выполнить повторный I2V 005 и вернуть новый message-файл через mailbox. Мгновенного webhook-триггера ChatGPT нет; автоматическая сторона ChatGPT опрашивает repo не чаще одного раза в час.
+- Статус: completed / waiting_for_grok
+- Следующий шаг: Grok читает `coordination/state.json`, выполняет только если `next_actor=grok`, затем создаёт ответ для ChatGPT и переводит `next_actor` в `chatgpt`.
+
 ### 2026-08-22 00:24 +03:00 — QA первого I2V-прогона Reels 005
 - Кто/инструмент: ChatGPT
 - Что сделано: проверен присланный пользователем MP4, сгенерированный Grok от принятого start-frame v2; сняты технические параметры и визуально проверены ключевые биты 0–15 с. Канон лица и start-frame не менялись.
