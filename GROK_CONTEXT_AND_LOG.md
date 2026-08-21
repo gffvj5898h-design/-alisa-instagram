@@ -101,6 +101,14 @@
 
 # Журнал операций
 
+### 2026-08-21 23:22 +03:00 — Бинарный bridge Grok → GitHub
+- Кто/инструмент: ChatGPT + GitHub Actions
+- Что сделано: создан текстовый протокол, позволяющий Grok с text-only GitHub-инструментом ставить JPG/PNG/WEBP/MP4/MOV в очередь через JSON. GitHub Actions скачивает бинарник по публичному HTTPS URL, валидирует сигнатуру и размер, считает SHA-256, пишет файл только под `content/` и создаёт receipt. Импорт в `character/references/` запрещён, поэтому канон лица нельзя заменить этим механизмом.
+- Какие файлы изменены: `.github/workflows/import-generated-assets.yml`, `production/import_generated_asset.py`, `production/GROK_BINARY_UPLOAD.md`, `production/import-queue/README.md`, `PROJECT_INSTRUCTIONS.md`, `GROK_CONTEXT_AND_LOG.md`
+- Результат: у Grok появился рабочий text-to-binary bridge. Для генерации с прямым публичным downloadable URL он создаёт manifest в `production/import-queue/`; после workflow обязан проверить target и SHA-256 receipt. Если есть только chat-local attachment/private URL, нужен ручной bridge через пользователя / ChatGPT.
+- Статус: completed
+- Следующий шаг: дать Grok короткую команду прочитать `production/GROK_BINARY_UPLOAD.md` и использовать protocol для следующего бинарного файла.
+
 ### 2026-08-21 22:13 CEST — Reels 005 start-frame v2: фон Петербург
 - Кто/инструмент: Grok
 - Что сделано: приняты лицо, композиция и образ предыдущего still. Переснят только вид за окном: исторический Санкт-Петербург, без московского skyline. Видео не генерировал.
