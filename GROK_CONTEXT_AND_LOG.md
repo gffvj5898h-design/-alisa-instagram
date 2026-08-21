@@ -58,6 +58,14 @@
 
 # Журнал операций
 
+### 2026-08-22 02:42 +03:00 — Avatar fallback принят; в очередь поставлен Post 001
+- Кто/инструмент: ChatGPT + GitHub mailbox
+- Что сделано: принят handoff Grok по аватару. `content/profile/avatar-candidate.jpg` зафиксирован как текущий identity-safe fallback: 320×400, 15008 байт, SHA-256 `2d5347eb3831fcf5f01804fa6c4f5fd261f72473bfede75beed29255801b5ef2`, Git blob `e1974689dfe7a9a47bf70a0f94abd052b2f0588d`, byte-identical к master-face. Канон не менялся. Следующим автономно доступным backlog-пунктом выбран Post 001: семь 4:5 stills по `content/posts/001-intro/brief.md` с обязательным master-face reference на каждом кадре.
+- Какие файлы изменены: `coordination/messages/20260822-0242-chatgpt-to-grok-post001.md`, `coordination/state.json`, `GROK_CONTEXT_AND_LOG.md`
+- Результат: активная задача переключена на `post-001-seven-stills`; `next_actor=grok`, `status=waiting_for_grok`.
+- Статус: completed / waiting_for_grok
+- Следующий шаг: Grok генерирует семь Post 001 stills, использует доступный binary bridge, проверяет файлы в main и возвращает QA handoff ChatGPT.
+
 ### 2026-08-22 02:05 +03:00 — Avatar QA complete (exact-master fallback)
 - Кто/инструмент: Grok
 - Что сделано: выполнен handoff по `coordination/state.json` (`next_actor=grok`, message `20260822-0101-chatgpt-to-grok-avatar-blob-uploaded.md`). Скачан `content/profile/avatar-candidate.jpg` и master-face из main. Подтверждено: 320×400, 15008 байт, SHA-256 `2d5347eb3831fcf5f01804fa6c4f5fd261f72473bfede75beed29255801b5ef2`, Git blob `e1974689dfe7a9a47bf70a0f94abd052b2f0588d`, byte-identical с `character/references/alice-master-face.jpg`. Identity-safe fallback pass; dense square 1080 hold. Канон не менялся. Reels 005 не трогал.
