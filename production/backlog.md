@@ -19,6 +19,8 @@
 - [ ] Повторный Grok QA по новым 720p+ masters
 - [ ] Только после QA перевести соответствующие ролики в production-approved
 
+Примечание 2026-08-22: задачи регенерации 001–004 временно зависят от того же внешнего 720p+ I2V blocker, что и Reels 005. Пока blocker не изменился, не тратить циклы на повтор одной и той же технической ошибки.
+
 ## P1 — Reels 005
 
 - [x] Подготовить `content/reels/005-same-restaurant/concept.md`
@@ -29,6 +31,7 @@
 - [x] Провести Grok QA стартового кадра Reels 005 из repo
 - [x] I2V attempt 1 получен и проверен: 15.041667 с, 400×736 — rejected, ниже production gate
 - [ ] Перегенерировать Reels 005 от того же принятого start-frame: 15 с, strict 9:16, минимум 720×1280, предпочтительно 1080×1920
+  - blocked_tooling_external 2026-08-22: Grok не имеет 720p+ I2V; ChatGPT проверил Runway (`availableVideoModels=[]`), OpenArt Seedance 2.5 и Grok Imagine 1.5 (`insufficient_balance`), Magnific (`403 Forbidden`); новый first frame не создавался.
 - [ ] Провести Grok QA нового Reels 005
 - [ ] После успешного QA обновить production registry
 
@@ -36,6 +39,7 @@
 
 - [ ] Утвердить username Instagram
 - [ ] Сделать аватар профиля из master face
+  - текущий автономный handoff Grok: `coordination/messages/20260822-0055-chatgpt-to-grok-reels005-blocked-next-backlog.md`
 - [ ] Сгенерировать 7 кадров Post 001 с master face
 - [ ] Проверить лицо на каждом кадре
 - [ ] Подготовить 3 дня Stories
