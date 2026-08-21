@@ -26,9 +26,10 @@
 - [x] Подготовить `content/reels/005-same-restaurant/storyboard.md`
 - [x] Подготовить `content/reels/005-same-restaurant/result-notes.md`
 - [x] Создать и залить стартовый кадр Reels 005 только с `alice-master-face.jpg` как identity reference
-- [ ] Провести Grok QA стартового кадра Reels 005 из repo
-- [ ] Сгенерировать Reels 005: 15 с, строго 9:16, минимум 720×1280
-- [ ] Провести Grok QA Reels 005
+- [x] Провести Grok QA стартового кадра Reels 005 из repo
+- [x] I2V attempt 1 получен и проверен: 15.041667 с, 400×736 — rejected, ниже production gate
+- [ ] Перегенерировать Reels 005 от того же принятого start-frame: 15 с, strict 9:16, минимум 720×1280, предпочтительно 1080×1920
+- [ ] Провести Grok QA нового Reels 005
 - [ ] После успешного QA обновить production registry
 
 ## P2 — запуск аккаунта
