@@ -71,7 +71,7 @@
 
 001–004: candidate / QA hold, 512×910.
 
-005: он был в том ресторане. Студия. Пакет есть. Start-frame v2 залит в repo, pending Grok QA. Видео не генерировалось.
+005: он был в том ресторане. Студия. Start-frame v2 в repo прошёл Grok QA и готов как first frame для I2V. Видео не генерировалось.
 
 ---
 
@@ -100,6 +100,14 @@
 ---
 
 # Журнал операций
+
+### 2026-08-21 23:16 CEST — Grok QA start-frame v2 Reels 005
+- Кто/инструмент: Grok
+- Что сделано: скачал `content/reels/005-same-restaurant/stills/start-frame.jpg` из `main`. Сверил размер, разрешение, SHA-256, лицо, возраст, кожу, руки, фон Петербурга и пригодность для I2V. Видео не генерировал.
+- Какие файлы изменены: `content/reels/005-same-restaurant/result-notes.md`, `GROK_CONTEXT_AND_LOG.md`
+- Результат: SHA совпал; 1008×1792; 356333 bytes. QA start-frame пройден. Кадр готов как first frame.
+- Статус: completed
+- Следующий шаг: по команде генерировать Reels 005 I2V 15 с, 9:16, минимум 720×1280.
 
 ### 2026-08-22 00:11 +03:00 — Start-frame v2 Reels 005 загружен в main
 - Кто/инструмент: ChatGPT + GitHub
