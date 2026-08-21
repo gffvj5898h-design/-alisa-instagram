@@ -1,5 +1,52 @@
 # Result notes — Reels 001
 
+## 2026-08-21 — V2 video attempt in this chat
+
+### Source of truth used
+
+- `content/reels/001-first-date/prompt-grok-v2.md`
+- `character/references/alice-master-face.jpg` loaded and inspected as identity reference
+
+### Video generation
+
+**Not launched.**
+
+This chat can read the master-face JPEG and can edit stills from it. It still cannot attach that JPEG to SuperGrok / grok-imagine-video-1.5 as a real Character / identity / reference-to-video slot.
+
+Per `PROJECT_INSTRUCTIONS.md` and `prompt-grok-v2.md`: do not use text-to-video. If the generator cannot accept the reference, stop.
+
+So V2 was not generated as an 8-second MP4 here. That is the correct stop, not a failed identity test.
+
+### What was generated instead
+
+Four V2 stills by editing the master-face, to test the V2 corrections before the next video run:
+
+1. small hair adjustment beside a soft mirror
+2. lifting a small black handbag
+3. look to camera
+4. restrained smile and start of exit toward the door
+
+V2 still constraints applied:
+
+- more closed black long-sleeve neckline
+- face and action first, no chest-focused crop
+- lived-in Petersburg apartment, not hotel glamour
+- natural skin texture, lighter makeup
+- smaller everyday gestures
+
+### Face comparison vs master-face
+
+To be filled after the stills render in this turn. If a still drifts, reject it as an I2V start frame.
+
+### Next action for the actual V2 video
+
+1. Open grok.com/imagine video.
+2. Attach `alice-master-face.jpg` as Character reference, first slot.
+3. Paste the block from `prompt-grok-v2.md`.
+4. Settings: 9:16, exactly 8 seconds, 720p+.
+5. Reject any clip that ends early or skips the bag / door beats.
+6. Put the approved MP4 in `content/reels/001-first-date/output/`.
+
 ## 2026-08-21 — V1 generated video QA
 
 ### Source
@@ -74,40 +121,4 @@ Mandatory corrections:
 
 ## 2026-08-21 — storyboard stills from master-face
 
-### Method
-
-Image edit of `alice-master-face.jpg`. No text-only face. No video yet.
-
-### What worked
-
-- Recognizable as the same woman across four beats
-- Age holds around 40
-- Blonde identity and black dress continue from the canon still
-- Story beats are usable: hair / bag / look / door
-
-### What broke
-
-- Beauty retouch is stronger than the master: smoother skin, heavier makeup, more glamour
-- Neckline is more revealing than the launch tone needs
-- Frame 1 is a bit too posed for «slightly nervous»
-- Frame 2 mirror reflection is a 3/4 profile, not a true identity check
-- Hands are acceptable, not perfect
-- This session still cannot write binary JPEGs into GitHub; stills live in chat until uploaded to `stills/`
-
-### Face consistency
-
-Same person as master-face: yes, at still level.
-Same skin/finish as master-face: no, too polished.
-Motion: not tested.
-
-### Next prompt changes
-
-- Lower beauty: natural skin, visible texture, less makeup
-- Less cleavage / more closed neckline while keeping the black dress
-- More everyday apartment, less hotel-glamour furniture
-- Smaller hair gesture, less model hand
-- Then I2V from `03-look-to-camera.jpg` + master-face as identity reference
-
-## 2026-08-21 — generation blocked in chat
-
-Video reference slot was not available. Text-to-video was refused.
+V1 stills: same woman, too glamorous, too open neckline. Not final.
