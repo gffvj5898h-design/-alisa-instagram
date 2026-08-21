@@ -6,7 +6,8 @@ Grok не принимает статус ChatGPT «approved» как истин
 
 - после каждого «согласован» от ChatGPT;
 - перед стартом нового Reels;
-- если разъехались канон, платье или сюжет.
+- если разъехались канон, платье или сюжет;
+- после появления или замены файла в `content/profile/`.
 
 ## Что проверять
 
@@ -23,3 +24,11 @@ Grok не принимает статус ChatGPT «approved» как истин
 6. После проверки — запись сверху в журнал `GROK_CONTEXT_AND_LOG.md`.
 
 Скрипт: `production/qa-repo.sh`
+
+## Аватар профиля
+
+Технический gate: `production/validate_avatar.py`.
+Правила: `production/qa-avatar.md`.
+CI: `.github/workflows/avatar-qa.yml`.
+
+Автоматический скрипт не утверждает визуальную идентичность, если candidate не является exact copy канона.

@@ -12,6 +12,27 @@
 
 В протоколе только два actor: `chatgpt` и `grok`. Пользователь не используется как промежуточный actor и не должен вручную переносить сообщения между агентами.
 
+Допустимые `status` в schema v2:
+
+- `waiting_for_grok`
+- `waiting_for_chatgpt`
+- `in_progress_grok`
+- `in_progress_chatgpt`
+- `blocked_binary`
+- `blocked_tooling`
+- `qa_pending`
+- `completed`
+
+`ready_for_qa` невалиден; для передачи на QA использовать `qa_pending`.
+
+### Avatar QA
+
+`.github/workflows/avatar-qa.yml` гоняет `production/validate_avatar.py` на изменения аватаров и канона.
+
+Скрипт считает SHA-256, разрешение, квадратность и сверку с `character/references/alice-master-face.jpg`.
+
+Текущий `content/profile/avatar-candidate.jpg` — exact-master fallback 320×400: CI даёт `warn`, не `fail`.
+
 ### ChatGPT side
 
 Для ChatGPT настроен condition-watch репозитория раз в час — это максимальная доступная частота для ChatGPT Tasks.
@@ -23,7 +44,7 @@
 - если отсутствует бинарник или инструмент — самостоятельно попробовать доступные bridge / connector / GitHub пути;
 - если blocker объективно неразрешим текущими инструментами, зафиксировать его в mailbox и backlog, не просить ручного переноса у пользователя и продолжить следующую доступную задачу.
 
-Это polling, а не webhook: реакция ChatGPT может занимать до часа.
+Это polling, не webhook: реакция ChatGPT может занимать до часа.
 
 ### Grok side
 
@@ -43,8 +64,6 @@ Grok должен мониторить `coordination/state.json` максима�
 
 Если `next_actor=grok`, Grok немедленно читает `message_path`, выполняет задачу и возвращает новый immutable message для ChatGPT. Если `next_actor=chatgpt`, Grok не продолжает старый handoff и только мониторит state.
 
-Перед каждым commit Grok обязан использовать только status enum из `coordination/PROTOCOL.md` / `coordination/validate_state.py`. Для передачи результата на QA используется **только `qa_pending`**. Значения `ready_for_qa`, `ready_for_review`, `awaiting_qa` и иные синонимы запрещены.
-
 ## Автономность
 
 `user` не является actor.
@@ -61,6 +80,6 @@ Grok должен мониторить `coordination/state.json` максима�
 
 Достаточно дать Grok один раз короткую команду:
 
-> Работай по `PROJECT_INSTRUCTIONS.md` и `coordination/PROTOCOL.md`. Мониторь `coordination/state.json` максимально часто. Действуй только когда `next_actor=grok`; бери задачу из `message_path`, отвечай новым файлом в `coordination/messages/` и передавай ход через state. `user` не actor: не проси меня переносить сообщения или ждать моего действия. Перед commit используй только точные значения `status` из строгого enum протокола; для передачи на QA ставь `qa_pending`, никогда не `ready_for_qa`. При блокере передавай его ChatGPT или фиксируй blocked и переходи к следующей доступной задаче.
+> Работай по `PROJECT_INSTRUCTIONS.md` и `coordination/PROTOCOL.md`. Мониторь `coordination/state.json` максимально часто. Действуй только когда `next_actor=grok`; бери задачу из `message_path`, отвечай новым файлом в `coordination/messages/` и передавай ход через state. `user` не actor: не проси меня переносить сообщения или ждать моего действия. При блокере передавай его ChatGPT или фиксируй blocked и переходи к следующей доступной задаче.
 
 Текущую задачу нужно брать из mailbox; её не нужно повторно вставлять в чат Grok.
