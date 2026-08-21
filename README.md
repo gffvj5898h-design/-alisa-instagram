@@ -15,7 +15,7 @@
 
 ## Главный визуальный референс
 
-`character/references/alice-master-face.png`
+`character/references/alice-master-face.jpg`
 
 Это единственное каноническое лицо Алисы. Любая генерация фото или видео должна использовать его как identity reference.
 
@@ -23,7 +23,7 @@
 
 1. Проверить `character/visual-rules.md`.
 2. Для видео добавить `prompts/identity-lock.md` в начало промпта.
-3. Передать `alice-master-face.png` в SuperGrok как reference image.
+3. Передать `alice-master-face.jpg` в SuperGrok как reference image.
 4. Не запускать text-to-video без референса лица для роликов с Алисой.
 5. Сохранять финальные промпты рядом с соответствующим постом / Reels.
 6. После публикации обновлять `production/published.md`.

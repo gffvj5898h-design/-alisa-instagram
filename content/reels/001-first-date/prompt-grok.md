@@ -1,6 +1,6 @@
 # SuperGrok Prompt — Reels 001
 
-Attach `character/references/alice-master-face.png` as the mandatory visual identity reference.
+Attach `character/references/alice-master-face.jpg` as the mandatory visual identity reference.
 
 Prepend `prompts/identity-lock.md`.
 

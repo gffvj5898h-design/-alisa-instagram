@@ -2,7 +2,7 @@
 
 ## Mandatory input
 
-Attach: `character/references/alice-master-face.png`
+Attach: `character/references/alice-master-face.jpg`
 
 Then prepend the full content of:
 

@@ -1,6 +1,6 @@
 # IDENTITY LOCK
 
-Use the attached `alice-master-face.png` as the canonical identity of Alice.
+Use the attached `alice-master-face.jpg` as the canonical identity of Alice.
 
 Preserve exactly the same woman in every frame:
 - same facial structure
