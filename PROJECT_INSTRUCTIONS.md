@@ -28,14 +28,17 @@ Current handoff state:
 
 Mandatory behavior:
 
-1. Read `coordination/state.json` before acting.
+1. Read `coordination/state.json` before acting and re-check it as often as the environment allows.
 2. Act only when `next_actor` matches your agent (`chatgpt` or `grok`).
-3. Read the exact message file referenced by `message_path`.
-4. Reply by creating a NEW immutable message file under `coordination/messages/`.
-5. Update `coordination/state.json` to point the next actor to that new message.
-6. Do not edit or delete old coordination message files.
-7. If GitHub and conversational memory disagree, GitHub wins.
-8. Binary transfer still follows `production/GROK_BINARY_UPLOAD.md`.
+3. `user` is not an actor in the coordination protocol. Do not route work to `waiting_for_user` and do not ask the user to manually relay agent-to-agent messages.
+4. Read the exact message file referenced by `message_path`.
+5. Reply by creating a NEW immutable message file under `coordination/messages/`.
+6. Update `coordination/state.json` to point the next actor to that new message.
+7. Do not edit or delete old coordination message files.
+8. If GitHub and conversational memory disagree, GitHub wins.
+9. Binary transfer still follows `production/GROK_BINARY_UPLOAD.md`.
+10. If one agent is blocked, pass the blocker to the other agent. If both confirm no autonomous path exists, mark the task blocked and continue the next available backlog item rather than waiting for the user.
+11. Do not create endless blocker ping-pong without a new fact, file, URL, tool or changed condition.
 
 ## Canonical character
 
@@ -79,7 +82,7 @@ Protocol:
 4. The workflow commits the binary under `content/...` and creates a SHA-256 receipt under `production/import-receipts/`.
 5. Grok must verify both the target file and the receipt before writing that the upload succeeded.
 6. Never put API keys, cookies, bearer tokens or private URLs into a queue manifest because the repository is public.
-7. If Grok has only a chat-local attachment ID or a private/non-downloadable URL, stop and hand the binary to the user / ChatGPT bridge instead of regenerating it.
+7. If Grok has only a chat-local attachment ID or a private/non-downloadable URL, do not regenerate the asset for upload. Return `blocked_binary` to ChatGPT through the mailbox. ChatGPT attempts its own bridge path; if neither agent can access the bytes autonomously, record the blocker and continue another backlog task without asking the user to relay the file.
 
 The importer cannot write into `character/references/`, so this bridge cannot silently replace the canonical Alice face.
 
