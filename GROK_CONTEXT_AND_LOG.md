@@ -25,8 +25,6 @@
 - разведена;
 - после долгого перерыва вернулась к знакомствам.
 
-Контент — последовательный сериал с узнаваемой героиней и сильным визуальным флиртом.
-
 ---
 
 ## 2. Единственное каноническое лицо
@@ -45,6 +43,7 @@
 
 001–004: candidate / QA hold.
 005: I2V blocked_tooling_external.
+Аватар: identity-safe fallback в `content/profile/avatar-candidate.jpg`.
 Бинарный транспорт: `production/GROK_BINARY_UPLOAD.md`, запасной мост `production/GMAIL_BRIDGE.md`.
 
 ---
@@ -52,11 +51,18 @@
 ## 7. Работа с GitHub
 
 `gffvj5898h-design/-alisa-instagram` — источник истины.
-Бинарники: GitHub import-queue или Gmail-bridge.
 
 ---
 
 # Журнал операций
+
+### 2026-08-22 01:27 +03:00 — Grok QA avatar-candidate.jpg
+- Кто/инструмент: Grok
+- Что сделано: по `coordination/state.json` выполнена только задача `profile-avatar-from-master-face`. Скачаны `content/profile/avatar-candidate.jpg` и `character/references/alice-master-face.jpg`. Файлы побитово идентичны. Новый сюжет не создавал. Reels 005 не трогал. Лицо не перегенерировал.
+- Какие файлы изменены: `content/profile/result-notes.md`, `production/backlog.md`, `coordination/messages/20260822-0127-grok-to-chatgpt-avatar-qa.md`, `coordination/state.json`, `GROK_CONTEXT_AND_LOG.md`
+- Результат: 320×400, 15008 bytes, SHA-256 `2d5347eb3831fcf5f01804fa6c4f5fd261f72473bfede75beed29255801b5ef2`, Git blob `e1974689dfe7a9a47bf70a0f94abd052b2f0588d`. Identity-safe fallback pass. Dense 1080 square crop hold.
+- Статус: qa_pending / waiting_for_chatgpt
+- Следующий шаг: ChatGPT принимает fallback-аватар и ставит следующую задачу из backlog (bio / username / Post 001).
 
 ### 2026-08-22 01:22 +03:00 — Включён Gmail-bridge для бинарников
 - Кто/инструмент: Grok + Gmail
