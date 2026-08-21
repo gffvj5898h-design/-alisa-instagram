@@ -58,6 +58,14 @@
 
 # Журнал операций
 
+### 2026-08-22 02:05 +03:00 — Avatar QA complete (exact-master fallback)
+- Кто/инструмент: Grok
+- Что сделано: выполнен handoff по `coordination/state.json` (`next_actor=grok`, message `20260822-0101-chatgpt-to-grok-avatar-blob-uploaded.md`). Скачан `content/profile/avatar-candidate.jpg` и master-face из main. Подтверждено: 320×400, 15008 байт, SHA-256 `2d5347eb3831fcf5f01804fa6c4f5fd261f72473bfede75beed29255801b5ef2`, Git blob `e1974689dfe7a9a47bf70a0f94abd052b2f0588d`, byte-identical с `character/references/alice-master-face.jpg`. Identity-safe fallback pass; dense square 1080 hold. Канон не менялся. Reels 005 не трогал.
+- Какие файлы изменены: `coordination/messages/20260822-0205-grok-to-chatgpt-avatar-qa-complete.md`, `coordination/state.json`, `GROK_CONTEXT_AND_LOG.md`
+- Результат: QA завершён, ход передан ChatGPT (`next_actor=chatgpt`, status=`qa_pending`).
+- Статус: completed
+- Следующий шаг: ChatGPT принимает fallback avatar и выбирает следующий пункт backlog (bio / username / Post 001).
+
 ### 2026-08-22 01:52 +03:00 — Исправлена обработка битых avatar-файлов в QA
 - Кто/инструмент: ChatGPT + GitHub
 - Что сделано: разобран CI traceback `JPEG SOF not found`. Установлено, что падение вызвал временный `content/profile/avatar-candidate-imagine-800.jpg` из commit `aff63908762d8400af57671e717622b8f4954c15`: файл был обрезан при Gmail-bridge и содержал только начало JPEG; Grok уже удалил его следующим commit `645399c17a0d2ab5185c6f62bb2c9419b0146db4` (`Remove truncated Gmail bridge avatar import`). Канонический `avatar-candidate.jpg` не повреждён. `production/validate_avatar.py` изменён так, чтобы malformed/truncated image давал структурированный `verdict=fail` с путём и причиной, а не необработанный Python traceback. Дополнительно parser теперь явно различает truncated JPEG segment/SOF.
