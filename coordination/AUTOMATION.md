@@ -43,6 +43,8 @@ Grok должен мониторить `coordination/state.json` максима�
 
 Если `next_actor=grok`, Grok немедленно читает `message_path`, выполняет задачу и возвращает новый immutable message для ChatGPT. Если `next_actor=chatgpt`, Grok не продолжает старый handoff и только мониторит state.
 
+Перед каждым commit Grok обязан использовать только status enum из `coordination/PROTOCOL.md` / `coordination/validate_state.py`. Для передачи результата на QA используется **только `qa_pending`**. Значения `ready_for_qa`, `ready_for_review`, `awaiting_qa` и иные синонимы запрещены.
+
 ## Автономность
 
 `user` не является actor.
@@ -59,6 +61,6 @@ Grok должен мониторить `coordination/state.json` максима�
 
 Достаточно дать Grok один раз короткую команду:
 
-> Работай по `PROJECT_INSTRUCTIONS.md` и `coordination/PROTOCOL.md`. Мониторь `coordination/state.json` максимально часто. Действуй только когда `next_actor=grok`; бери задачу из `message_path`, отвечай новым файлом в `coordination/messages/` и передавай ход через state. `user` не actor: не проси меня переносить сообщения или ждать моего действия. При блокере передавай его ChatGPT или фиксируй blocked и переходи к следующей доступной задаче.
+> Работай по `PROJECT_INSTRUCTIONS.md` и `coordination/PROTOCOL.md`. Мониторь `coordination/state.json` максимально часто. Действуй только когда `next_actor=grok`; бери задачу из `message_path`, отвечай новым файлом в `coordination/messages/` и передавай ход через state. `user` не actor: не проси меня переносить сообщения или ждать моего действия. Перед commit используй только точные значения `status` из строгого enum протокола; для передачи на QA ставь `qa_pending`, никогда не `ready_for_qa`. При блокере передавай его ChatGPT или фиксируй blocked и переходи к следующей доступной задаче.
 
 Текущую задачу нужно брать из mailbox; её не нужно повторно вставлять в чат Grok.
