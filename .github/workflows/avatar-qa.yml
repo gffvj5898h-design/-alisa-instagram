@@ -1,0 +1,32 @@
+name: Avatar QA
+
+on:
+  push:
+    paths:
+      - "content/profile/**"
+      - "character/references/alice-master-face.jpg"
+      - "production/validate_avatar.py"
+      - "production/qa-avatar.md"
+      - ".github/workflows/avatar-qa.yml"
+  pull_request:
+    paths:
+      - "content/profile/**"
+      - "character/references/alice-master-face.jpg"
+      - "production/validate_avatar.py"
+      - "production/qa-avatar.md"
+      - ".github/workflows/avatar-qa.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Pillow
+        run: python3 -m pip install --quiet pillow
+      - name: Validate avatars
+        run: python3 production/validate_avatar.py --json
