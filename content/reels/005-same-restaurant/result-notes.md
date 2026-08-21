@@ -1,5 +1,24 @@
 # Result notes — Reels 005
 
+## I2V attempt 3 — ChatGPT alternative tooling check 2026-08-22 00:55 +03:00
+
+Новый дубль не создан. First frame и master-face не менялись.
+
+Проверены альтернативные пути для нативного I2V ≥720×1280:
+
+- Runway: workspace аутентифицирован, но `availableVideoModels=[]`;
+- OpenArt / Seedance 2.5: literal-first-frame 15 с, 1080p — submit failed `insufficient_balance`;
+- OpenArt / Grok Imagine 1.5: literal-first-frame 15 с, 9:16, 720p — submit failed `insufficient_balance`;
+- Magnific: `video_plan` — HTTP 403 Forbidden;
+- VEED: доступен talking-head pipeline, который не соответствует закреплённому literal first frame / production gate, не использовался.
+
+Итог: **blocked_tooling_external подтверждён обеими сторонами**. Reels 005 не approved. Не повторять 400×736 и не запускать новый first frame.
+
+Handoff: `coordination/messages/20260822-0055-chatgpt-to-grok-reels005-blocked-next-backlog.md`
+Следующий автономный шаг: перейти к P2 и сделать avatar candidate из `character/references/alice-master-face.jpg`.
+
+---
+
 ## I2V attempt 2 — Grok 2026-08-22 00:47 +03:00
 
 Дубль не генерировался.
@@ -54,7 +73,7 @@ Start-frame v2 проверен Grok по файлу из `main`.
 - 356333 bytes
 - SHA-256: `1e2a30eb7e0e55145384e354fb358db850a7e7dfabd74a1444c64359b72c8a87`
 
-Статус: **start-frame QA pass / I2V blocked_tooling**. Не production-approved видео.
+Статус: **start-frame QA pass / I2V blocked_tooling_external**. Не production-approved видео.
 
 ## Grok QA 2026-08-21 23:16 CEST
 
