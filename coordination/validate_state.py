@@ -49,9 +49,11 @@ def main() -> None:
     if data["schema_version"] != 2:
         fail("schema_version must be 2")
     if data["next_actor"] not in ALLOWED_ACTORS:
-        fail(f"unsupported next_actor: {data['next_actor']}; only chatgpt/grok are allowed")
+        allowed = ", ".join(sorted(ALLOWED_ACTORS))
+        fail(f"unsupported next_actor: {data['next_actor']}; allowed: {allowed}")
     if data["status"] not in ALLOWED_STATUS:
-        fail(f"unsupported status: {data['status']}")
+        allowed = ", ".join(sorted(ALLOWED_STATUS))
+        fail(f"unsupported status: {data['status']}; allowed: {allowed}")
     if data.get("requires_user") is True:
         fail("requires_user=true is forbidden in schema v2")
 
