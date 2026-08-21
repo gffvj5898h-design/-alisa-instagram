@@ -71,7 +71,7 @@
 
 001–004: candidate / QA hold, 512×910.
 
-005: он был в том ресторане. Студия. Пакет есть. Start-frame v2: фон переснят под Петербург. Видео не генерировалось.
+005: он был в том ресторане. Студия. Пакет есть. Start-frame v2 залит в repo, pending Grok QA. Видео не генерировалось.
 
 ---
 
@@ -100,6 +100,14 @@
 ---
 
 # Журнал операций
+
+### 2026-08-22 00:11 +03:00 — Start-frame v2 Reels 005 загружен в main
+- Кто/инструмент: ChatGPT + GitHub
+- Что сделано: взят принятый пользователем JPG start-frame v2 из чата без перегенерации; бинарный файл загружен в `main` через Git blob/tree/commit. Канон `character/references/alice-master-face.jpg` не изменялся. Видео Reels 005 не генерировалось.
+- Какие файлы изменены: `content/reels/005-same-restaurant/stills/start-frame.jpg`, `content/reels/005-same-restaurant/result-notes.md`, `production/backlog.md`, `GROK_CONTEXT_AND_LOG.md`
+- Результат: `start-frame.jpg` находится в repo; размер 1008×1792, 356333 bytes; Git blob SHA `33a5b529b122517fa7d2685ac267cf5ad279d1cc`; SHA-256 `1e2a30eb7e0e55145384e354fb358db850a7e7dfabd74a1444c64359b72c8a87`.
+- Статус: pending Grok QA
+- Следующий шаг: Grok проверяет файл из `main` по identity, возрасту, коже, рукам, фону Санкт-Петербурга, размеру и SHA-256. Видео не запускать до QA start-frame.
 
 ### 2026-08-21 23:22 +03:00 — Бинарный bridge Grok → GitHub
 - Кто/инструмент: ChatGPT + GitHub Actions

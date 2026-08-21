@@ -25,7 +25,8 @@
 - [x] Подготовить `content/reels/005-same-restaurant/prompt-grok.md`
 - [x] Подготовить `content/reels/005-same-restaurant/storyboard.md`
 - [x] Подготовить `content/reels/005-same-restaurant/result-notes.md`
-- [ ] Создать стартовый кадр Reels 005 только с `alice-master-face.jpg` как identity reference
+- [x] Создать и залить стартовый кадр Reels 005 только с `alice-master-face.jpg` как identity reference
+- [ ] Провести Grok QA стартового кадра Reels 005 из repo
 - [ ] Сгенерировать Reels 005: 15 с, строго 9:16, минимум 720×1280
 - [ ] Провести Grok QA Reels 005
 - [ ] После успешного QA обновить production registry
