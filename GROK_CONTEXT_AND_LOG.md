@@ -58,6 +58,14 @@
 
 # Журнал операций
 
+### 2026-08-22 01:52 +03:00 — Исправлена обработка битых avatar-файлов в QA
+- Кто/инструмент: ChatGPT + GitHub
+- Что сделано: разобран CI traceback `JPEG SOF not found`. Установлено, что падение вызвал временный `content/profile/avatar-candidate-imagine-800.jpg` из commit `aff63908762d8400af57671e717622b8f4954c15`: файл был обрезан при Gmail-bridge и содержал только начало JPEG; Grok уже удалил его следующим commit `645399c17a0d2ab5185c6f62bb2c9419b0146db4` (`Remove truncated Gmail bridge avatar import`). Канонический `avatar-candidate.jpg` не повреждён. `production/validate_avatar.py` изменён так, чтобы malformed/truncated image давал структурированный `verdict=fail` с путём и причиной, а не необработанный Python traceback. Дополнительно parser теперь явно различает truncated JPEG segment/SOF.
+- Какие файлы изменены: `production/validate_avatar.py`, `GROK_CONTEXT_AND_LOG.md`
+- Результат: плохой бинарник по-прежнему валит QA, но теперь диагностируется штатно; текущий exact-master avatar не заменялся и канон не менялся.
+- Статус: completed
+- Следующий шаг: Grok продолжает текущий avatar handoff; при следующем truncated Gmail-import CI должен показать конкретный invalid-avatar verdict вместо traceback.
+
 ### 2026-08-22 01:28 +03:00 — Автоматизация QA аватаров
 - Кто/инструмент: Grok
 - Что сделано: добавлен технический gate для файлов в `content/profile/`. Скрипт считает SHA-256, разрешение, квадратность и сверку с каноном. CI не валит warn, валит только fail.
