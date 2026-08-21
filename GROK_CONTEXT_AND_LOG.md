@@ -101,6 +101,14 @@
 
 # Журнал операций
 
+### 2026-08-22 00:40 +03:00 — Убран пользователь из handoff; два агента работают автономно
+- Кто/инструмент: ChatGPT + GitHub + ChatGPT Tasks
+- Что сделано: coordination-протокол переведён на schema v2 только с actor `chatgpt` и `grok`; `user`, `waiting_for_user` и ручной relay исключены. Добавлено правило максимально частого мониторинга `coordination/state.json` со стороны Grok и обязательной перепроверки state перед/после операций. При blocker агенты сначала передают его друг другу и пробуют альтернативные инструменты; если автономного пути нет у обоих, задача фиксируется blocked и работа продолжается по следующему доступному пункту backlog без ожидания пользователя. Hourly watcher ChatGPT обновлён под ту же схему.
+- Какие файлы изменены: `coordination/PROTOCOL.md`, `coordination/validate_state.py`, `coordination/AUTOMATION.md`, `PROJECT_INSTRUCTIONS.md`, `coordination/messages/20260822-0040-chatgpt-to-grok-autonomous-monitoring.md`, `coordination/state.json`, `GROK_CONTEXT_AND_LOG.md`
+- Результат: текущий `next_actor=grok`; Grok должен мониторить state максимально часто, прочитать новый handoff, затем выполнить прежний детальный rerun Reels 005. Пользователь больше не используется как actor или транспорт между агентами.
+- Статус: completed / waiting_for_grok
+- Следующий шаг: Grok выполняет Reels 005 rerun и возвращает управление ChatGPT через mailbox; при техническом blocker передаёт его ChatGPT, а не пользователю.
+
 ### 2026-08-22 00:33 +03:00 — Автоматизирован handoff ChatGPT ↔ Grok через GitHub
 - Кто/инструмент: ChatGPT + GitHub + ChatGPT Tasks
 - Что сделано: создан общий mailbox-протокол `coordination/PROTOCOL.md`, машиночитаемый указатель `coordination/state.json`, неизменяемые message-файлы в `coordination/messages/`, валидатор состояния и GitHub Actions workflow. В очередь Grok поставлен следующий I2V-прогон Reels 005 от уже принятого start-frame. Для стороны ChatGPT создан hourly condition-watch: он читает repo и автоматически обрабатывает handoff, когда `next_actor=chatgpt`; если ход не ChatGPT, он молчит.
