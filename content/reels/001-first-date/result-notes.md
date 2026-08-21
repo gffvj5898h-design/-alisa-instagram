@@ -1,37 +1,41 @@
 # Result notes — Reels 001
 
-## 2026-08-21 — generation blocked in chat
+## 2026-08-21 — storyboard stills from master-face
 
-### What was verified
+### Method
 
-- Repo: `gffvj5898h-design/-alisa-instagram`
-- Master face loaded and inspected: `character/references/alice-master-face.jpg`
-- Identity rules read: `visual-rules.md`, `identity-lock.md`, `supergrok-video-base.md`
-- Existing prompt and storyboard match the launch concept
+Image edit of `alice-master-face.jpg`. No text-only face. No video yet.
 
-### What went well
+### What worked
 
-- Canonical face exists and is usable as `<IMAGE_1>`
-- Wardrobe in the master still already matches the black-dress brief
-- Launch story is strong enough: hook, emotion, cliffhanger, no date on camera
+- Recognizable as the same woman across four beats
+- Age holds around 40
+- Blonde identity and black dress continue from the canon still
+- Story beats are usable: hair / bag / look / door
 
-### What broke / what we refused
+### What broke
 
-This chat session can read the JPEG and can generate still images, but it cannot pass `alice-master-face.jpg` into SuperGrok video as a real reference-to-video / image-to-video slot.
-
-Per `PROJECT_INSTRUCTIONS.md`: if the generator cannot accept the reference image, stop rather than invent a new face.
-
-Generation was not launched.
+- Beauty retouch is stronger than the master: smoother skin, heavier makeup, more glamour
+- Neckline is more revealing than the launch tone needs
+- Frame 1 is a bit too posed for «slightly nervous»
+- Frame 2 mirror reflection is a 3/4 profile, not a true identity check
+- Hands are acceptable, not perfect
+- This session still cannot write binary JPEGs into GitHub; stills live in chat until uploaded to `stills/`
 
 ### Face consistency
 
-Not tested in motion. Still only.
+Same person as master-face: yes, at still level.
+Same skin/finish as master-face: no, too polished.
+Motion: not tested.
 
-### Next prompt / next action
+### Next prompt changes
 
-1. Open grok.com/imagine or the SuperGrok video API.
-2. Create a Character Reference from `alice-master-face.jpg`.
-3. Paste `prompt-grok-ready.md`.
-4. Confirm the first frame is the same woman, about 40, no plastic skin.
-5. Watch the full 8 seconds for mid-clip drift, hands, and mirror artifacts.
-6. Drop the approved mp4 into `content/reels/001-first-date/output/` and update this file.
+- Lower beauty: natural skin, visible texture, less makeup
+- Less cleavage / more closed neckline while keeping the black dress
+- More everyday apartment, less hotel-glamour furniture
+- Smaller hair gesture, less model hand
+- Then I2V from `03-look-to-camera.jpg` + master-face as identity reference
+
+## 2026-08-21 — generation blocked in chat
+
+Video reference slot was not available. Text-to-video was refused.
