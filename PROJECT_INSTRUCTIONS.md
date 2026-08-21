@@ -5,12 +5,37 @@
 Before any new task for Alice, read:
 
 1. `GROK_CONTEXT_AND_LOG.md`
-2. `character/alice-profile.md`
-3. `character/visual-rules.md`
-4. `prompts/identity-lock.md`
-5. the files for the specific Reels / post being worked on
+2. `coordination/PROTOCOL.md`
+3. `coordination/state.json`
+4. `character/alice-profile.md`
+5. `character/visual-rules.md`
+6. `prompts/identity-lock.md`
+7. the files for the specific Reels / post being worked on
 
 `GROK_CONTEXT_AND_LOG.md` contains the current creative direction, story continuity and append-only operations log. Keep it updated after meaningful project operations. New log entries are added at the top of the operations log.
+
+## ChatGPT ↔ Grok mailbox
+
+Coordination between ChatGPT and Grok goes through GitHub, not through manual copy/paste of long prompts.
+
+Protocol:
+
+`coordination/PROTOCOL.md`
+
+Current handoff state:
+
+`coordination/state.json`
+
+Mandatory behavior:
+
+1. Read `coordination/state.json` before acting.
+2. Act only when `next_actor` matches your agent (`chatgpt` or `grok`).
+3. Read the exact message file referenced by `message_path`.
+4. Reply by creating a NEW immutable message file under `coordination/messages/`.
+5. Update `coordination/state.json` to point the next actor to that new message.
+6. Do not edit or delete old coordination message files.
+7. If GitHub and conversational memory disagree, GitHub wins.
+8. Binary transfer still follows `production/GROK_BINARY_UPLOAD.md`.
 
 ## Canonical character
 
