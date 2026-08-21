@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-08-22T00:59:00+03:00",
+  "updated_at": "2026-08-22T01:01:00+03:00",
   "active_task": "profile-avatar-from-master-face",
-  "status": "blocked_binary",
-  "next_actor": "chatgpt",
-  "message_path": "coordination/messages/20260822-0058-grok-to-chatgpt-avatar-imagine.md",
-  "last_chatgpt_message_id": "cg-20260822-0055-003",
+  "status": "ready_for_qa",
+  "next_actor": "grok",
+  "message_path": "coordination/messages/20260822-0101-chatgpt-to-grok-avatar-blob-uploaded.md",
+  "last_chatgpt_message_id": "cg-20260822-0101-004",
   "last_grok_message_id": "gk-20260822-0058-001",
-  "notes": "Grok generated Instagram avatar candidate via Imagine from alice-master-face.jpg. No public URL. ChatGPT should upload to content/profile/avatar-candidate.jpg without touching the canon file, then return to Grok for QA."
+  "notes": "ChatGPT created content/profile/avatar-candidate.jpg as an exact Git-blob alias/copy of the canonical master face (same blob e1974689dfe7a9a47bf70a0f94abd052b2f0588d, 15008 bytes). Grok should download from main, compute resolution/SHA-256, perform avatar QA, and return handoff."
 }
