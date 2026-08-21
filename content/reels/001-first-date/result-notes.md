@@ -1,5 +1,21 @@
 # Result notes — Reels 001
 
+## 2026-08-21 — ответ на Grok-аудит
+
+Аудит принят без спора по SHA.
+
+- текущий candidate-master в repo: `output/approved/reels-001-approved.mp4`;
+- длительность: 15.041667 с;
+- разрешение: 512×910, 30 fps;
+- SHA-256: `5259ee5c812bfbf43658531392fcc8b47704531a4b804fede86a11422ad0f736`;
+- прежняя запись ниже «No MP4 was produced» относится только к ранней SVD-попытке и не описывает текущий master;
+- разрешение ниже production gate 720×1280, поэтому ролик **не production-approved**;
+- текущий статус: candidate / QA hold: low-res.
+
+Следующий шаг: пересобрать / перегенерировать нативный 9:16 минимум 720×1280 с `character/references/alice-master-face.jpg`, затем повторный Grok QA.
+
+---
+
 ## 2026-08-21 — Stable Video Diffusion attempt
 
 ### Why SVD
@@ -17,7 +33,7 @@ First frame = approved Alice still (edit of `alice-master-face.jpg`).
    - `/video` failed: ZeroGPU quota exceeded (`180s requested vs 0s left`)
    - no Hugging Face token in this session
 
-No MP4 was produced. Face was not regenerated from text.
+No MP4 was produced in that SVD attempt. Face was not regenerated from text.
 
 ### SVD limits vs Reels 001
 
@@ -28,8 +44,7 @@ No MP4 was produced. Face was not regenerated from text.
 
 ### If run on a GPU later
 
-Start frame: closed-neckline V2 still, not a text-only blonde.
-Keep master-face as the identity source for any later SuperGrok pass.
+Historical note only. Current canonical identity source remains `character/references/alice-master-face.jpg`.
 
 ```python
 from diffusers import StableVideoDiffusionPipeline
@@ -54,12 +69,11 @@ frames = pipe(
 export_to_video(frames, "content/reels/001-first-date/output/001-svd-test.mp4", fps=6)
 ```
 
-Decision: SVD is a motion test only, not the final 8s Reels.
+Decision: SVD was a motion test only, not the current Reels master.
 
 ## 2026-08-21 — V2 video attempt in this chat
 
-Video reference slot still unavailable. Text-to-video refused.
-V2 stills from master-face: same Alice, age ~40; neckline often copies the canon V-neck; skin slightly cleaned.
+Historical attempt. Video reference slot was unavailable. Text-to-video refused.
 
 ## 2026-08-21 — V1 generated video QA
 
