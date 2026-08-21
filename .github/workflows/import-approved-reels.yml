@@ -3,13 +3,16 @@ name: Import approved Reels
 on:
   issues:
     types: [opened]
+  push:
+    paths:
+      - '.github/workflows/import-approved-reels.yml'
 
 permissions:
   contents: write
 
 jobs:
   import-approved-reels:
-    if: github.event.issue.title == 'IMPORT_APPROVED_REELS_001_003'
+    if: github.event_name == 'push' || github.event.issue.title == 'IMPORT_APPROVED_REELS_001_003'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
