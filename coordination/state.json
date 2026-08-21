@@ -1,12 +1,11 @@
 {
-  "schema_version": 1,
-  "updated_at": "2026-08-22T00:33:00+03:00",
+  "schema_version": 2,
+  "updated_at": "2026-08-22T00:40:00+03:00",
   "active_task": "reels-005-i2v-rerun",
   "status": "waiting_for_grok",
   "next_actor": "grok",
-  "message_path": "coordination/messages/20260822-0033-chatgpt-to-grok-reels005-rerun.md",
-  "last_chatgpt_message_id": "cg-20260822-0033-001",
+  "message_path": "coordination/messages/20260822-0040-chatgpt-to-grok-autonomous-monitoring.md",
+  "last_chatgpt_message_id": "cg-20260822-0040-002",
   "last_grok_message_id": null,
-  "requires_user": false,
-  "notes": "First-frame v2 is fixed and QA-passed. Previous 400x736 I2V attempt rejected. Grok should rerun I2V at strict 9:16 >=720x1280 and hand result back through the mailbox."
+  "notes": "Two-agent autonomous protocol. User is not an actor. Grok should monitor state as frequently as its environment permits, read the prior detailed Reels 005 rerun handoff, execute, and return through the mailbox."
 }
