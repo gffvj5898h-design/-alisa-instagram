@@ -54,13 +54,17 @@ def jpeg_size(data: bytes) -> tuple[int, int]:
         if marker in {0xD8, 0xD9} or 0xD0 <= marker <= 0xD7 or marker == 0x01:
             i += 2
             continue
+        if i + 4 > n:
+            break
         length = int.from_bytes(data[i + 2 : i + 4], "big")
         if marker in {0xC0, 0xC1, 0xC2, 0xC3}:
+            if i + 9 > n:
+                raise ValueError("truncated JPEG SOF segment")
             height = int.from_bytes(data[i + 5 : i + 7], "big")
             width = int.from_bytes(data[i + 7 : i + 9], "big")
             return width, height
-        if length < 2:
-            break
+        if length < 2 or i + 2 + length > n:
+            raise ValueError("truncated JPEG segment before SOF")
         i += 2 + length
     raise ValueError("JPEG SOF not found")
 
@@ -141,15 +145,18 @@ def mae64(a: Any, b: Any) -> float:
     return sum(abs(x - y) for x, y in zip(pa, pb)) / len(pa)
 
 
-def inspect(path: Path, data: bytes) -> dict[str, Any]:
-    suffix = path.suffix.lower()
-    rec: dict[str, Any] = {
+def basic_record(path: Path, data: bytes) -> dict[str, Any]:
+    return {
         "path": str(path.relative_to(ROOT)) if path.is_relative_to(ROOT) else str(path),
         "bytes": len(data),
         "sha256": sha256_bytes(data),
-        "suffix": suffix,
+        "suffix": path.suffix.lower(),
     }
-    fmt = sniff_format(data, suffix)
+
+
+def inspect(path: Path, data: bytes) -> dict[str, Any]:
+    rec = basic_record(path, data)
+    fmt = sniff_format(data, rec["suffix"])
     rec["format"] = fmt
     rec["width"], rec["height"] = image_size(data, fmt)
     rec["min_side"] = min(rec["width"], rec["height"])
@@ -237,6 +244,21 @@ def compare_pillow(avatar_path: Path, master_path: Path) -> dict[str, Any] | Non
         }
 
 
+def invalid_result(path: Path, data: bytes, message: str) -> dict[str, Any]:
+    return {
+        "avatar": basic_record(path, data),
+        "verdict": "fail",
+        "errors": [message],
+        "warnings": [],
+        "identity": {"exact_master": False, "kind": "not_evaluated"},
+        "instagram": {
+            "usable_as_profile_photo": False,
+            "preferred_square_1080": False,
+            "circular_crop_safe": False,
+        },
+    }
+
+
 def evaluate_pair(avatar_path: Path, master_path: Path) -> dict[str, Any]:
     if not avatar_path.is_file():
         return {
@@ -245,13 +267,49 @@ def evaluate_pair(avatar_path: Path, master_path: Path) -> dict[str, Any]:
             "errors": [f"missing avatar: {avatar_path}"],
             "warnings": [],
         }
+
     avatar_data = avatar_path.read_bytes()
     master_data = master_path.read_bytes()
-    avatar = inspect(avatar_path, avatar_data)
-    master = inspect(master_path, master_data)
+
+    try:
+        avatar = inspect(avatar_path, avatar_data)
+    except Exception as exc:
+        return invalid_result(
+            avatar_path,
+            avatar_data,
+            f"invalid avatar image {avatar_path.name}: {type(exc).__name__}: {exc}",
+        )
+
+    try:
+        master = inspect(master_path, master_data)
+    except Exception as exc:
+        result = invalid_result(
+            avatar_path,
+            avatar_data,
+            f"canonical master is invalid: {type(exc).__name__}: {exc}",
+        )
+        result["master"] = basic_record(master_path, master_data)
+        return result
+
     pillow_cmp = None
     if avatar["sha256"] != master["sha256"]:
-        pillow_cmp = compare_pillow(avatar_path, master_path)
+        try:
+            pillow_cmp = compare_pillow(avatar_path, master_path)
+        except Exception as exc:
+            return {
+                "avatar": avatar,
+                "master": master,
+                "verdict": "fail",
+                "errors": [f"Pillow could not decode/compare avatar: {type(exc).__name__}: {exc}"],
+                "warnings": [],
+                "identity": {"exact_master": False, "kind": "not_evaluated"},
+                "instagram": {
+                    "usable_as_profile_photo": False,
+                    "preferred_square_1080": False,
+                    "circular_crop_safe": False,
+                },
+            }
+
     judged = judge(avatar, master, pillow_cmp)
     return {"avatar": avatar, "master": master, **judged}
 
