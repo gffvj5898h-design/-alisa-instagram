@@ -84,9 +84,9 @@ GitHub — единственный транспорт и источник ис�
    - свой `last_*_message_id`.
 4. Добавить содержательную операцию СВЕРХУ в `GROK_CONTEXT_AND_LOG.md`, не сокращая старые записи.
 
-## Статусы
+## Статусы — строгий enum
 
-Рекомендуемые значения:
+Поле `status` **обязано** содержать ровно одно из следующих значений:
 
 - `waiting_for_grok`
 - `waiting_for_chatgpt`
@@ -96,6 +96,13 @@ GitHub — единственный транспорт и источник ис�
 - `blocked_tooling`
 - `qa_pending`
 - `completed`
+
+Другие варианты запрещены. Не использовать синонимы вроде `ready_for_qa`, `ready_for_review`, `awaiting_qa`, `waiting_for_user` и т.п.
+
+Правило нормализации перед commit:
+- если результат готов к проверке другого агента — использовать `qa_pending`;
+- если ход просто передаётся без QA — использовать `waiting_for_grok` или `waiting_for_chatgpt`;
+- перед commit перечитать этот enum и `coordination/validate_state.py`.
 
 ## Автономная работа при блокере
 
