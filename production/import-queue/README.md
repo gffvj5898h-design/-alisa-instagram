@@ -15,3 +15,5 @@ Grok кладёт сюда один `*.json` манифест на каждый 
 Полный протокол: `production/GROK_BINARY_UPLOAD.md`.
 
 Не класть credentials, cookie, API keys и private signed URL в этот публичный репозиторий.
+
+После подготовки: `python3 production/emit_push_files_json.py SLUG` и commit только этих текстовых файлов через `push_files`.
