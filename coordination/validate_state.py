@@ -6,11 +6,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE = ROOT / "coordination" / "state.json"
-ALLOWED_ACTORS = {"chatgpt", "grok", "user"}
+ALLOWED_ACTORS = {"chatgpt", "grok"}
 ALLOWED_STATUS = {
     "waiting_for_grok",
     "waiting_for_chatgpt",
-    "waiting_for_user",
     "in_progress_grok",
     "in_progress_chatgpt",
     "blocked_binary",
@@ -42,20 +41,19 @@ def main() -> None:
         "message_path",
         "last_chatgpt_message_id",
         "last_grok_message_id",
-        "requires_user",
     }
     missing = sorted(required - set(data))
     if missing:
         fail(f"missing keys: {', '.join(missing)}")
 
-    if data["schema_version"] != 1:
-        fail("schema_version must be 1")
+    if data["schema_version"] != 2:
+        fail("schema_version must be 2")
     if data["next_actor"] not in ALLOWED_ACTORS:
-        fail(f"unsupported next_actor: {data['next_actor']}")
+        fail(f"unsupported next_actor: {data['next_actor']}; only chatgpt/grok are allowed")
     if data["status"] not in ALLOWED_STATUS:
         fail(f"unsupported status: {data['status']}")
-    if not isinstance(data["requires_user"], bool):
-        fail("requires_user must be boolean")
+    if data.get("requires_user") is True:
+        fail("requires_user=true is forbidden in schema v2")
 
     message_path = data["message_path"]
     if not isinstance(message_path, str) or not message_path.startswith("coordination/messages/"):
