@@ -27,10 +27,29 @@ python3 production/prepare_github_import.py /path/to/file.jpg \
 
 Скрипт создаёт:
 
-- `production/import-queue/chunks/<slug>/part-NN.txt` — куски base64 по 50k символов;
+- `production/import-queue/chunks/<slug>/part-NN.txt` — куски base64 по 20–50k символов;
 - `production/import-queue/<slug>.json` — манифест с `base64_chunks` и `expected_sha256`.
 
 Дальше Grok коммитит **только эти текстовые файлы** одним `push_files` / несколькими `create_or_update_file`.
+
+Список файлов для push:
+
+```bash
+python3 production/emit_push_files_json.py <slug>
+```
+
+Минимальный автономный цикл Grok:
+
+1. Есть локальные bytes (Imagine render, сжатый JPEG, скачанный still).
+2. `prepare_github_import.py SRC content/... --slug SLUG [--replace]`.
+3. `github___push_files` с содержимым chunks + `production/import-queue/SLUG.json`.
+4. Дождаться workflow `Import generated assets` (триггер: push JSON в очередь).
+5. Проверить `content/...` и `production/import-receipts/SLUG.md`.
+6. Только после receipt писать в mailbox, что файл в `main`.
+
+Нельзя класть JPEG/MP4 в `content=` инструмента — он принимает только текст.
+
+Если локальных bytes нет и нет публичного HTTPS — `blocked_binary`, без перегенерации ради выгрузки.
 
 После push:
 
