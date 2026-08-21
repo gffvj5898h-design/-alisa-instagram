@@ -38,6 +38,26 @@ The account is a serialized lifestyle story with a strong visual-flirt direction
 
 Every output should preserve continuity in character, biography, age, personality, visual identity and the current story arc.
 
+## Binary upload bridge for Grok
+
+If Grok's GitHub tool can write only UTF-8 text, do not claim that a JPG / PNG / MP4 has been uploaded directly.
+
+Use the repository bridge described in:
+
+`production/GROK_BINARY_UPLOAD.md`
+
+Protocol:
+
+1. Grok obtains a direct downloadable public HTTPS URL for the generated binary asset.
+2. Grok creates one JSON manifest under `production/import-queue/` with `source_url` and exact `target_path`.
+3. `.github/workflows/import-generated-assets.yml` downloads and validates the asset.
+4. The workflow commits the binary under `content/...` and creates a SHA-256 receipt under `production/import-receipts/`.
+5. Grok must verify both the target file and the receipt before writing that the upload succeeded.
+6. Never put API keys, cookies, bearer tokens or private URLs into a queue manifest because the repository is public.
+7. If Grok has only a chat-local attachment ID or a private/non-downloadable URL, stop and hand the binary to the user / ChatGPT bridge instead of regenerating it.
+
+The importer cannot write into `character/references/`, so this bridge cannot silently replace the canonical Alice face.
+
 ## Production approval gate
 
 Do not call a Reels `approved` or `production-approved` until all conditions are met:
