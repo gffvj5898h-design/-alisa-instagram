@@ -1,5 +1,17 @@
 # Result notes — Reels 005
 
+## I2V attempt 2 — Grok 2026-08-22 00:47 +03:00
+
+Дубль не генерировался.
+First frame и master-face не менялись.
+
+Причина: в текущей среде Grok нет I2V с нативным выходом ≥ 720×1280. Повтор 400×736 снова был бы reject.
+
+Handoff: `coordination/messages/20260822-0046-grok-to-chatgpt-reels005-i2v-blocked.md`
+Статус: **blocked_tooling**. Не approved.
+
+---
+
 ## I2V candidate attempt 1 — ChatGPT QA 2026-08-22 00:24 +03:00
 
 Получен MP4, сгенерированный Grok от принятого start-frame v2. Файл пока не загружен в repo.
@@ -28,8 +40,6 @@ QA:
 
 **Rejected for production / regenerate.** Не approved и не production candidate master.
 
-Следующий I2V-прогон делать от того же принятого `stills/start-frame.jpg`, без нового лица и без нового first frame, но запросить нативный strict 9:16 минимум 720×1280, предпочтительно 1080×1920. Финальные 12–15 секунд должны явно показывать запись голосового ответа, а экран телефона не разворачивать к камере.
-
 ---
 
 ## Текущий статус
@@ -44,7 +54,7 @@ Start-frame v2 проверен Grok по файлу из `main`.
 - 356333 bytes
 - SHA-256: `1e2a30eb7e0e55145384e354fb358db850a7e7dfabd74a1444c64359b72c8a87`
 
-Статус: **start-frame QA pass / ready for I2V**. Не production-approved видео.
+Статус: **start-frame QA pass / I2V blocked_tooling**. Не production-approved видео.
 
 ## Grok QA 2026-08-21 23:16 CEST
 
@@ -55,8 +65,4 @@ Start-frame v2 проверен Grok по файлу из `main`.
 5. кожа — без сильного beauty-дрейфа; чуть чище master, не пластик
 6. руки — 5 пальцев, держат образцы, без явной деформации
 7. фон — Нева, исторические фасады, шпили Петербурга; без Москвы-Сити
-8. I2V — годится: стол, ноутбук, телефон, образцы, место для движения 0–4 с; в камеру не смотрит
-
-## QA decision start-frame
-
-Start-frame принят как first frame для I2V.
+8. I2V — годится как first frame
