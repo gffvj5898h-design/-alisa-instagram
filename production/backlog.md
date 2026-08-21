@@ -38,8 +38,12 @@
 ## P2 — запуск аккаунта
 
 - [ ] Утвердить username Instagram
-- [ ] Сделать аватар профиля из master face
-  - текущий автономный handoff Grok: `coordination/messages/20260822-0055-chatgpt-to-grok-reels005-blocked-next-backlog.md`
+- [x] Сделать аватар профиля из master face — identity-safe fallback
+  - `content/profile/avatar-candidate.jpg` = exact copy of `alice-master-face.jpg`
+  - 320×400, 15008 bytes, SHA-256 `2d5347eb3831fcf5f01804fa6c4f5fd261f72473bfede75beed29255801b5ef2`
+  - Grok QA 2026-08-22: identity pass; dense 1:1 / 1080 crop hold
+  - notes: `content/profile/result-notes.md`
+- [ ] Опционально: квадратный crop аватара без смены лица, когда есть binary bridge
 - [ ] Сгенерировать 7 кадров Post 001 с master face
 - [ ] Проверить лицо на каждом кадре
 - [ ] Подготовить 3 дня Stories
