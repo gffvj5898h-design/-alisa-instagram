@@ -22,9 +22,10 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout with parent history
+      - name: Checkout branch head with parent history
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 2
       - name: Validate handoff state and transition
         run: python3 coordination/validate_state.py --git-transition
