@@ -1,4 +1,4 @@
-name: AI Broker v3 (dry run)
+name: AI Broker v3 (dispatch envelope)
 
 on:
   push:
@@ -24,7 +24,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  dispatch-dry-run:
+  build-envelope:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -49,6 +49,7 @@ jobs:
           print('target_ref=', p['target_ref'])
           print('proposal_turn_id=', p['proposal_turn_id'])
           print('expected_parent_state_sha=', p['expected_parent_state_sha'])
+          print('proposal_directory=', p['proposal_directory'])
           PY
 
       - name: Upload dispatch envelope
@@ -58,10 +59,7 @@ jobs:
           path: broker-dispatch.json
           if-no-files-found: error
 
-# Live OpenAI/xAI calls are intentionally not enabled in this prototype.
-# Before enabling live mode:
-# 1. add tested actor adapters;
-# 2. store credentials only in GitHub Actions secrets;
-# 3. switch permissions to the minimum required write scope;
-# 4. validate every agent proposal before applying it;
-# 5. keep hop/spend/rate circuit breakers enabled.
+# No model API is called by this workflow.
+# In product-mailbox mode ChatGPT and Grok use their authenticated GitHub
+# connectors/routines to read the envelope/state and create one proposal JSON
+# under coordination/proposals/. GitHub Actions validates and applies it.
