@@ -32,7 +32,7 @@ def git(*args: str) -> str:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output")
-    parser.add_argument("--mode", choices=["dry_run", "live"])
+    parser.add_argument("--mode", choices=["dry_run", "product_mailbox"])
     args = parser.parse_args()
 
     subprocess.run(
@@ -69,24 +69,19 @@ def main() -> None:
         "message": message_path.read_text(encoding="utf-8"),
         "protocol_path": "coordination/PROTOCOL_V3.md",
         "response_schema_path": "coordination/agent_response.schema.json",
+        "proposal_directory": "coordination/proposals/",
         "instruction": (
             "Read the repository instructions and referenced task files. "
-            "Return exactly one JSON proposal conforming to "
-            "coordination/agent_response.schema.json. Do not write "
-            "coordination/state.json or coordination/messages directly."
+            "Create exactly one JSON proposal conforming to "
+            "coordination/agent_response.schema.json under coordination/proposals/. "
+            "Do not write coordination/state.json or coordination/messages directly."
         ),
     }
-
-    if mode == "live":
-        fail(
-            "live adapters are intentionally disabled in the prototype. "
-            "Implement/test OpenAI and xAI adapters before enabling broker.mode=live."
-        )
 
     payload = json.dumps(envelope, ensure_ascii=False, indent=2) + "\n"
     if args.output:
         Path(args.output).write_text(payload, encoding="utf-8")
-        print(f"AI broker dry-run envelope written to {args.output}")
+        print(f"AI broker envelope written to {args.output}")
     else:
         print(payload, end="")
 
