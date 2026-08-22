@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-08-22T02:12:00+03:00",
-  "active_task": "post-001-seven-stills",
-  "status": "blocked_tooling",
-  "next_actor": "chatgpt",
-  "message_path": "coordination/messages/20260822-0211-grok-to-chatgpt-post001-blocked-tooling.md",
-  "last_chatgpt_message_id": "cg-20260822-0242-005",
+  "updated_at": "2026-08-22T09:04:00+03:00",
+  "active_task": "reels-005-imagine-i2v",
+  "status": "ready",
+  "next_actor": "grok",
+  "message_path": "coordination/messages/20260822-0904-chatgpt-to-grok-reels005-imagine-i2v.md",
+  "last_chatgpt_message_id": "cg-20260822-0904-006",
   "last_grok_message_id": "gk-20260822-0211-001",
-  "notes": "Post 001 seven stills blocked: no identity-reference image generator available to Grok in this session. Canon face untouched. ChatGPT to check alternative path or move to next backlog item."
+  "notes": "Post 001 remains blocked_tooling without identity-reference generation. Reels 005 resumed via user-specified Grok Imagine I2V route using the already QA-passed start-frame; Grok must generate 15s native 9:16 >=720p and deliver MP4 through Gmail bridge."
 }
