@@ -1,0 +1,67 @@
+name: AI Broker v3 (dry run)
+
+on:
+  push:
+    branches:
+      - coordination-v3-prototype
+    paths:
+      - "coordination/state.json"
+      - "coordination/broker.py"
+      - "coordination/validate_state.py"
+      - "coordination/validate_agent_response.py"
+      - "coordination/*.schema.json"
+      - "coordination/broker_policy.json"
+      - ".github/workflows/ai-broker-v3.yml"
+  workflow_dispatch:
+  repository_dispatch:
+    types: [ai-handoff-v3]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ai-broker-v3-${{ github.ref || github.event.repository.default_branch }}
+  cancel-in-progress: false
+
+jobs:
+  dispatch-dry-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Validate current state
+        run: python3 coordination/validate_state.py
+
+      - name: Build dispatch envelope
+        run: python3 coordination/broker.py --mode dry_run --output broker-dispatch.json
+
+      - name: Show routing decision
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('broker-dispatch.json').read_text(encoding='utf-8'))
+          print('actor=', p['actor'])
+          print('task=', p['active_task'])
+          print('target_ref=', p['target_ref'])
+          print('proposal_turn_id=', p['proposal_turn_id'])
+          print('expected_parent_state_sha=', p['expected_parent_state_sha'])
+          PY
+
+      - name: Upload dispatch envelope
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-broker-v3-dispatch
+          path: broker-dispatch.json
+          if-no-files-found: error
+
+# Live OpenAI/xAI calls are intentionally not enabled in this prototype.
+# Before enabling live mode:
+# 1. add tested actor adapters;
+# 2. store credentials only in GitHub Actions secrets;
+# 3. switch permissions to the minimum required write scope;
+# 4. validate every agent proposal before applying it;
+# 5. keep hop/spend/rate circuit breakers enabled.
