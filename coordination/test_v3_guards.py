@@ -63,6 +63,16 @@ def main() -> None:
     proposal = base_proposal(state, state_sha)
     run(proposal, True, "valid proposal")
 
+    log_update = dict(proposal)
+    log_update["operations"] = [
+        {
+            "action": "update",
+            "path": "GROK_CONTEXT_AND_LOG.md",
+            "content": "test content",
+        }
+    ]
+    run(log_update, True, "exact allowed project log path accepted")
+
     stale = dict(proposal)
     stale["expected_parent_state_sha"] = "0" * 40
     run(stale, False, "stale state SHA rejected")
@@ -82,6 +92,12 @@ def main() -> None:
         }
     ]
     run(canon, False, "canonical face write rejected")
+
+    outside = dict(proposal)
+    outside["operations"] = [
+        {"action": "update", "path": "README.md", "content": "not allowed"}
+    ]
+    run(outside, False, "outside work-product path rejected")
 
     repeated = dict(proposal)
     repeated["status"] = "blocked_tooling"
