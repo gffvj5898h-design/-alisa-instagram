@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "coordination/state.schema.json",
+  "title": "ChatGPT-Grok Coordination State v3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "updated_at",
+    "active_task",
+    "status",
+    "next_actor",
+    "message_path",
+    "last_chatgpt_message_id",
+    "last_grok_message_id",
+    "turn_id",
+    "parent_state_sha",
+    "hop_count",
+    "hop_limit",
+    "target_ref",
+    "broker",
+    "blocker_fingerprint",
+    "notes"
+  ],
+  "properties": {
+    "schema_version": {"const": 3},
+    "updated_at": {"type": "string", "minLength": 1},
+    "active_task": {"type": "string", "minLength": 1},
+    "status": {
+      "enum": [
+        "waiting_for_grok",
+        "waiting_for_chatgpt",
+        "in_progress_grok",
+        "in_progress_chatgpt",
+        "blocked_binary",
+        "blocked_tooling",
+        "qa_pending",
+        "completed"
+      ]
+    },
+    "next_actor": {"enum": ["chatgpt", "grok"]},
+    "message_path": {
+      "type": "string",
+      "pattern": "^coordination/messages/[^/]+\\.md$"
+    },
+    "last_chatgpt_message_id": {"type": "string", "pattern": "^cg-"},
+    "last_grok_message_id": {"type": "string", "pattern": "^gk-"},
+    "turn_id": {"type": "integer", "minimum": 1},
+    "parent_state_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "hop_count": {"type": "integer", "minimum": 0},
+    "hop_limit": {"type": "integer", "minimum": 1, "maximum": 100},
+    "target_ref": {"type": "string", "minLength": 1},
+    "broker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "lease_owner", "lease_expires_at"],
+      "properties": {
+        "mode": {"enum": ["dry_run", "product_mailbox"]},
+        "lease_owner": {"type": ["string", "null"]},
+        "lease_expires_at": {"type": ["string", "null"]}
+      }
+    },
+    "blocker_fingerprint": {"type": ["string", "null"]},
+    "notes": {"type": "string"}
+  }
+}

@@ -1,0 +1,65 @@
+name: AI Broker v3 (dispatch envelope)
+
+on:
+  push:
+    branches:
+      - coordination-v3-prototype
+    paths:
+      - "coordination/state.json"
+      - "coordination/broker.py"
+      - "coordination/validate_state.py"
+      - "coordination/validate_agent_response.py"
+      - "coordination/*.schema.json"
+      - "coordination/broker_policy.json"
+      - ".github/workflows/ai-broker-v3.yml"
+  workflow_dispatch:
+  repository_dispatch:
+    types: [ai-handoff-v3]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ai-broker-v3-${{ github.ref || github.event.repository.default_branch }}
+  cancel-in-progress: false
+
+jobs:
+  build-envelope:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Validate current state
+        run: python3 coordination/validate_state.py
+
+      - name: Build dispatch envelope
+        run: python3 coordination/broker.py --mode dry_run --output broker-dispatch.json
+
+      - name: Show routing decision
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('broker-dispatch.json').read_text(encoding='utf-8'))
+          print('actor=', p['actor'])
+          print('task=', p['active_task'])
+          print('target_ref=', p['target_ref'])
+          print('proposal_turn_id=', p['proposal_turn_id'])
+          print('expected_parent_state_sha=', p['expected_parent_state_sha'])
+          print('proposal_directory=', p['proposal_directory'])
+          PY
+
+      - name: Upload dispatch envelope
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-broker-v3-dispatch
+          path: broker-dispatch.json
+          if-no-files-found: error
+
+# No model API is called by this workflow.
+# In product-mailbox mode ChatGPT and Grok use their authenticated GitHub
+# connectors/routines to read the envelope/state and create one proposal JSON
+# under coordination/proposals/. GitHub Actions validates and applies it.

@@ -5,10 +5,14 @@ on:
     paths:
       - "coordination/**"
       - ".github/workflows/ai-handoff-validate.yml"
+      - ".github/workflows/ai-broker-v3.yml"
+      - ".github/workflows/ai-proposal-apply-v3.yml"
   pull_request:
     paths:
       - "coordination/**"
       - ".github/workflows/ai-handoff-validate.yml"
+      - ".github/workflows/ai-broker-v3.yml"
+      - ".github/workflows/ai-proposal-apply-v3.yml"
   workflow_dispatch:
 
 permissions:
@@ -18,7 +22,45 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout branch head with parent history
         uses: actions/checkout@v4
-      - name: Validate handoff state
-        run: python3 coordination/validate_state.py
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 2
+      - name: Validate handoff state and transition
+        run: python3 coordination/validate_state.py --git-transition
+      - name: Compile coordination Python
+        run: |
+          python3 -m py_compile \
+            coordination/validate_state.py \
+            coordination/validate_agent_response.py \
+            coordination/broker.py \
+            coordination/apply_turn.py \
+            coordination/test_v3_guards.py
+      - name: Test v3 broker guards
+        run: python3 coordination/test_v3_guards.py
+      - name: Build broker dry-run envelope
+        run: python3 coordination/broker.py --mode dry_run --output broker-dispatch.json
+      - name: Verify broker routing envelope
+        run: |
+          python3 - <<'PY'
+          import json
+          import subprocess
+          from pathlib import Path
+
+          state = json.loads(Path('coordination/state.json').read_text(encoding='utf-8'))
+          dispatch = json.loads(Path('broker-dispatch.json').read_text(encoding='utf-8'))
+          state_sha = subprocess.check_output(
+              ['git', 'hash-object', 'coordination/state.json'], text=True
+          ).strip()
+
+          assert dispatch['actor'] == state['next_actor']
+          assert dispatch['active_task'] == state['active_task']
+          assert dispatch['target_ref'] == state['target_ref']
+          assert dispatch['current_turn_id'] == state['turn_id']
+          assert dispatch['proposal_turn_id'] == state['turn_id'] + 1
+          assert dispatch['expected_parent_state_sha'] == state_sha
+          assert dispatch['proposal_directory'] == 'coordination/proposals/'
+          assert 'OPENAI_API_KEY' not in json.dumps(dispatch)
+          print('Product-mailbox envelope OK:', dispatch['actor'], dispatch['proposal_turn_id'], state_sha)
+          PY

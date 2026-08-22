@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "coordination/agent_response.schema.json",
+  "title": "Agent turn proposal v3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "actor",
+    "message_id",
+    "expected_parent_state_sha",
+    "turn_id",
+    "status",
+    "next_actor",
+    "summary",
+    "handoff_body",
+    "operations",
+    "blocker_fingerprint"
+  ],
+  "properties": {
+    "schema_version": {"const": 3},
+    "actor": {"enum": ["chatgpt", "grok"]},
+    "message_id": {"type": "string", "minLength": 8},
+    "expected_parent_state_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "turn_id": {"type": "integer", "minimum": 1},
+    "status": {
+      "enum": [
+        "waiting_for_grok",
+        "waiting_for_chatgpt",
+        "blocked_binary",
+        "blocked_tooling",
+        "qa_pending",
+        "completed"
+      ]
+    },
+    "next_actor": {"enum": ["chatgpt", "grok"]},
+    "summary": {"type": "string", "minLength": 1},
+    "handoff_body": {"type": "string", "minLength": 1},
+    "operations": {
+      "type": "array",
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["action", "path", "content"],
+        "properties": {
+          "action": {"enum": ["create", "update"]},
+          "path": {"type": "string", "minLength": 1},
+          "content": {"type": "string"}
+        }
+      }
+    },
+    "blocker_fingerprint": {"type": ["string", "null"]}
+  }
+}

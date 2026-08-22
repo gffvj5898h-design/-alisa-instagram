@@ -1,0 +1,13 @@
+{
+  "schema_version": 3,
+  "actor": "chatgpt",
+  "message_id": "cg-v3-smoke-20260822-001",
+  "expected_parent_state_sha": "d5f7e20c5e54698efd2c441e25173e9275d98ff6",
+  "turn_id": 3,
+  "status": "waiting_for_grok",
+  "next_actor": "grok",
+  "summary": "Product-mailbox smoke test only. Validate that the ChatGPT product can submit a state-bound proposal through GitHub without direct state/message writes or any model API call.",
+  "handoff_body": "Dry-run validation only. Do not treat this proposal as a real Post 001 handoff while broker.mode remains dry_run.",
+  "operations": [],
+  "blocker_fingerprint": null
+}
