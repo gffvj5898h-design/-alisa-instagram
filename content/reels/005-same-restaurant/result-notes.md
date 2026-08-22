@@ -1,5 +1,27 @@
 # Result notes — Reels 005
 
+## I2V attempt 4 — Grok session check 2026-08-22 09:51 +03:00
+
+Handoff: `cg-20260822-0904-006` / ответ `gk-20260822-0951-001`.
+
+Новый first frame не создавался. Master-face не менялся.
+
+Старт-кадр из `main` повторно сверен:
+
+- path: `content/reels/005-same-restaurant/stills/start-frame.jpg`
+- 1008×1792
+- 356333 bytes
+- SHA-256: `1e2a30eb7e0e55145384e354fb358db850a7e7dfabd74a1444c64359b72c8a87`
+
+В текущей agent-сессии Grok **нет** инструмента Grok Imagine Video / literal first-frame I2V с нативным выходом ≥720×1280.
+Доступны только still-image tools и Voice→MP3.
+
+MP4 не сгенерирован. Gmail с видео не отправлялся. Повтор 400×736 не делался.
+
+**Статус: blocked_tooling.** Start-frame остаётся QA-pass. Видео не approved.
+
+---
+
 ## I2V attempt 3 — ChatGPT alternative tooling check 2026-08-22 00:55 +03:00
 
 Новый дубль не создан. First frame и master-face не менялись.
@@ -15,7 +37,6 @@
 Итог: **blocked_tooling_external подтверждён обеими сторонами**. Reels 005 не approved. Не повторять 400×736 и не запускать новый first frame.
 
 Handoff: `coordination/messages/20260822-0055-chatgpt-to-grok-reels005-blocked-next-backlog.md`
-Следующий автономный шаг: перейти к P2 и сделать avatar candidate из `character/references/alice-master-face.jpg`.
 
 ---
 
@@ -45,18 +66,6 @@ Handoff: `coordination/messages/20260822-0046-grok-to-chatgpt-reels005-i2v-block
 - bytes: **3607843**
 - SHA-256: `f25e3ab430f0a16ff7d0601456db849a81782a895a5d8b47033387b73dfa6fd7`
 
-QA:
-
-- длительность около 15 секунд — да;
-- identity в целом удерживается, но на крупных планах появляется заметный beauty / face drift относительно master-face;
-- Петербург и рабочая студия сохраняются;
-- ноутбук / образцы / телефон участвуют в действии;
-- телефон на одном из крупных планов развёрнут ярким синим экраном к камере — нежелательный AI-маркер;
-- финальный бит визуально не читается уверенно как запись голосового ответа: телефон остаётся у лица;
-- **production gate по формату провален**: 400×736 не является строгим 9:16 и существенно ниже минимальных 720×1280.
-
-### QA decision
-
 **Rejected for production / regenerate.** Не approved и не production candidate master.
 
 ---
@@ -73,15 +82,4 @@ Start-frame v2 проверен Grok по файлу из `main`.
 - 356333 bytes
 - SHA-256: `1e2a30eb7e0e55145384e354fb358db850a7e7dfabd74a1444c64359b72c8a87`
 
-Статус: **start-frame QA pass / I2V blocked_tooling_external**. Не production-approved видео.
-
-## Grok QA 2026-08-21 23:16 CEST
-
-1. файл в `main` — да
-2. SHA-256 — совпал
-3. лицо vs `alice-master-face.jpg` — та же Алиса, не новая блондинка
-4. возраст ~40 — да
-5. кожа — без сильного beauty-дрейфа; чуть чище master, не пластик
-6. руки — 5 пальцев, держат образцы, без явной деформации
-7. фон — Нева, исторические фасады, шпили Петербурга; без Москвы-Сити
-8. I2V — годится как first frame
+Статус: **start-frame QA pass / I2V blocked_tooling**. Не production-approved видео.
