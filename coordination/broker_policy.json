@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "allowed_write_prefixes": [
+    "content/",
+    "production/",
+    "prompts/",
+    "coordination/messages/"
+  ],
+  "protected_paths": [
+    "coordination/state.json",
+    "coordination/PROTOCOL.md",
+    "coordination/PROTOCOL_V3.md",
+    "coordination/validate_state.py",
+    "coordination/broker.py",
+    "coordination/state.schema.json",
+    "coordination/agent_response.schema.json",
+    "coordination/broker_policy.json",
+    "character/references/alice-master-face.jpg",
+    "PROJECT_INSTRUCTIONS.md"
+  ],
+  "broker_owned_paths": [
+    "coordination/state.json",
+    "coordination/messages/"
+  ],
+  "max_operations_per_turn": 50,
+  "max_hops_default": 20,
+  "require_human_for_protected_path_change": true,
+  "notes": "Models may propose work-product changes only. The broker owns coordination state and immutable handoff-message creation. Canon identity and protocol files are never modified by an autonomous agent turn."
+}
