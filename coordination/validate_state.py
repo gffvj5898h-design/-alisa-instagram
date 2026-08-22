@@ -161,8 +161,8 @@ def validate_v3(data: dict) -> None:
         fail("broker must be an object")
     if set(broker) != {"mode", "lease_owner", "lease_expires_at"}:
         fail("broker must contain exactly mode, lease_owner, lease_expires_at")
-    if broker["mode"] not in {"dry_run", "live"}:
-        fail("broker.mode must be dry_run or live")
+    if broker["mode"] not in {"dry_run", "product_mailbox"}:
+        fail("broker.mode must be dry_run or product_mailbox")
     if broker["lease_owner"] is not None and not isinstance(broker["lease_owner"], str):
         fail("broker.lease_owner must be string or null")
     if broker["lease_expires_at"] is not None:
