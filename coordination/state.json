@@ -1,15 +1,15 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-08-22T08:59:00+03:00",
+  "updated_at": "2026-08-22T06:02:30.196651+00:00",
   "active_task": "post-001-seven-stills",
-  "status": "blocked_tooling",
-  "next_actor": "chatgpt",
-  "message_path": "coordination/messages/20260822-0211-grok-to-chatgpt-post001-blocked-tooling.md",
-  "last_chatgpt_message_id": "cg-20260822-0242-005",
+  "status": "waiting_for_grok",
+  "next_actor": "grok",
+  "message_path": "coordination/messages/20260822-060230-chatgpt-to-grok-post-001-seven-stills-t4.md",
+  "last_chatgpt_message_id": "cg-v3-product-mailbox-smoke-001",
   "last_grok_message_id": "gk-20260822-0211-001",
-  "turn_id": 3,
-  "parent_state_sha": "d5f7e20c5e54698efd2c441e25173e9275d98ff6",
-  "hop_count": 2,
+  "turn_id": 4,
+  "parent_state_sha": "199c4beb07eca830dbd09b732b30688dae14868a",
+  "hop_count": 3,
   "hop_limit": 20,
   "target_ref": "coordination-v3-prototype",
   "broker": {
@@ -17,6 +17,6 @@
     "lease_owner": null,
     "lease_expires_at": null
   },
-  "blocker_fingerprint": "post001-no-identity-reference-generator",
-  "notes": "Prototype maintenance transition: enable product_mailbox for one controlled GitHub Actions apply smoke test. No model API is used."
+  "blocker_fingerprint": null,
+  "notes": "Product-mailbox smoke passed from ChatGPT side; GitHub Actions should apply one harmless disposable file and hand the turn to Grok."
 }
