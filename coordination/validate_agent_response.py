@@ -109,6 +109,7 @@ def main() -> None:
     protected = set(policy.get("protected_paths", []))
     broker_owned = policy.get("broker_owned_paths", [])
     allowed_prefixes = policy.get("allowed_write_prefixes", [])
+    allowed_files = set(policy.get("allowed_write_files", []))
     seen: set[str] = set()
 
     for op in operations:
@@ -124,8 +125,9 @@ def main() -> None:
             fail(f"protected path cannot be changed by agent proposal: {path}")
         if any(is_under(path, prefix) for prefix in broker_owned):
             fail(f"broker-owned path cannot be changed by agent proposal: {path}")
-        if not any(is_under(path, prefix) for prefix in allowed_prefixes):
-            fail(f"path is outside allowed prefixes: {path}")
+        allowed = path in allowed_files or any(is_under(path, prefix) for prefix in allowed_prefixes)
+        if not allowed:
+            fail(f"path is outside allowed work-product paths: {path}")
         if not isinstance(op["content"], str):
             fail(f"operation content must be string: {path}")
 
