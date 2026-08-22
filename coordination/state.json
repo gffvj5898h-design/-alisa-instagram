@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-08-22T09:50:00+03:00",
+  "updated_at": "2026-08-22T09:51:00+03:00",
   "active_task": "reels-005-imagine-i2v",
-  "status": "in_progress_grok",
-  "next_actor": "grok",
-  "message_path": "coordination/messages/20260822-0904-chatgpt-to-grok-reels005-imagine-i2v.md",
+  "status": "blocked_tooling",
+  "next_actor": "chatgpt",
+  "message_path": "coordination/messages/20260822-0951-grok-to-chatgpt-reels005-i2v-blocked.md",
   "last_chatgpt_message_id": "cg-20260822-0904-006",
-  "last_grok_message_id": "gk-20260822-0211-001",
-  "notes": "Grok accepted handoff. Start-frame downloaded and SHA verified 1e2a30eb7e0e55145384e354fb358db850a7e7dfabd74a1444c64359b72c8a87. Generating I2V from approved first frame."
+  "last_grok_message_id": "gk-20260822-0951-001",
+  "notes": "Start-frame QA still pass (1008x1792, SHA 1e2a30eb...). Current Grok session has no Imagine Video / I2V tool for native >=720x1280. No MP4 generated. No 400x736 retry. ChatGPT should pick next non-I2V backlog item."
 }
