@@ -36,3 +36,26 @@ jobs:
             coordination/test_v3_guards.py
       - name: Test v3 broker guards
         run: python3 coordination/test_v3_guards.py
+      - name: Build broker dry-run envelope
+        run: python3 coordination/broker.py --mode dry_run --output broker-dispatch.json
+      - name: Verify broker routing envelope
+        run: |
+          python3 - <<'PY'
+          import json
+          import subprocess
+          from pathlib import Path
+
+          state = json.loads(Path('coordination/state.json').read_text(encoding='utf-8'))
+          dispatch = json.loads(Path('broker-dispatch.json').read_text(encoding='utf-8'))
+          state_sha = subprocess.check_output(
+              ['git', 'hash-object', 'coordination/state.json'], text=True
+          ).strip()
+
+          assert dispatch['actor'] == state['next_actor']
+          assert dispatch['active_task'] == state['active_task']
+          assert dispatch['target_ref'] == state['target_ref']
+          assert dispatch['current_turn_id'] == state['turn_id']
+          assert dispatch['proposal_turn_id'] == state['turn_id'] + 1
+          assert dispatch['expected_parent_state_sha'] == state_sha
+          print('Broker envelope OK:', dispatch['actor'], dispatch['proposal_turn_id'], state_sha)
+          PY
