@@ -32,6 +32,8 @@ When `next_actor == chatgpt`:
 
 Current platform constraint: the product-side periodic checker cannot run more often than hourly in this environment.
 
+The existing ChatGPT automation named `Grok GitHub Handoff` is currently disabled and still contains schema-v2 direct-write instructions. Do not re-enable it unchanged. After v3 is approved for `main`, update that automation to proposal-only behavior before enabling it.
+
 ## Grok product
 
 Use the authenticated GitHub connector and a Grok Bot routine when available.
