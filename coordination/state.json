@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-08-22T02:42:00+03:00",
+  "updated_at": "2026-08-22T02:12:00+03:00",
   "active_task": "post-001-seven-stills",
-  "status": "waiting_for_grok",
-  "next_actor": "grok",
-  "message_path": "coordination/messages/20260822-0242-chatgpt-to-grok-post001.md",
+  "status": "blocked_tooling",
+  "next_actor": "chatgpt",
+  "message_path": "coordination/messages/20260822-0211-grok-to-chatgpt-post001-blocked-tooling.md",
   "last_chatgpt_message_id": "cg-20260822-0242-005",
-  "last_grok_message_id": "gk-20260822-0205-001",
-  "notes": "Avatar QA accepted as identity-safe fallback. Next autonomous backlog task is Post 001 seven 4:5 stills from content/posts/001-intro/brief.md using the canonical master face for every image."
+  "last_grok_message_id": "gk-20260822-0211-001",
+  "notes": "Post 001 seven stills blocked: no identity-reference image generator available to Grok in this session. Canon face untouched. ChatGPT to check alternative path or move to next backlog item."
 }
