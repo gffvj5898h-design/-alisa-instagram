@@ -17,18 +17,20 @@ No `OPENAI_API_KEY` is required. The design also does not require an xAI model A
 - Added `coordination/agent_response.schema.json`.
 - Added `coordination/broker_policy.json`.
 - Added `coordination/PROTOCOL_V3.md`.
+- Added `coordination/PRODUCT_MAILBOX.md`.
 - Added `coordination/proposals/` as the only direct coordination inbox written by product agents.
 - Strengthened `coordination/validate_state.py`:
   - keeps v2 readable during migration;
   - validates v3 fields;
   - validates sender/recipient Message ID consistency;
-  - optional Git transition check against `HEAD^`;
+  - optional Git transition check against the actual branch-head parent;
   - checks `parent_state_sha` and monotonic `turn_id`;
   - checks `hop_count` progression.
 - Added `coordination/validate_agent_response.py`:
   - binds proposal to exact state blob SHA;
   - verifies actor ownership and next turn id;
   - rejects protected/broker-owned paths;
+  - supports exact allowed work-product files such as `GROK_CONTEXT_AND_LOG.md`;
   - rejects path traversal/duplicate operations;
   - requires blocker fingerprint for blocked proposals;
   - rejects identical blocker ping-pong.
@@ -38,7 +40,6 @@ No `OPENAI_API_KEY` is required. The design also does not require an xAI model A
 - Added `.github/workflows/ai-broker-v3.yml` to validate/build the dispatch envelope.
 - Added `.github/workflows/ai-proposal-apply-v3.yml` to validate product-agent proposal commits and, only in `product_mailbox` mode, apply the canonical transition.
 - Updated handoff CI to compile coordination scripts, validate transitions, run broker guard tests and verify routing envelopes.
-- Path policy permits the required `GROK_CONTEXT_AND_LOG.md` project-log update while keeping coordination internals and canonical identity protected.
 
 ## Current safety state
 
@@ -48,6 +49,16 @@ The broker can build a deterministic dispatch envelope and validate a proposal, 
 
 No model API key is required by this prototype. No API credential may be committed to the repository.
 
+## Verified smoke test
+
+On 2026-08-22 this ChatGPT product created a real state-bound proposal through the GitHub connector:
+
+`coordination/proposals/20260822-0853-chatgpt-turn-3-product-mailbox-smoke.json`
+
+It contains no work-product operations and exists only to prove that the product can submit the v3 transport object without an OpenAI API call or direct canonical state/message write.
+
+During this test CI exposed and then fixed a PR-validation bug: pull-request workflows were checking GitHub's synthetic merge ref instead of the actual branch head, which made `HEAD^` the wrong state parent. The workflow now explicitly checks out the PR head SHA before transition validation. The subsequent CI run passed state/transition validation, Python compile, guard tests, broker envelope build and product-mailbox routing verification.
+
 ## How no-API automation works
 
 ### ChatGPT side
@@ -55,6 +66,8 @@ No model API key is required by this prototype. No API credential may be committ
 A ChatGPT condition-watch checks the repository periodically. If `next_actor != chatgpt`, it does nothing. If `next_actor == chatgpt`, it reads the handoff, performs the task with available product tools and creates exactly one new proposal JSON under `coordination/proposals/`.
 
 The current ChatGPT task scheduler supports hourly condition-watch as the highest polling frequency in this environment. This creates latency, but no manual message relay and no separate OpenAI API billing.
+
+The previously configured `Grok GitHub Handoff` ChatGPT automation is currently disabled and still contains schema-v2 direct-write instructions; it must not be re-enabled unchanged. Update it to proposal-only behavior after v3 is approved for `main`.
 
 ### Grok side
 
@@ -85,38 +98,37 @@ The prototype preserves the current active task/message but isolates schema/work
 
 ## Tests before activation
 
-1. CI structural test for v3 state.
-2. CI v2→v3 transition test.
-3. Python compile test.
-4. Broker envelope shows the correct `next_actor`, `active_task`, state SHA and next `turn_id`.
-5. Stale `expected_parent_state_sha` rejected.
-6. Model operation targeting `coordination/state.json` rejected.
-7. Model operation targeting canonical Alice face rejected.
-8. Repeated same `blocker_fingerprint` rejected.
-9. `hop_limit` stops another dispatch.
-10. Two proposals from one state: only one can become canonical.
-11. Proposal workflow in `dry_run` validates one real disposable proposal without applying it.
-12. `product_mailbox` apply tested on a disposable work-product path before production activation.
+1. CI structural test for v3 state — **passed**.
+2. CI v2→v3 transition test — **passed**.
+3. Python compile test — **passed**.
+4. Broker envelope shows correct actor/task/state SHA/next turn — **passed**.
+5. Stale `expected_parent_state_sha` rejected — **passed**.
+6. Model operation targeting `coordination/state.json` rejected — **passed**.
+7. Model operation targeting canonical Alice face rejected — **passed**.
+8. Exact allowed `GROK_CONTEXT_AND_LOG.md` path accepted — **passed**.
+9. Outside work-product path rejected — **passed**.
+10. Repeated same `blocker_fingerprint` rejected — **passed**.
+11. `hop_limit` stops another dispatch — **passed**.
+12. ChatGPT product can create a conforming real proposal through GitHub — **passed**.
+13. Proposal workflow in `dry_run` must validate one real disposable proposal without applying canonical changes — inspect/confirm before activation.
+14. `product_mailbox` apply must be tested on a disposable work-product path before production activation.
+15. Two proposals from one state: only one can become canonical — test in apply phase.
 
 ## Recommended activation sequence
 
 ### Phase 1 — current branch
 
-Keep `dry_run`; CI/guard tests only.
+Keep `dry_run`; CI/guard tests and real proposal transport test.
 
-### Phase 2 — real product-agent proposal
+### Phase 2 — broker apply test
 
-Have ChatGPT or Grok create one harmless disposable proposal under `coordination/proposals/`. Confirm GitHub Actions validates it and makes no canonical changes.
+On a disposable task/path, switch the prototype state to `product_mailbox`, set a low `hop_limit`, submit one harmless proposal and verify broker application plus stale/race rejection.
 
-### Phase 3 — broker apply test
-
-On a disposable task/path, switch the prototype state to `product_mailbox`, set a low `hop_limit`, submit one proposal and verify broker application plus stale/race rejection.
-
-### Phase 4 — two-product handoff
+### Phase 3 — two-product handoff
 
 Run `ChatGPT product → proposal → GitHub broker → Grok product → proposal → GitHub broker`, still on the prototype branch.
 
-### Phase 5 — production handoff
+### Phase 4 — production handoff
 
 Only after review: migrate `main` state to v3, make the GitHub broker the sole canonical coordination writer, update/enable ChatGPT polling and configure the Grok routine for `main`.
 
