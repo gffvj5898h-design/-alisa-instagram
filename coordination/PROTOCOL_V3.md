@@ -2,6 +2,8 @@
 
 Status: prototype. This file does not replace `coordination/PROTOCOL.md` on `main` until the v3 branch is reviewed and merged.
 
+Operational guide for the no-API product mode: `coordination/PRODUCT_MAILBOX.md`.
+
 ## Objective
 
 GitHub remains the durable transport and source of truth. Protocol v3 removes direct multi-writer access to the coordination pointer and does **not** require OpenAI or xAI model APIs.
