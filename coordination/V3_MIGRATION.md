@@ -26,14 +26,17 @@ Purpose: test broker-owned ChatGPT ↔ Grok coordination without changing the wo
   - requires blocker fingerprint for blocked proposals;
   - rejects identical blocker ping-pong.
 - Added `coordination/broker.py` dry-run dispatcher.
+- Added `coordination/apply_turn.py`: validates an agent proposal, defaults to dry-run, and only with explicit `--apply` writes allowed work-product files plus broker-owned handoff/state.
+- Added `coordination/test_v3_guards.py` for positive/negative safety checks.
 - Added `.github/workflows/ai-broker-v3.yml` dry-run workflow.
-- Updated handoff CI to compile the coordination scripts and validate transitions.
+- Updated handoff CI to compile the coordination scripts, validate transitions and run broker guard tests.
+- Path policy permits the required `GROK_CONTEXT_AND_LOG.md` project-log update while keeping coordination internals and canonical identity protected.
 
 ## Current safety state
 
 `broker.mode = dry_run`.
 
-The broker can build a deterministic dispatch envelope for `next_actor`, but it cannot call OpenAI or xAI and cannot apply autonomous model writes. This is intentional.
+The broker can build a deterministic dispatch envelope for `next_actor`, but it cannot call OpenAI or xAI and the workflow does not autonomously apply model writes. `apply_turn.py` also defaults to no-write dry-run unless `--apply` is supplied explicitly.
 
 No API key is required by the prototype. No API credential may be committed to the repository.
 
