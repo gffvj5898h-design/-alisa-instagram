@@ -55,7 +55,7 @@
       "additionalProperties": false,
       "required": ["mode", "lease_owner", "lease_expires_at"],
       "properties": {
-        "mode": {"enum": ["dry_run", "live"]},
+        "mode": {"enum": ["dry_run", "product_mailbox"]},
         "lease_owner": {"type": ["string", "null"]},
         "lease_expires_at": {"type": ["string", "null"]}
       }
