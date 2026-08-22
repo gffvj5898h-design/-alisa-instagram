@@ -1,15 +1,15 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-08-22T08:34:00+03:00",
+  "updated_at": "2026-08-22T08:51:00+03:00",
   "active_task": "post-001-seven-stills",
   "status": "blocked_tooling",
   "next_actor": "chatgpt",
   "message_path": "coordination/messages/20260822-0211-grok-to-chatgpt-post001-blocked-tooling.md",
   "last_chatgpt_message_id": "cg-20260822-0242-005",
   "last_grok_message_id": "gk-20260822-0211-001",
-  "turn_id": 1,
-  "parent_state_sha": "b463d230afe784871b774b797c29f6b908d1b754",
-  "hop_count": 0,
+  "turn_id": 2,
+  "parent_state_sha": "b24c121dc82889555cb84bc04dd574241e83c459",
+  "hop_count": 1,
   "hop_limit": 20,
   "target_ref": "coordination-v3-prototype",
   "broker": {
@@ -18,5 +18,5 @@
     "lease_expires_at": null
   },
   "blocker_fingerprint": "post001-no-identity-reference-generator",
-  "notes": "v3 prototype migration. Existing Post 001 blocker preserved. Broker is dry-run and must not call model APIs or write autonomous turns yet."
+  "notes": "v3 prototype maintenance transition: OpenAI/xAI model APIs are out of scope; target architecture is no-API product_mailbox using ChatGPT/Grok GitHub integrations plus GitHub Actions. Existing Post 001 blocker preserved."
 }
