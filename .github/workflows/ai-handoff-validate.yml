@@ -6,11 +6,13 @@ on:
       - "coordination/**"
       - ".github/workflows/ai-handoff-validate.yml"
       - ".github/workflows/ai-broker-v3.yml"
+      - ".github/workflows/ai-proposal-apply-v3.yml"
   pull_request:
     paths:
       - "coordination/**"
       - ".github/workflows/ai-handoff-validate.yml"
       - ".github/workflows/ai-broker-v3.yml"
+      - ".github/workflows/ai-proposal-apply-v3.yml"
   workflow_dispatch:
 
 permissions:
@@ -57,5 +59,7 @@ jobs:
           assert dispatch['current_turn_id'] == state['turn_id']
           assert dispatch['proposal_turn_id'] == state['turn_id'] + 1
           assert dispatch['expected_parent_state_sha'] == state_sha
-          print('Broker envelope OK:', dispatch['actor'], dispatch['proposal_turn_id'], state_sha)
+          assert dispatch['proposal_directory'] == 'coordination/proposals/'
+          assert 'OPENAI_API_KEY' not in json.dumps(dispatch)
+          print('Product-mailbox envelope OK:', dispatch['actor'], dispatch['proposal_turn_id'], state_sha)
           PY
