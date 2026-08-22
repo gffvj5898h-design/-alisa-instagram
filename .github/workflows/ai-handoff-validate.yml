@@ -32,6 +32,7 @@ jobs:
             coordination/validate_state.py \
             coordination/validate_agent_response.py \
             coordination/broker.py \
+            coordination/apply_turn.py \
             coordination/test_v3_guards.py
       - name: Test v3 broker guards
         run: python3 coordination/test_v3_guards.py
