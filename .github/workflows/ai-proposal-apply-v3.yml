@@ -1,0 +1,100 @@
+name: Apply AI proposal v3
+
+on:
+  push:
+    branches:
+      - coordination-v3-prototype
+    paths:
+      - "coordination/proposals/*.json"
+  workflow_dispatch:
+    inputs:
+      proposal_path:
+        description: "Existing coordination/proposals/*.json path"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ai-proposal-v3-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  apply-proposal:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Resolve proposal
+        id: proposal
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            proposal='${{ inputs.proposal_path }}'
+            [[ "$proposal" == coordination/proposals/*.json ]] || {
+              echo "workflow_dispatch proposal must be under coordination/proposals/" >&2
+              exit 1
+            }
+            [[ -f "$proposal" ]] || {
+              echo "proposal does not exist: $proposal" >&2
+              exit 1
+            }
+          else
+            mapfile -t proposals < <(git diff --name-only --diff-filter=A HEAD^ HEAD -- 'coordination/proposals/*.json')
+            if [[ ${#proposals[@]} -ne 1 ]]; then
+              echo "exactly one new proposal JSON must be added per commit; found ${#proposals[@]}" >&2
+              printf '%s\n' "${proposals[@]}" >&2
+              exit 1
+            fi
+            proposal="${proposals[0]}"
+          fi
+          echo "path=$proposal" >> "$GITHUB_OUTPUT"
+
+      - name: Validate current state
+        run: python3 coordination/validate_state.py
+
+      - name: Validate proposal against exact current state
+        run: python3 coordination/validate_agent_response.py "${{ steps.proposal.outputs.path }}"
+
+      - name: Read broker mode
+        id: mode
+        shell: bash
+        run: |
+          mode="$(python3 -c 'import json; print(json.load(open("coordination/state.json"))["broker"]["mode"])')"
+          echo "mode=$mode" >> "$GITHUB_OUTPUT"
+          echo "broker.mode=$mode"
+
+      - name: Dry-run proposal
+        if: steps.mode.outputs.mode == 'dry_run'
+        run: python3 coordination/apply_turn.py "${{ steps.proposal.outputs.path }}"
+
+      - name: Apply broker-owned turn
+        if: steps.mode.outputs.mode == 'product_mailbox'
+        run: python3 coordination/apply_turn.py "${{ steps.proposal.outputs.path }}" --apply
+
+      - name: Validate applied state
+        if: steps.mode.outputs.mode == 'product_mailbox'
+        run: python3 coordination/validate_state.py
+
+      - name: Commit broker result
+        if: steps.mode.outputs.mode == 'product_mailbox'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- coordination/state.json coordination/messages content production prompts GROK_CONTEXT_AND_LOG.md
+          if git diff --cached --quiet; then
+            echo "broker produced no canonical changes" >&2
+            exit 1
+          fi
+          turn="$(python3 -c 'import json; print(json.load(open("coordination/state.json"))["turn_id"])')"
+          actor="$(python3 -c 'import json; print(json.load(open("${{ steps.proposal.outputs.path }}"))["actor"])')"
+          git commit -m "broker: apply ${actor} turn ${turn}"
+          python3 coordination/validate_state.py --git-transition
+          git push origin "HEAD:${GITHUB_REF_NAME}"
