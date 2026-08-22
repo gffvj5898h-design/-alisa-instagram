@@ -5,10 +5,12 @@ on:
     paths:
       - "coordination/**"
       - ".github/workflows/ai-handoff-validate.yml"
+      - ".github/workflows/ai-broker-v3.yml"
   pull_request:
     paths:
       - "coordination/**"
       - ".github/workflows/ai-handoff-validate.yml"
+      - ".github/workflows/ai-broker-v3.yml"
   workflow_dispatch:
 
 permissions:
@@ -18,7 +20,15 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout with parent history
         uses: actions/checkout@v4
-      - name: Validate handoff state
-        run: python3 coordination/validate_state.py
+        with:
+          fetch-depth: 2
+      - name: Validate handoff state and transition
+        run: python3 coordination/validate_state.py --git-transition
+      - name: Compile coordination Python
+        run: |
+          python3 -m py_compile \
+            coordination/validate_state.py \
+            coordination/validate_agent_response.py \
+            coordination/broker.py
