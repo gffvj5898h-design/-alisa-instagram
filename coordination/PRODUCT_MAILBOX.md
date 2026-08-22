@@ -2,6 +2,14 @@
 
 This is the no-model-API operating mode for coordination v3.
 
+## Current prototype status
+
+- Architecture decision: **no OpenAI API**.
+- Target mode: `product_mailbox`.
+- Current branch remains `broker.mode=dry_run` until disposable apply/race tests pass.
+- `main` remains schema v2 and unchanged.
+- A real ChatGPT-product proposal has already been created through the GitHub connector for dry-run transport testing.
+
 ## Principle
 
 The products do the reasoning. GitHub does transport, validation and canonical state mutation.
