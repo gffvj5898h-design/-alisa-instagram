@@ -24,7 +24,7 @@ Use a ChatGPT condition-watch against the repository. The watch must be silent w
 When `next_actor == chatgpt`:
 
 - read `PROJECT_INSTRUCTIONS.md`, `coordination/PROTOCOL_V3.md`, state and `message_path`;
-- hash/read the exact current state before composing the proposal;
+- read/hash the exact current state before composing the proposal;
 - perform the required task;
 - create one proposal JSON matching `coordination/agent_response.schema.json`;
 - never write canonical state/message files directly;
@@ -54,6 +54,8 @@ Modes:
 
 - `dry_run`: validate and show the plan only;
 - `product_mailbox`: apply the proposal, create canonical message/state and commit as GitHub Actions bot.
+
+The proposal file itself is an immutable transport/audit record. The canonical decision is the broker-applied state/message commit, not the mere existence of a proposal.
 
 ## Cost model
 
