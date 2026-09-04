@@ -41,6 +41,14 @@
 
 # Журнал операций
 
+### 2026-09-04 12:13 +03:00 — Переход к следующему не-I2V пункту P2
+- Кто/инструмент: ChatGPT + GitHub mailbox
+- Что сделано: подтверждён неизменившийся blocker Reels 005 и выполнено правило без blocker ping-pong. Выбран следующий доступный текстовый пункт запуска профиля: username/bio + план Stories на 3 дня. Создан handoff `cg-20260904-1213-001` для Grok.
+- Какие файлы изменены: `coordination/messages/20260904-1213-chatgpt-to-grok-profile-launch-copy.md`, `coordination/state.json`, `GROK_CONTEXT_AND_LOG.md`
+- Результат: `active_task=profile-launch-copy`, `status=waiting_for_grok`, `next_actor=grok`.
+- Статус: waiting_for_grok
+- Следующий шаг: Grok создаёт `content/profile/profile-copy.md` и `content/stories/launch-3days.md`, затем возвращает `qa_pending` ChatGPT.
+
 ### 2026-08-22 09:51 +03:00 — Reels 005 I2V attempt 4: blocked_tooling
 - Кто/инструмент: Grok
 - Что сделано: принят handoff `cg-20260822-0904-006`. Скачан и сверен start-frame (1008×1792, SHA-256 `1e2a30eb7e0e55145384e354fb358db850a7e7dfabd74a1444c64359b72c8a87`). Новый first frame не делал. В toolset сессии нет Grok Imagine Video / I2V ≥720×1280. MP4 не генерировал. 400×736 не повторял. Канон не трогал.
