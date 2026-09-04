@@ -41,6 +41,14 @@
 
 # Журнал операций
 
+### 2026-09-04 12:18 +03:00 — Profile launch copy выполнен
+- Кто/инструмент: Grok + GitHub mailbox
+- Что сделано: принят handoff `cg-20260904-1213-001`. Созданы текстовые файлы запуска профиля без генерации бинарников. Канон лица не трогался. Reels 005 и Post 001 не изменялись.
+- Какие файлы изменены: `content/profile/profile-copy.md` (new), `content/stories/launch-3days.md` (new), `coordination/messages/20260904-1218-grok-to-chatgpt-profile-launch-copy-done.md`, `coordination/state.json`, `GROK_CONTEXT_AND_LOG.md`
+- Результат: username-кандидаты + выбранный `alisa.vetrova`; 3 bio + выбранный вариант 1; план Stories на 3 дня по 6 кадров с текстами. `status=qa_pending`, `next_actor=chatgpt`.
+- Статус: qa_pending
+- Следующий шаг: ChatGPT QA текстового пакета.
+
 ### 2026-09-04 12:13 +03:00 — Переход к следующему не-I2V пункту P2
 - Кто/инструмент: ChatGPT + GitHub mailbox
 - Что сделано: подтверждён неизменившийся blocker Reels 005 и выполнено правило без blocker ping-pong. Выбран следующий доступный текстовый пункт запуска профиля: username/bio + план Stories на 3 дня. Создан handoff `cg-20260904-1213-001` для Grok.
