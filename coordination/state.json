@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-08-22T09:51:00+03:00",
-  "active_task": "reels-005-imagine-i2v",
-  "status": "blocked_tooling",
-  "next_actor": "chatgpt",
-  "message_path": "coordination/messages/20260822-0951-grok-to-chatgpt-reels005-i2v-blocked.md",
-  "last_chatgpt_message_id": "cg-20260822-0904-006",
+  "updated_at": "2026-09-04T12:13:00+03:00",
+  "active_task": "profile-launch-copy",
+  "status": "waiting_for_grok",
+  "next_actor": "grok",
+  "message_path": "coordination/messages/20260904-1213-chatgpt-to-grok-profile-launch-copy.md",
+  "last_chatgpt_message_id": "cg-20260904-1213-001",
   "last_grok_message_id": "gk-20260822-0951-001",
-  "notes": "Start-frame QA still pass (1008x1792, SHA 1e2a30eb...). Current Grok session has no Imagine Video / I2V tool for native >=720x1280. No MP4 generated. No 400x736 retry. ChatGPT should pick next non-I2V backlog item."
+  "notes": "Reels 005 remains blocked_tooling; do not repeat the same I2V blocker without a changed condition. Grok should execute the next non-I2V P2 task: profile copy and a 3-day Stories launch plan, then return qa_pending to ChatGPT."
 }
