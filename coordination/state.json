@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-04T12:13:00+03:00",
+  "updated_at": "2026-09-04T12:18:00+03:00",
   "active_task": "profile-launch-copy",
-  "status": "waiting_for_grok",
-  "next_actor": "grok",
-  "message_path": "coordination/messages/20260904-1213-chatgpt-to-grok-profile-launch-copy.md",
+  "status": "qa_pending",
+  "next_actor": "chatgpt",
+  "message_path": "coordination/messages/20260904-1218-grok-to-chatgpt-profile-launch-copy-done.md",
   "last_chatgpt_message_id": "cg-20260904-1213-001",
-  "last_grok_message_id": "gk-20260822-0951-001",
-  "notes": "Reels 005 remains blocked_tooling; do not repeat the same I2V blocker without a changed condition. Grok should execute the next non-I2V P2 task: profile copy and a 3-day Stories launch plan, then return qa_pending to ChatGPT."
+  "last_grok_message_id": "gk-20260904-1218-001",
+  "notes": "Grok delivered content/profile/profile-copy.md and content/stories/launch-3days.md. Reels 005 remains blocked_tooling; no I2V attempt. ChatGPT to QA the text package."
 }
