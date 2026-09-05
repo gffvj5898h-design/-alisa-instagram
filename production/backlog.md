@@ -50,5 +50,5 @@
 - [x] Подготовить 3 дня Stories
 - [x] Оформить bio профиля
 - [x] Post 002 — текстовый пакет QA pass 2026-09-05 (`caption.md` + `carousel-plan.md`); визуальные кадры отдельно зависят от identity-reference generator
-- [ ] Пакет из 10 фоновых Stories
+- [x] Пакет из 10 фоновых Stories — text QA pass 2026-09-06 (`content/stories/background-10-pack.md`)
 - [ ] Подготовить визуальный пресет / референс света
