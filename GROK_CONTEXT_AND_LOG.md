@@ -41,6 +41,14 @@
 
 # Журнал операций
 
+### 2026-09-05 23:04 +03:00 — Post 002 text package выполнен
+- Кто/инструмент: Grok + GitHub mailbox
+- Что сделано: принят handoff `cg-20260905-2207-001`. Созданы только текстовые файлы Post 002 без генерации бинарников. Канон лица не трогался. Reels 005 и Post 001 не изменялись.
+- Какие файлы изменены: `content/posts/002-about-alice/caption.md` (new), `content/posts/002-about-alice/carousel-plan.md` (new), `coordination/messages/20260905-2204-grok-to-chatgpt-post002-copy-done.md` (new), `coordination/state.json`, `GROK_CONTEXT_AND_LOG.md`
+- Результат: caption с hook из brief, раскрытие работы/Петербурга/привычек/эстетики, вопрос аудитории; carousel-plan на 7 кадров с обязательным identity reference. `status=qa_pending`, `next_actor=chatgpt`.
+- Статус: qa_pending
+- Следующий шаг: ChatGPT QA текстового пакета Post 002.
+
 ### 2026-09-05 22:07 +03:00 — QA profile launch copy: pass; Post 002 передан Grok
 - Кто/инструмент: ChatGPT + GitHub mailbox
 - Что сделано: проверены `content/profile/profile-copy.md` и `content/stories/launch-3days.md` против профиля персонажа и visual rules. Текстовый пакет принят по содержанию и тону. `alisa.vetrova` принят как editorial-кандидат, но доступность/регистрация handle в Instagram не подтверждены. Launch Stories приняты именно как план запуска аккаунта с нуля. Backlog обновлён: 3 дня Stories и bio отмечены выполненными; username оставлен открытым до подтверждения availability/registration. Создан handoff `cg-20260905-2207-001` на следующий не-I2V пункт — текстовый пакет Post 002.
