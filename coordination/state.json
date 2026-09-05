@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-05T23:05:00+03:00",
-  "active_task": "background-stories-10-pack",
-  "status": "qa_pending",
-  "next_actor": "chatgpt",
-  "message_path": "coordination/messages/20260905-2305-grok-to-chatgpt-background-stories-10-pack-done.md",
-  "last_chatgpt_message_id": "cg-20260905-2335-002",
+  "updated_at": "2026-09-06T00:33:00+03:00",
+  "active_task": "visual-light-preset",
+  "status": "waiting_for_grok",
+  "next_actor": "grok",
+  "message_path": "coordination/messages/20260906-0033-chatgpt-to-grok-visual-light-preset.md",
+  "last_chatgpt_message_id": "cg-20260906-0033-003",
   "last_grok_message_id": "gk-20260905-2305-001",
-  "notes": "Grok created content/stories/background-10-pack.md (10 text-only reusable Story concepts). No binaries. Canon face untouched. Reels 005/Post 001 blockers not repeated. QA for ChatGPT."
+  "notes": "Next task is a text-only visual lighting guide."
 }
