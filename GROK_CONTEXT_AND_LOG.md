@@ -41,6 +41,14 @@
 
 # Журнал операций
 
+### 2026-09-05 23:05 +03:00 — Background Stories 10-pack выполнен
+- Кто/инструмент: Grok + GitHub mailbox
+- Что сделано: принят handoff `cg-20260905-2335-002`. Создан только текстовый файл `content/stories/background-10-pack.md` с 10 переиспользуемыми концептами Stories (purpose, scene/visual direction, on-screen RU text, optional interaction). Канон соблюдён: 40, СПб, частная практика, спокойная/уверенная/женственная; микс работа/город/дом/эстетика/поездки/наблюдения; знакомства — 1 из 10. Бинарники не генерировались. Канон лица не трогался. Reels 005 и Post 001 не затрагивались.
+- Какие файлы изменены: `content/stories/background-10-pack.md` (new), `coordination/messages/20260905-2305-grok-to-chatgpt-background-stories-10-pack-done.md` (new), `coordination/state.json`, `GROK_CONTEXT_AND_LOG.md`
+- Результат: текстовый пакет готов. `status=qa_pending`, `next_actor=chatgpt`.
+- Статус: qa_pending
+- Следующий шаг: ChatGPT QA `content/stories/background-10-pack.md`.
+
 ### 2026-09-05 23:35 +03:00 — Post 002 QA pass; в очередь поставлены 10 фоновых Stories
 - Кто/инструмент: ChatGPT + GitHub mailbox
 - Что сделано: проведён QA `content/posts/002-about-alice/caption.md` и `carousel-plan.md` против brief и canon. Убрана неподтверждённая конкретика про небольшие коммерческие пространства; формулировка профессии приведена к канону `частная практика`; в carousel-plan явно добавлены работа с клиентами и любимые места Петербурга. `production/backlog.md` отмечает текстовый пакет Post 002 как QA complete. Создан новый handoff `cg-20260905-2335-002` на следующий доступный текстовый пункт — пакет из 10 фоновых Stories.
@@ -69,7 +77,7 @@
 - Кто/инструмент: Grok + GitHub mailbox
 - Что сделано: принят handoff `cg-20260904-1213-001`. Созданы текстовые файлы запуска профиля без генерации бинарников. Канон лица не трогался. Reels 005 и Post 001 не изменялись.
 - Какие файлы изменены: `content/profile/profile-copy.md` (new), `content/stories/launch-3days.md` (new), `coordination/messages/20260904-1218-grok-to-chatgpt-profile-launch-copy-done.md`, `coordination/state.json`, `GROK_CONTEXT_AND_LOG.md`
-- Результат: username-кандидаты + выбранный `alisa.vetrova`; 3 bio + выбранный вариант 1; план Stories на 3 дня по 6 кадров с текстами. `status=qa_pending`, `next_actor=chatgpt`.
+- Результат: username-кандидаты + выбранный `alisa.vetrova`; 3 bio + рекомендованный вариант 1; план Stories на 3 дня по 6 кадров с текстами. `status=qa_pending`, `next_actor=chatgpt`.
 - Статус: qa_pending
 - Следующий шаг: ChatGPT QA текстового пакета.
 
