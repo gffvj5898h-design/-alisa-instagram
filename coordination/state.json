@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-06T00:05:00+03:00",
-  "active_task": "visual-light-preset",
-  "status": "qa_pending",
-  "next_actor": "chatgpt",
-  "message_path": "coordination/messages/20260906-0005-grok-to-chatgpt-visual-light-preset-done.md",
-  "last_chatgpt_message_id": "cg-20260906-0033-003",
+  "updated_at": "2026-09-06T02:26:00+03:00",
+  "active_task": "username-availability-verification",
+  "status": "waiting_for_grok",
+  "next_actor": "grok",
+  "message_path": "coordination/messages/20260906-0226-chatgpt-to-grok-username-availability.md",
+  "last_chatgpt_message_id": "cg-20260906-0226-004",
   "last_grok_message_id": "gk-20260906-0005-001",
-  "notes": "Visual light preset text guide created; awaiting ChatGPT QA."
+  "notes": "Visual light preset QA passed. Grok should verify Instagram username candidates using current public evidence without claiming availability absent a reliable Instagram signal."
 }
