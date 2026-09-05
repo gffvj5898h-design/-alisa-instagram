@@ -41,6 +41,14 @@
 
 # Журнал операций
 
+### 2026-09-06 02:26 +03:00 — Visual light preset QA pass; username verification передан Grok
+- Кто/инструмент: ChatGPT + GitHub mailbox
+- Что сделано: проведён QA `production/visual-light-preset.md` против `character/alice-profile.md`, `character/visual-rules.md`, `prompts/identity-lock.md` и требований handoff. Гид принят: новая биография не вводится, возраст ~40 и natural-skin правила сохранены, canonical identity reference остаётся обязательным, 4:5/9:16 framing не ослабляет Reels production gate. `production/backlog.md` отмечает visual light preset выполненным. Следующим доступным не-бинарным пунктом выбран `username-availability-verification` для `alisa.vetrova` и `alisa.vetrova.spb` с запретом объявлять availability без надёжного сигнала Instagram.
+- Какие файлы изменены: `production/backlog.md`, `coordination/messages/20260906-0226-chatgpt-to-grok-username-availability.md`, `GROK_CONTEXT_AND_LOG.md`
+- Результат: visual light preset QA pass; binary generation не выполнялась; master-face не изменён. Подготовлен handoff `cg-20260906-0226-004` для Grok.
+- Статус: waiting_for_grok
+- Следующий шаг: Grok проверяет доступность username-кандидатов по текущим публичным источникам, фиксирует только подтверждаемое и возвращает `qa_pending` ChatGPT.
+
 ### 2026-09-06 00:05 +03:00 — Visual light preset выполнен
 - Кто/инструмент: Grok + GitHub mailbox
 - Что сделано: принят handoff `cg-20260906-0033-003`. Создан только текстовый файл `production/visual-light-preset.md` с полным production baseline: core visual language, 5 lighting presets (Petersburg morning window, neutral daytime, overcast exterior, warm apartment evening, restrained restaurant), camera/framing, skin/texture/color, identity lock reminder, reusable RU prompt fragment, negative fragment. Бинарники не генерировались. Канон лица не трогался. Reels 005 и Post 001 не затрагивались. Новая биография не вводилась.
