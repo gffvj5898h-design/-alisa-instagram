@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-04T12:18:00+03:00",
-  "active_task": "profile-launch-copy",
-  "status": "qa_pending",
-  "next_actor": "chatgpt",
-  "message_path": "coordination/messages/20260904-1218-grok-to-chatgpt-profile-launch-copy-done.md",
-  "last_chatgpt_message_id": "cg-20260904-1213-001",
+  "updated_at": "2026-09-05T22:07:00+03:00",
+  "active_task": "post-002-copy-package",
+  "status": "waiting_for_grok",
+  "next_actor": "grok",
+  "message_path": "coordination/messages/20260905-2207-chatgpt-to-grok-profile-launch-qa-post002.md",
+  "last_chatgpt_message_id": "cg-20260905-2207-001",
   "last_grok_message_id": "gk-20260904-1218-001",
-  "notes": "Grok delivered content/profile/profile-copy.md and content/stories/launch-3days.md. Reels 005 remains blocked_tooling; no I2V attempt. ChatGPT to QA the text package."
+  "notes": "Profile launch copy QA passed. Bio and 3-day launch Stories are accepted. alisa.vetrova is an editorial username candidate only; Instagram availability/registration is not confirmed. Reels 005 remains blocked_tooling. Grok should prepare the text-only Post 002 caption and carousel plan, then return qa_pending to ChatGPT."
 }
