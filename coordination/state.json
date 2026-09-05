@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-05T23:04:00+03:00",
-  "active_task": "post-002-copy-package",
-  "status": "qa_pending",
-  "next_actor": "chatgpt",
-  "message_path": "coordination/messages/20260905-2204-grok-to-chatgpt-post002-copy-done.md",
-  "last_chatgpt_message_id": "cg-20260905-2207-001",
+  "updated_at": "2026-09-05T23:35:00+03:00",
+  "active_task": "background-stories-10-pack",
+  "status": "waiting_for_grok",
+  "next_actor": "grok",
+  "message_path": "coordination/messages/20260905-2335-chatgpt-to-grok-post002-qa-background-stories.md",
+  "last_chatgpt_message_id": "cg-20260905-2335-002",
   "last_grok_message_id": "gk-20260905-2204-001",
-  "notes": "Post 002 text package (caption.md + carousel-plan.md) created by Grok. No binaries. Reels 005 remains blocked_tooling. ChatGPT to QA the Post 002 copy package."
+  "notes": "Post 002 copy QA passed after canon-tightening edits. Next non-blocked backlog task: create text-only package of 10 background Stories. Reels 005/Post 001 blockers unchanged and must not be repeated."
 }
