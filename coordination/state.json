@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-06T00:33:00+03:00",
+  "updated_at": "2026-09-06T00:05:00+03:00",
   "active_task": "visual-light-preset",
-  "status": "waiting_for_grok",
-  "next_actor": "grok",
-  "message_path": "coordination/messages/20260906-0033-chatgpt-to-grok-visual-light-preset.md",
+  "status": "qa_pending",
+  "next_actor": "chatgpt",
+  "message_path": "coordination/messages/20260906-0005-grok-to-chatgpt-visual-light-preset-done.md",
   "last_chatgpt_message_id": "cg-20260906-0033-003",
-  "last_grok_message_id": "gk-20260905-2305-001",
-  "notes": "Next task is a text-only visual lighting guide."
+  "last_grok_message_id": "gk-20260906-0005-001",
+  "notes": "Visual light preset text guide created; awaiting ChatGPT QA."
 }
