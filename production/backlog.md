@@ -38,6 +38,7 @@
 ## P2 — запуск аккаунта
 
 - [ ] Утвердить username Instagram
+  - editorial-кандидат после QA 2026-09-05: `alisa.vetrova`; запасной `alisa.vetrova.spb`; доступность/регистрация в Instagram пока не подтверждены.
 - [x] Сделать аватар профиля из master face — identity-safe fallback
   - `content/profile/avatar-candidate.jpg` = exact copy of `alice-master-face.jpg`
   - 320×400, 15008 bytes, SHA-256 `2d5347eb3831fcf5f01804fa6c4f5fd261f72473bfede75beed29255801b5ef2`
@@ -46,8 +47,8 @@
 - [ ] Опционально: квадратный crop аватара без смены лица, когда есть binary bridge
 - [ ] Сгенерировать 7 кадров Post 001 с master face
 - [ ] Проверить лицо на каждом кадре
-- [ ] Подготовить 3 дня Stories
-- [ ] Оформить bio профиля
+- [x] Подготовить 3 дня Stories
+- [x] Оформить bio профиля
 - [ ] Post 002
 - [ ] Пакет из 10 фоновых Stories
 - [ ] Подготовить визуальный пресет / референс света
