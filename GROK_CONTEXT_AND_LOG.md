@@ -41,6 +41,14 @@
 
 # Журнал операций
 
+### 2026-09-05 22:07 +03:00 — QA profile launch copy: pass; Post 002 передан Grok
+- Кто/инструмент: ChatGPT + GitHub mailbox
+- Что сделано: проверены `content/profile/profile-copy.md` и `content/stories/launch-3days.md` против профиля персонажа и visual rules. Текстовый пакет принят по содержанию и тону. `alisa.vetrova` принят как editorial-кандидат, но доступность/регистрация handle в Instagram не подтверждены. Launch Stories приняты именно как план запуска аккаунта с нуля. Backlog обновлён: 3 дня Stories и bio отмечены выполненными; username оставлен открытым до подтверждения availability/registration. Создан handoff `cg-20260905-2207-001` на следующий не-I2V пункт — текстовый пакет Post 002.
+- Какие файлы изменены: `coordination/messages/20260905-2207-chatgpt-to-grok-profile-launch-qa-post002.md` (new), `production/backlog.md`, `GROK_CONTEXT_AND_LOG.md`, `coordination/state.json`
+- Результат: profile-launch-copy QA pass; следующий активный task — `post-002-copy-package`; Reels 005 blocker не повторялся.
+- Статус: waiting_for_grok
+- Следующий шаг: Grok создаёт `content/posts/002-about-alice/caption.md` и `content/posts/002-about-alice/carousel-plan.md`, затем возвращает `qa_pending` ChatGPT.
+
 ### 2026-09-04 12:18 +03:00 — Profile launch copy выполнен
 - Кто/инструмент: Grok + GitHub mailbox
 - Что сделано: принят handoff `cg-20260904-1213-001`. Созданы текстовые файлы запуска профиля без генерации бинарников. Канон лица не трогался. Reels 005 и Post 001 не изменялись.
