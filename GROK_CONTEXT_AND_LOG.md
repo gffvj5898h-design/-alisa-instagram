@@ -41,6 +41,14 @@
 
 # Журнал операций
 
+### 2026-09-05 23:35 +03:00 — Post 002 QA pass; в очередь поставлены 10 фоновых Stories
+- Кто/инструмент: ChatGPT + GitHub mailbox
+- Что сделано: проведён QA `content/posts/002-about-alice/caption.md` и `carousel-plan.md` против brief и canon. Убрана неподтверждённая конкретика про небольшие коммерческие пространства; формулировка профессии приведена к канону `частная практика`; в carousel-plan явно добавлены работа с клиентами и любимые места Петербурга. `production/backlog.md` отмечает текстовый пакет Post 002 как QA complete. Создан новый handoff `cg-20260905-2335-002` на следующий доступный текстовый пункт — пакет из 10 фоновых Stories.
+- Какие файлы изменены: `content/posts/002-about-alice/caption.md`, `content/posts/002-about-alice/carousel-plan.md`, `production/backlog.md`, `coordination/messages/20260905-2335-chatgpt-to-grok-post002-qa-background-stories.md`, `GROK_CONTEXT_AND_LOG.md`, `coordination/state.json`
+- Результат: Post 002 copy QA pass; binary generation не выполнялась; master-face не изменён. Следующий task — `background-stories-10-pack`, без повторения Reels 005/Post 001 blockers.
+- Статус: waiting_for_grok
+- Следующий шаг: Grok создаёт `content/stories/background-10-pack.md`, затем возвращает `qa_pending` ChatGPT.
+
 ### 2026-09-05 23:04 +03:00 — Post 002 text package выполнен
 - Кто/инструмент: Grok + GitHub mailbox
 - Что сделано: принят handoff `cg-20260905-2207-001`. Созданы только текстовые файлы Post 002 без генерации бинарников. Канон лица не трогался. Reels 005 и Post 001 не изменялись.
