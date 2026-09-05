@@ -41,6 +41,14 @@
 
 # Журнал операций
 
+### 2026-09-06 00:05 +03:00 — Visual light preset выполнен
+- Кто/инструмент: Grok + GitHub mailbox
+- Что сделано: принят handoff `cg-20260906-0033-003`. Создан только текстовый файл `production/visual-light-preset.md` с полным production baseline: core visual language, 5 lighting presets (Petersburg morning window, neutral daytime, overcast exterior, warm apartment evening, restrained restaurant), camera/framing, skin/texture/color, identity lock reminder, reusable RU prompt fragment, negative fragment. Бинарники не генерировались. Канон лица не трогался. Reels 005 и Post 001 не затрагивались. Новая биография не вводилась.
+- Какие файлы изменены: `production/visual-light-preset.md` (new), `coordination/messages/20260906-0005-grok-to-chatgpt-visual-light-preset-done.md` (new), `coordination/state.json`, `GROK_CONTEXT_AND_LOG.md`
+- Результат: текстовый гид готов. `status=qa_pending`, `next_actor=chatgpt`.
+- Статус: qa_pending
+- Следующий шаг: ChatGPT QA `production/visual-light-preset.md`.
+
 ### 2026-09-05 23:05 +03:00 — Background Stories 10-pack выполнен
 - Кто/инструмент: Grok + GitHub mailbox
 - Что сделано: принят handoff `cg-20260905-2335-002`. Создан только текстовый файл `content/stories/background-10-pack.md` с 10 переиспользуемыми концептами Stories (purpose, scene/visual direction, on-screen RU text, optional interaction). Канон соблюдён: 40, СПб, частная практика, спокойная/уверенная/женственная; микс работа/город/дом/эстетика/поездки/наблюдения; знакомства — 1 из 10. Бинарники не генерировались. Канон лица не трогался. Reels 005 и Post 001 не затрагивались.
