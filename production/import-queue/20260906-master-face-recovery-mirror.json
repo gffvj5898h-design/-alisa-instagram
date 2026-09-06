@@ -1,0 +1,8 @@
+{
+  "source_url": "https://firestorage.ai/ja/f/Fg9Q8QsqO0HF",
+  "target_path": "content/identity-recovery/alice-master-face-recovered.jpeg",
+  "replace": false,
+  "max_bytes": 2000000,
+  "expected_sha256": "d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767",
+  "note": "User-directed unblock: decodable mirror of the exact master-face image previously uploaded in this ChatGPT conversation. Canonical path is not replaced."
+}
