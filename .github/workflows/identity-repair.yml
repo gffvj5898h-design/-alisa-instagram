@@ -2,7 +2,9 @@ name: Repair canonical identity
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - coordination-v4
     paths:
       - "production/identity-repair-queue/*.json"
   workflow_dispatch:
@@ -16,7 +18,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: canonical-identity-repair
+  group: canonical-identity-repair-${{ github.ref_name }}
   cancel-in-progress: false
 
 jobs:
@@ -35,11 +37,12 @@ jobs:
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             m='${{ inputs.manifest }}'
           else
-            mapfile -t ms < <(git diff --name-only --diff-filter=AM "${{ github.event.before }}" "${{ github.sha }}" -- 'production/identity-repair-queue/*.json')
-            [[ ${#ms[@]} -eq 1 ]] || { echo "exactly one repair manifest required" >&2; exit 2; }
+            mapfile -t ms < <(git diff --name-only --diff-filter=A "${{ github.event.before }}" "${{ github.sha }}" -- 'production/identity-repair-queue/*.json')
+            [[ ${#ms[@]} -eq 1 ]] || { echo "exactly one NEW repair manifest required" >&2; exit 2; }
             m="${ms[0]}"
           fi
           [[ "$m" == production/identity-repair-queue/*.json ]] || { echo "invalid manifest path" >&2; exit 2; }
+          [[ -f "$m" ]] || { echo "repair manifest missing: $m" >&2; exit 2; }
           echo "path=$m" >> "$GITHUB_OUTPUT"
 
       - name: Install Pillow
@@ -52,13 +55,15 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          branch='${{ github.ref_name }}'
+          [[ "$branch" == "main" || "$branch" == "coordination-v4" ]] || { echo "unexpected repair branch: $branch" >&2; exit 2; }
           if git status --porcelain -- character/references/alice-master-face.jpg character/identity.json | grep -q .; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add character/references/alice-master-face.jpg character/identity.json
-            git commit -m "Repair canonical Alice identity from verified original [manual-maintenance]"
-            git pull --rebase origin main
-            git push origin HEAD:main
+            git commit -m "Repair canonical Alice identity from verified original [guarded-maintenance]"
+            git pull --rebase origin "$branch"
+            git push origin "HEAD:$branch"
           else
             echo "Canonical already repaired; nothing to commit"
           fi
