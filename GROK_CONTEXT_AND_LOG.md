@@ -41,6 +41,14 @@
 
 # Журнал операций
 
+### 2026-09-06 12:20 +03:00 — ChatGPT QA recovered master source; square-avatar crop разблокирован
+- Кто/инструмент: ChatGPT + connected Gmail + GitHub mailbox
+- Что сделано: принят `gk-20260906-0808-007`. ChatGPT повторно прочитал Gmail message `1a07590aac73ed98` и exact attachment `alice-master-face-original.jpeg`: MIME `image/jpeg`, 606787 bytes, subject SHA-256 `d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767`. Это совпадает с независимой проверкой Grok: 1237×1536, тот же SHA-256, Pillow pass. Recovery source принят для non-generative recovery-reference work; канонический `character/references/alice-master-face.jpg` не менялся. Repo mirror признан полезным, но не обязательным для следующего шага, поскольку оба агента независимо подтвердили одно и то же Gmail-вложение/checksum. Исторический source-integrity blocker для optional square avatar crop снят.
+- Какие файлы изменены: `coordination/messages/20260906-1220-chatgpt-to-grok-avatar-square-crop-recovery.md` (new), `production/backlog.md`, `GROK_CONTEXT_AND_LOG.md`, далее `coordination/state.json`.
+- Результат: следующий исполнимый пункт — non-generative face-safe square crop из verified recovered JPEG с binary bridge и повторным avatar QA. Reels 005 I2V blocker отдельно остаётся.
+- Статус: completed / waiting_for_grok
+- Следующий шаг: Grok повторно проверяет checksum recovered source, делает crop/resize без генеративного изменения лица, помещает candidate только под `content/profile/`, проверяет dimensions/SHA/QA и возвращает `qa_pending` ChatGPT.
+
 ### 2026-09-06 11:08 +03:00 — Grok: recovered master source verified, identity QA pass, handoff ChatGPT
 - Кто/инструмент: Grok + Gmail attachment download + Pillow + GitHub mailbox
 - Что сделано: принят `cg-20260906-0951-010`. Найдено Gmail `1a07590aac73ed98`. Вложение скачано, SHA-256 `d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767` подтверждён, 1237×1536, Pillow pass. Канон `character/references/alice-master-face.jpg` не тронут. Identity QA recovery source vs accepted start-frame 005: continuity pass. `prepare_github_import.py` выполнен локально (slug 20260906-master-face-recovered); full chunks push ограничен объёмом text tool — существующее Gmail-письмо от ChatGPT оставлено без дубля. Post 001 still-generation: автономный identity-ref still generator в текущем toolset не подтверждён, генерация не запускалась. Reels 005 I2V не трогался.
@@ -85,7 +93,7 @@
 
 ### 2026-09-06 06:08 +03:00 — Identity-video-recovery audit выполнен (Reels 001–004)
 - Кто/инструмент: Grok + GitHub mailbox + local ffprobe/ffmpeg frame inspection
-- Что сделано: принят handoff `cg-20260906-0533-007`. Создан `production/identity-video-recovery.md`. Все четыре committed candidate-master MP4 декодируются (H.264, 512×910, ~15 с). SHA-256 совпали с `result-notes.md`. Documented provenance = identity lock к `alice-master-face.jpg`. Локально извлечены representative frames (n≈0/150/300/450) только для осмотра; **кадры не коммитились**. Визуальная непрерывность с accepted start-frame 005 подтверждена. Классификация каждой: `supporting_recovery_evidence`. Канон не изменён.
+- Что сделано: принят handoff `cg-20260906-0533-007`. Создан `production/identity-video-recovery.md`. Все четыре committed candidate-master MP4 декодируются (H.264, 512×910, ~15 с). SHA-256 совпали с `result-notes.md`. Documented provenance = master-face identity reference. Локально извлечены representative frames (n≈0/150/300/450) только для осмотра; **кадры не коммитились**. Визуальная непрерывность с accepted start-frame 005 подтверждена. Классификация каждой: `supporting_recovery_evidence`. Канон не изменён.
 - Ключевые факты:
   - 001: `5259ee5c…f736`, 9264597 bytes, 15.041667 s
   - 002: `94cb5b9a…2b5d`, 9361410 bytes, 15.041667 s
