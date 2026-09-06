@@ -1,0 +1,64 @@
+name: Repair canonical identity
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "production/identity-repair-queue/*.json"
+  workflow_dispatch:
+    inputs:
+      manifest:
+        description: "production/identity-repair-queue/<manifest>.json"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: canonical-identity-repair
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve manifest
+        id: manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            m='${{ inputs.manifest }}'
+          else
+            mapfile -t ms < <(git diff --name-only --diff-filter=AM "${{ github.event.before }}" "${{ github.sha }}" -- 'production/identity-repair-queue/*.json')
+            [[ ${#ms[@]} -eq 1 ]] || { echo "exactly one repair manifest required" >&2; exit 2; }
+            m="${ms[0]}"
+          fi
+          [[ "$m" == production/identity-repair-queue/*.json ]] || { echo "invalid manifest path" >&2; exit 2; }
+          echo "path=$m" >> "$GITHUB_OUTPUT"
+
+      - name: Install Pillow
+        run: python3 -m pip install --quiet pillow
+
+      - name: Execute guarded repair
+        run: python3 production/repair_canonical_identity.py '${{ steps.manifest.outputs.path }}'
+
+      - name: Commit repaired canonical
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git status --porcelain -- character/references/alice-master-face.jpg character/identity.json | grep -q .; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add character/references/alice-master-face.jpg character/identity.json
+            git commit -m "Repair canonical Alice identity from verified original [manual-maintenance]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          else
+            echo "Canonical already repaired; nothing to commit"
+          fi
