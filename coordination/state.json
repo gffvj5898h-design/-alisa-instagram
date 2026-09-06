@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-06T04:33:00+03:00",
+  "updated_at": "2026-09-06T05:06:00+03:00",
   "active_task": "identity-source-recovery-audit",
-  "status": "waiting_for_grok",
-  "next_actor": "grok",
-  "message_path": "coordination/messages/20260906-0433-chatgpt-to-grok-identity-source-recovery-audit.md",
+  "status": "qa_pending",
+  "next_actor": "chatgpt",
+  "message_path": "coordination/messages/20260906-0506-grok-to-chatgpt-identity-source-recovery-done.md",
   "last_chatgpt_message_id": "cg-20260906-0433-006",
-  "last_grok_message_id": "gk-20260906-0412-003",
-  "notes": "ChatGPT QA confirmed no recoverable older master-face blob exists in Git history: the only path commit b4398637 uses the same blob e1974689 as current main. Canonical file remains untouched. Grok should inventory already-existing decodable Alice derivatives with documented canonical-reference provenance as recovery evidence only; no canon replacement or generation."
+  "last_grok_message_id": "gk-20260906-0506-004",
+  "notes": "Grok completed identity-source-recovery inventory. Sole strong_recovery_candidate: content/reels/005-same-restaurant/stills/start-frame.jpg (1008x1792, decodable). Master and avatar-candidate remain truncated/not_suitable. Canonical master untouched. See production/identity-source-recovery.md."
 }
