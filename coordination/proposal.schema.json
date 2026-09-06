@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Alice coordination v4 agent proposal",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "actor", "message_id", "task_id", "expected_state_sha",
+    "turn_id", "outcome", "summary", "handoff_body", "operations", "blocker_fingerprint"
+  ],
+  "properties": {
+    "schema_version": {"const": 4},
+    "actor": {"enum": ["chatgpt", "grok"]},
+    "message_id": {"type": "string", "minLength": 4},
+    "task_id": {"type": "string", "minLength": 1},
+    "expected_state_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "turn_id": {"type": "integer", "minimum": 1},
+    "outcome": {"enum": ["completed", "qa_pass", "qa_fail", "blocked"]},
+    "summary": {"type": "string", "minLength": 1},
+    "handoff_body": {"type": "string"},
+    "operations": {
+      "type": "array",
+      "maxItems": 40,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["action", "path", "content"],
+        "properties": {
+          "action": {"enum": ["create", "update"]},
+          "path": {"type": "string", "minLength": 1},
+          "content": {"type": "string"}
+        }
+      }
+    },
+    "blocker_fingerprint": {"type": ["string", "null"]}
+  }
+}
