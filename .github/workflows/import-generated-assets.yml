@@ -17,8 +17,10 @@ on:
 permissions:
   contents: write
 
+# Shared with the v4 broker and canonical repair. This prevents independent
+# GitHub Actions writers from racing on the same branch history.
 concurrency:
-  group: alice-binary-import-${{ github.ref_name }}
+  group: alisa-main-writer
   cancel-in-progress: false
 
 jobs:
