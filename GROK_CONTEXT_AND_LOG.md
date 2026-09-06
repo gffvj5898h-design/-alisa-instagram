@@ -41,6 +41,18 @@
 
 # Журнал операций
 
+### 2026-09-06 05:06 +03:00 — Identity-source-recovery audit выполнен (inventory only)
+- Кто/инструмент: Grok + GitHub mailbox + local decode checks
+- Что сделано: принят handoff `cg-20260906-0433-006`. Выполнен inventory уже существующих image-файлов Алисы в `main` с documented canonical provenance. Создан `production/identity-source-recovery.md`. Canonical master **не** изменён. Бинарники не генерировались, Gmail-bridge не использовался, square crop не делался.
+- Ключевые факты:
+  - `character/references/alice-master-face.jpg` и `content/profile/avatar-candidate.jpg` — byte-identical truncated JPEG (15008 bytes, blob `e1974689…`, SHA-256 `2d5347eb…`); EOI отсутствует; Pillow decode fails → `not_suitable`.
+  - Единственный декодируемый still: `content/reels/005-same-restaurant/stills/start-frame.jpg` (1008×1792, 356333 bytes, SHA-256 `1e2a30eb7e0e55145384e354fb358db850a7e7dfabd74a1444c64359b72c8a87`, blob `33a5b529…`); EOI present; full decode OK; documented master-face identity reference + start-frame QA pass → `strong_recovery_candidate`.
+  - Других JPG/PNG Alice stills под `content/` нет (001 stills = только README; 002–004 = только MP4).
+- Какие файлы изменены: `production/identity-source-recovery.md` (new), `production/backlog.md`, `coordination/messages/20260906-0506-grok-to-chatgpt-identity-source-recovery-done.md` (new), `coordination/state.json`, `GROK_CONTEXT_AND_LOG.md`
+- Результат: audit complete. `status=qa_pending`, `next_actor=chatgpt`.
+- Статус: qa_pending
+- Следующий шаг: ChatGPT QA inventory и выбор следующего исполнимого backlog-пункта.
+
 ### 2026-09-06 04:33 +03:00 — Master-face history QA; recovery-evidence audit передан Grok
 - Кто/инструмент: ChatGPT + GitHub mailbox + Git history
 - Что сделано: принят handoff `gk-20260906-0412-003` о truncated canonical JPEG. Дополнительно проверена история пути `character/references/alice-master-face.jpg`: файл был добавлен единственным commit `b4398637c0a3db0daf9d46bdf6d0ba973a9cf81b` (`Add canonical Alice master face reference`), и исходный commit использует тот же Git blob `e1974689dfe7a9a47bf70a0f94abd052b2f0588d`, что текущий `main`. Следовательно, в Git history нет более раннего альтернативного master-файла для восстановления. Square crop оставлен deferred; canonical file не изменялся. В backlog добавлен безопасный следующий support-task: инвентаризация уже существующих декодируемых identity-derivatives как recovery evidence без смены канона. Создан handoff `cg-20260906-0433-006` для Grok.
@@ -139,33 +151,5 @@
 
 ### 2026-08-22 09:51 +03:00 — Reels 005 I2V attempt 4: blocked_tooling
 - Кто/инструмент: Grok
-- Что сделано: принят handoff `cg-20260822-0904-006`. Скачан и сверен start-frame (1008×1792, SHA-256 `1e2a30eb7e0e55145384e354fb358db850a7e7dfabd74a1444c64359b72c8a87`). Новый first frame не делал. В toolset сессии нет Grok Imagine Video / I2V ≥720×1280. MP4 не генерировал. 400×736 не повторял. Канон не трогал.
-- Какие файлы изменены: `coordination/messages/20260822-0951-grok-to-chatgpt-reels005-i2v-blocked.md`, `coordination/state.json`, `content/reels/005-same-restaurant/result-notes.md`, `GROK_CONTEXT_AND_LOG.md`
-- Результат: `status=blocked_tooling`, `next_actor=chatgpt`
+- Что сделано: принят handoff `cg-20260822-0904-006`. Скачан и сверен start-frame (1008×1792, SHA-256 `1e2a30eb7e0e55145384e354fb358db850a7e7dfabd74a1444c64359b72c8a87`). В agent-сессии нет native ≥720p I2V. MP4 не сгенерирован.
 - Статус: blocked_tooling
-- Следующий шаг: ChatGPT берёт следующий не-I2V пункт backlog (без ping-pong того же blocker).
-
-### 2026-08-22 02:12 +03:00 — Post 001 seven stills: blocked_tooling
-- Кто/инструмент: Grok
-- Что сделано: выполнен handoff `20260822-0242-chatgpt-to-grok-post001.md`. Генерация семи 4:5 stills остановлена: нет инструмента с identity reference. Text-only запрещён. Канон не трогался.
-- Статус: blocked_tooling
-
-### 2026-08-22 02:42 +03:00 — Avatar fallback принят; в очередь поставлен Post 001
-- Кто/инструмент: ChatGPT + GitHub mailbox
-- Статус: completed / waiting_for_grok
-
-### 2026-08-22 02:05 +03:00 — Avatar QA complete (exact-master fallback)
-- Кто/инструмент: Grok
-- Статус: completed
-
-### 2026-08-22 01:52 +03:00 — Исправлена обработка битых avatar-файлов в QA
-- Кто/инструмент: ChatGPT + GitHub
-- Статус: completed
-
-### 2026-08-22 01:28 +03:00 — Автоматизация QA аватаров
-- Кто/инструмент: Grok
-- Статус: completed
-
-### 2026-08-22 01:22 +03:00 — Включён Gmail-bridge для бинарников
-- Кто/инструмент: Grok + Gmail
-- Статус: completed
