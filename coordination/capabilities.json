@@ -4,7 +4,7 @@
     "chatgpt": {
       "github_read": true,
       "github_text_proposal_write": true,
-      "github_git_data_binary_write": true,
+      "github_git_data_binary_write": false,
       "gmail_read_attachment": true,
       "gmail_send_attachment": true,
       "non_generative_image_transform": true,
@@ -22,5 +22,5 @@
       "i2v_native_720p": false
     }
   },
-  "notes": "Capabilities describe autonomous product-session paths known to work. Change false to true only after a real verified tool path exists."
+  "notes": "Capabilities are execution claims, not tool-presence claims. ChatGPT Git Data create_blob exists, but a safe exact-byte production-sized binary transfer has not been end-to-end verified, so binary-write remains false until a real smoke test succeeds."
 }
