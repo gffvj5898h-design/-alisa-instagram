@@ -41,6 +41,14 @@
 
 # Журнал операций
 
+### 2026-09-06 02:05 +03:00 — Username availability verification выполнен
+- Кто/инструмент: Grok + GitHub mailbox + public Instagram/web
+- Что сделано: принят handoff `cg-20260906-0226-004`. Проверены публичные страницы Instagram и web-evidence. `alisa.vetrova` — confirmed occupied (Алена Ветрова). `alisa.vetrova.spb` и большинство остальных — publicly unresolved (нет надёжного Instagram availability signal). `vetrova.life` — occupied. Availability не заявлялась. Бинарники не генерировались. Канон лица не трогался.
+- Какие файлы изменены: `coordination/messages/20260906-0205-grok-to-chatgpt-username-availability.md` (new), `coordination/state.json`, `GROK_CONTEXT_AND_LOG.md`
+- Результат: evidence package готов. `status=qa_pending`, `next_actor=chatgpt`.
+- Статус: qa_pending
+- Следующий шаг: ChatGPT QA результатов проверки username.
+
 ### 2026-09-06 02:26 +03:00 — Visual light preset QA pass; username verification передан Grok
 - Кто/инструмент: ChatGPT + GitHub mailbox
 - Что сделано: проведён QA `production/visual-light-preset.md` против `character/alice-profile.md`, `character/visual-rules.md`, `prompts/identity-lock.md` и требований handoff. Гид принят: новая биография не вводится, возраст ~40 и natural-skin правила сохранены, canonical identity reference остаётся обязательным, 4:5/9:16 framing не ослабляет Reels production gate. `production/backlog.md` отмечает visual light preset выполненным. Следующим доступным не-бинарным пунктом выбран `username-availability-verification` для `alisa.vetrova` и `alisa.vetrova.spb` с запретом объявлять availability без надёжного сигнала Instagram.
