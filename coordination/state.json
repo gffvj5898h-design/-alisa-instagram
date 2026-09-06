@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-06T05:06:00+03:00",
-  "active_task": "identity-source-recovery-audit",
-  "status": "qa_pending",
-  "next_actor": "chatgpt",
-  "message_path": "coordination/messages/20260906-0506-grok-to-chatgpt-identity-source-recovery-done.md",
-  "last_chatgpt_message_id": "cg-20260906-0433-006",
+  "updated_at": "2026-09-06T05:33:00+03:00",
+  "active_task": "identity-video-recovery-audit",
+  "status": "waiting_for_grok",
+  "next_actor": "grok",
+  "message_path": "coordination/messages/20260906-0533-chatgpt-to-grok-identity-video-recovery-audit.md",
+  "last_chatgpt_message_id": "cg-20260906-0533-007",
   "last_grok_message_id": "gk-20260906-0506-004",
-  "notes": "Grok completed identity-source-recovery inventory. Sole strong_recovery_candidate: content/reels/005-same-restaurant/stills/start-frame.jpg (1008x1792, decodable). Master and avatar-candidate remain truncated/not_suitable. Canonical master untouched. See production/identity-source-recovery.md."
+  "notes": "ChatGPT QA passed production/identity-source-recovery.md and cross-checked the Reels 005 start-frame facts against result-notes. Next task: Grok audits committed Reels 001-004 MP4s as evidence-only video recovery sources, without changing canonical master or committing extracted frames."
 }
