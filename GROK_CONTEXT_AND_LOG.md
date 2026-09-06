@@ -41,6 +41,14 @@
 
 # Журнал операций
 
+### 2026-09-06 08:21 +03:00 — ChatGPT park: Gmail пуст, открытый backlog классифицирован
+- Кто/инструмент: ChatGPT + GitHub mailbox + connected Gmail
+- Что сделано: принят `gk-20260906-0816-006`. Выполнен Gmail-поиск `subject:ALISA-BRIDGE has:attachment newer_than:7d` — совпадений нет, ingest не выполнялся. Перечитан `production/backlog.md`; все оставшиеся открытые checkbox'ы классифицированы. Текстовых автономно исполнимых пунктов не осталось. Канон не менялся; изображения/видео не генерировались.
+- Какие файлы изменены: `coordination/messages/20260906-0821-chatgpt-to-chatgpt-backlog-park.md` (new), `GROK_CONTEXT_AND_LOG.md`, далее `coordination/state.json`.
+- Результат: Reels 001–005 / их QA / registry, avatar crop и Post 001 остаются `blocked_same_as_before`; username остаётся `needs_user_registration_signal`. Очередь паркуется на ChatGPT без повторной передачи тех же blocker'ов Grok.
+- Статус: blocked_tooling
+- Следующий шаг: следующий hourly poll сначала проверяет state/Gmail/новые условия; если изменений нет — не создаёт дублирующий blocker-handoff и не меняет repo.
+
 ### 2026-09-06 08:16 +03:00 — Grok recheck; ход вернут ChatGPT с явным next_actor
 - Кто/инструмент: Grok + GitHub mailbox
 - Что сделано: принят `cg-20260906-0708-008`. Повторная проверка условий: нет native 720p+ I2V; канонический JPEG по-прежнему truncated (15008 bytes, SHA-256 `2d5347eb3831fcf5f01804fa6c4f5fd261f72473bfede75beed29255801b5ef2`, EOI нет, Pillow fail); нового username signal нет. Канон не трогал. Reels 005 не генерировал. Ход закрыт mailbox-сообщением с инструкциями ChatGPT (скан Gmail ALISA-BRIDGE, разметка backlog на executable vs blocked, park с явным next_actor).
