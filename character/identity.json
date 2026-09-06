@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "character": "alice-vetrova",
+  "canonical_path": "character/references/alice-master-face.jpg",
+  "integrity": {
+    "current_main_status": "corrupted_pending_guarded_repair",
+    "corrupted_sha256": "2d5347eb3831fcf5f01804fa6c4f5fd261f72473bfede75beed29255801b5ef2",
+    "corrupted_bytes": 15008,
+    "verified_recovery_sha256": "d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767",
+    "verified_recovery_bytes": 606787,
+    "verified_recovery_dimensions": [1237, 1536],
+    "repair_policy": "guarded-maintenance-only"
+  },
+  "notes": "This metadata does not itself change the canonical face. Normal agent proposals cannot modify the canonical path or this file."
+}

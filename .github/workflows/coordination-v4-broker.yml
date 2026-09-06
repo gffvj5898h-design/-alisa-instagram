@@ -1,0 +1,109 @@
+name: Coordination v4 broker
+
+on:
+  push:
+    branches:
+      - coordination-inbox
+    paths:
+      - "coordination/inbox/*.json"
+  workflow_dispatch:
+    inputs:
+      proposal_path:
+        description: "coordination/inbox/*.json on coordination-inbox"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: alice-coordination-v4-broker
+  cancel-in-progress: false
+
+jobs:
+  broker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout inbox event
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Verify mailbox commit shape and capture proposal
+        id: proposal
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            proposal='${{ inputs.proposal_path }}'
+            [[ "$proposal" == coordination/inbox/*.json ]] || { echo "invalid proposal path" >&2; exit 1; }
+            [[ -f "$proposal" ]] || { echo "proposal missing" >&2; exit 1; }
+          else
+            mapfile -t changed < <(git diff-tree --no-commit-id --name-status -r HEAD^ HEAD)
+            [[ ${#changed[@]} -eq 1 ]] || {
+              echo "mailbox commit must contain exactly one changed path" >&2
+              printf '%s\n' "${changed[@]}" >&2
+              exit 1
+            }
+            status="${changed[0]%%$'\t'*}"
+            proposal="${changed[0]#*$'\t'}"
+            [[ "$status" == "A" ]] || { echo "proposal must be newly added" >&2; exit 1; }
+            [[ "$proposal" == coordination/inbox/*.json ]] || { echo "piggyback path rejected: $proposal" >&2; exit 1; }
+          fi
+          cp "$proposal" /tmp/alisa-v4-proposal.json
+          echo "path=$proposal" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout latest canonical main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git checkout -B main origin/main
+
+      - name: Validate canonical state
+        run: python3 coordination/validate_state.py
+
+      - name: Validate proposal against exact state
+        run: python3 coordination/validate_proposal.py /tmp/alisa-v4-proposal.json
+
+      - name: Apply broker transaction
+        run: python3 coordination/broker.py /tmp/alisa-v4-proposal.json --apply
+
+      - name: Reject unexpected broker diff
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import subprocess, sys
+          allowed_exact = {
+              'coordination/state.json', 'coordination/tasks.json', 'production/published.md'
+          }
+          allowed_prefixes = (
+              'coordination/messages/', 'coordination/proposals/',
+              'content/', 'prompts/generated/', 'production/qa-receipts/', 'production/reports/'
+          )
+          changed = subprocess.check_output(['git','status','--porcelain'], text=True).splitlines()
+          bad = []
+          for line in changed:
+              path = line[3:]
+              if ' -> ' in path:
+                  path = path.split(' -> ', 1)[1]
+              if path not in allowed_exact and not path.startswith(allowed_prefixes):
+                  bad.append(path)
+          if bad:
+              print('unexpected broker paths:', *bad, sep='\n', file=sys.stderr)
+              raise SystemExit(1)
+          PY
+
+      - name: Commit one canonical broker transition
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add coordination/state.json coordination/tasks.json coordination/messages/ coordination/proposals/ content/ prompts/generated/ production/qa-receipts/ production/reports/ production/published.md 2>/dev/null || true
+          git diff --cached --quiet && { echo "broker produced no changes" >&2; exit 1; }
+          turn="$(python3 -c 'import json; print(json.load(open("coordination/state.json"))["turn_id"])')"
+          actor="$(python3 -c 'import json; print(json.load(open("/tmp/alisa-v4-proposal.json"))["actor"])')"
+          git commit -m "broker(v4): apply ${actor} turn ${turn}"
+          python3 coordination/validate_state.py --git-transition
+          git push origin HEAD:main
