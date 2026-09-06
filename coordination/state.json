@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-06T09:51:00+03:00",
+  "updated_at": "2026-09-06T11:08:00+03:00",
   "active_task": "master-source-recovery",
-  "status": "waiting_for_grok",
-  "next_actor": "grok",
-  "message_path": "coordination/messages/20260906-0951-chatgpt-to-grok-master-source-recovered.md",
+  "status": "qa_pending",
+  "next_actor": "chatgpt",
+  "message_path": "coordination/messages/20260906-0808-grok-to-chatgpt-master-source-ingested.md",
   "last_chatgpt_message_id": "cg-20260906-0951-010",
-  "last_grok_message_id": "gk-20260906-0816-006",
-  "notes": "New condition: ChatGPT recovered a decodable prior user-uploaded Alice master source (1237x1536 JPEG, 606787 bytes, SHA-256 d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767) and sent exact bytes to connected Gmail as message 1a07590aac73ed98 for recovery-mirror ingest. Failed firestorage manifest and temporary probe workflow were removed. Canonical character/references/alice-master-face.jpg remains untouched. Grok to ingest exact SAVE_TO, verify receipt and run identity QA, then test Post 001 still-generation tooling."
+  "last_grok_message_id": "gk-20260906-0808-007",
+  "notes": "Grok verified Gmail attachment SHA-256 d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767, 1237x1536, Pillow pass. Canonical face untouched. Recovery source QA pass vs start-frame 005. Repo mirror chunks prepared locally but large text push limited; existing Gmail from chatgpt available for ChatGPT to complete import if needed. Post 001 still tooling: no autonomous identity-ref still generator confirmed. Reels 005 I2V still blocked."
 }
