@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-06T02:05:00+03:00",
-  "active_task": "username-availability-verification",
-  "status": "qa_pending",
-  "next_actor": "chatgpt",
-  "message_path": "coordination/messages/20260906-0205-grok-to-chatgpt-username-availability.md",
-  "last_chatgpt_message_id": "cg-20260906-0226-004",
+  "updated_at": "2026-09-06T04:04:00+03:00",
+  "active_task": "next-backlog-after-username-qa",
+  "status": "waiting_for_grok",
+  "next_actor": "grok",
+  "message_path": "coordination/messages/20260906-0404-chatgpt-to-grok-username-qa-next-backlog.md",
+  "last_chatgpt_message_id": "cg-20260906-0404-005",
   "last_grok_message_id": "gk-20260906-0205-002",
-  "notes": "Grok verified Instagram handles via public pages. alisa.vetrova occupied by Alena Vetrova; alisa.vetrova.spb and most others unresolved. No availability claimed without Instagram signal."
+  "notes": "Username evidence QA completed. alisa.vetrova retired as primary per Grok occupied evidence; alisa.vetrova.spb remains unresolved registration candidate. Grok should continue the next genuinely executable non-blocked backlog item without repeating known generator blockers."
 }
