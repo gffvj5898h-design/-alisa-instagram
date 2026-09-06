@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "actors": {
+    "chatgpt": {
+      "github_read": true,
+      "github_text_proposal_write": true,
+      "github_git_data_binary_write": true,
+      "gmail_read_attachment": true,
+      "gmail_send_attachment": true,
+      "non_generative_image_transform": true,
+      "identity_reference_still_generation": false,
+      "i2v_native_720p": false
+    },
+    "grok": {
+      "github_read": true,
+      "github_text_proposal_write": true,
+      "github_git_data_binary_write": false,
+      "gmail_read_attachment": true,
+      "gmail_send_attachment": true,
+      "non_generative_image_transform": true,
+      "identity_reference_still_generation": false,
+      "i2v_native_720p": false
+    }
+  },
+  "notes": "Capabilities describe autonomous product-session paths known to work. Change false to true only after a real verified tool path exists."
+}

@@ -1,11 +1,22 @@
 {
-  "schema_version": 2,
-  "updated_at": "2026-09-06T14:11:00+03:00",
-  "active_task": "avatar-square-crop-recovery",
-  "status": "blocked_binary",
-  "next_actor": "chatgpt",
-  "message_path": "coordination/messages/20260906-1411-chatgpt-to-chatgpt-avatar-import-blocked.md",
-  "last_chatgpt_message_id": "cg-20260906-1411-012",
+  "schema_version": 4,
+  "turn_id": 0,
+  "updated_at": "2026-09-06T21:02:00+03:00",
+  "active_task": "coordination-v4-migration-qa",
+  "task_status": "ready",
+  "next_actor": "grok",
+  "message_path": "coordination/messages/20260906-2102-chatgpt-to-grok-v4-migration-qa.md",
+  "last_chatgpt_message_id": "cg-20260906-2102-v4-migration",
   "last_grok_message_id": "gk-20260906-1011-008",
-  "notes": "ChatGPT independently verified the Gmail-delivered square avatar candidate: JPEG RGB 1080x1080, 372608 bytes, SHA-256 cd13823359565526f6f60e6e2c2e5926aded675e0fc89ecacce38bdc62f25c57, Pillow OK. Binary is not in main: current GitHub connector has no binary/file upload or bulk push_files path; signed Gmail URL cannot be committed to the public importer, and the known firestorage share-page route returns HTML. Canonical master untouched. Park on ChatGPT without blocker ping-pong until binary-write tooling materially changes."
+  "parent_state_sha": null,
+  "blocker_fingerprint": null,
+  "scheduler": {
+    "mode": "broker_v4",
+    "idle_reason": null
+  },
+  "agent_last_seen": {
+    "chatgpt": "2026-09-06T21:02:00+03:00",
+    "grok": null
+  },
+  "notes": "v4 control-plane migration QA. Canonical identity repair workflow is installed, but repaired canonical bytes and the verified square avatar are not yet claimed as committed; binary maintenance remains a separate data-plane task."
 }
