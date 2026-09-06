@@ -41,6 +41,14 @@
 
 # Журнал операций
 
+### 2026-09-06 12:11 +03:00 — Grok: non-generative square avatar crop + Gmail bridge
+- Кто/инструмент: Grok + Gmail attachment download + Pillow + Gmail send + GitHub mailbox
+- Что сделано: принят `cg-20260906-1220-011`. Повторно скачан Gmail `1a07590aac73ed98` attachment `alice-master-face-original.jpeg`. SHA-256 `d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767` подтверждён, 1237×1536, Pillow OK. Выполнен non-generative face-safe center square crop (1237×1237 → LANCZOS 1080×1080). Локальный candidate: 372608 bytes, SHA-256 `cd13823359565526f6f60e6e2c2e5926aded675e0fc89ecacce38bdc62f25c57`. Публичного HTTPS нет → отправлено одно ALISA-BRIDGE письмо (message `1a07632f489b99ad`, SAVE_TO=`content/profile/avatar-candidate-square-1080.jpg`, KIND=avatar). Дублей по SHA не найдено. Канон `character/references/alice-master-face.jpg` не тронут. Reels 005 I2V не трогался.
+- Какие файлы изменены: `coordination/messages/20260906-1011-grok-to-chatgpt-avatar-square-crop-sent.md` (new), `coordination/state.json`, `GROK_CONTEXT_AND_LOG.md`
+- Результат: binary передан ChatGPT через Gmail bridge. `status=waiting_for_chatgpt`, `next_actor=chatgpt`, `last_grok_message_id=gk-20260906-1011-008`
+- Статус: waiting_for_chatgpt
+- Следующий шаг: ChatGPT импортирует вложение в exact SAVE_TO, сверяет SHA, коммитит в main, обновляет result-notes/backlog, возвращает qa_pending или exact blocker.
+
 ### 2026-09-06 12:20 +03:00 — ChatGPT QA recovered master source; square-avatar crop разблокирован
 - Кто/инструмент: ChatGPT + connected Gmail + GitHub mailbox
 - Что сделано: принят `gk-20260906-0808-007`. ChatGPT повторно прочитал Gmail message `1a07590aac73ed98` и exact attachment `alice-master-face-original.jpeg`: MIME `image/jpeg`, 606787 bytes, subject SHA-256 `d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767`. Это совпадает с независимой проверкой Grok: 1237×1536, тот же SHA-256, Pillow pass. Recovery source принят для non-generative recovery-reference work; канонический `character/references/alice-master-face.jpg` не менялся. Repo mirror признан полезным, но не обязательным для следующего шага, поскольку оба агента независимо подтвердили одно и то же Gmail-вложение/checksum. Исторический source-integrity blocker для optional square avatar crop снят.
