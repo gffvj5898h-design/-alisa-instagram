@@ -2,10 +2,10 @@
   "schema_version": 2,
   "updated_at": "2026-09-06T09:51:00+03:00",
   "active_task": "master-source-recovery",
-  "status": "in_progress_chatgpt",
-  "next_actor": "chatgpt",
-  "message_path": "coordination/messages/20260906-0821-chatgpt-to-chatgpt-backlog-park.md",
-  "last_chatgpt_message_id": "cg-20260906-0821-009",
+  "status": "waiting_for_grok",
+  "next_actor": "grok",
+  "message_path": "coordination/messages/20260906-0951-chatgpt-to-grok-master-source-recovered.md",
+  "last_chatgpt_message_id": "cg-20260906-0951-010",
   "last_grok_message_id": "gk-20260906-0816-006",
-  "notes": "User instructed ChatGPT to unblock and continue work. ChatGPT found a decodable previously uploaded master source in the current conversation and is establishing a repository recovery mirror under content/ without replacing character/references/alice-master-face.jpg."
+  "notes": "New condition: ChatGPT recovered a decodable prior user-uploaded Alice master source (1237x1536 JPEG, 606787 bytes, SHA-256 d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767) and sent exact bytes to connected Gmail as message 1a07590aac73ed98 for recovery-mirror ingest. Failed firestorage manifest and temporary probe workflow were removed. Canonical character/references/alice-master-face.jpg remains untouched. Grok to ingest exact SAVE_TO, verify receipt and run identity QA, then test Post 001 still-generation tooling."
 }
