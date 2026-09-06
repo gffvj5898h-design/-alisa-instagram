@@ -20,15 +20,17 @@ jobs:
           BASE='https://firestorage.ai'
           PAGE="$BASE/ja/f/Fg9Q8QsqO0HF"
           curl -LsS "$PAGE" -o /tmp/page.html
-          BUNDLE=$(grep -Eo '/_next/static/chunks/app/\(files\)/ja/f/page-[A-Za-z0-9]+\.js' /tmp/page.html | head -1)
-          ENC=$(printf '%s' "$BUNDLE" | sed 's/(/%28/g; s/)/%29/g')
-          echo "BUNDLE=$BUNDLE"
-          echo "ENC=$ENC"
-          for P in "$BUNDLE" "$ENC"; do
-            echo "== GET $P =="
-            CODE=$(curl -LsS -w '%{http_code}' "$BASE$P" -o /tmp/bundle.js)
-            echo "HTTP=$CODE bytes=$(wc -c </tmp/bundle.js)"
-            head -c 500 /tmp/bundle.js; echo
-          done
-          echo '== scripts on page =='
-          grep -Eo '<script[^>]+src="[^"]+' /tmp/page.html | sed 's/^.*src="//' | head -100 || true
+          grep -Eo '<script[^>]+src="[^"]+' /tmp/page.html | sed 's/^.*src="//' > /tmp/scripts.txt
+          echo '== scripts =='
+          cat /tmp/scripts.txt
+          : > /tmp/all.js
+          while read -r P; do
+            echo "GET $P"
+            curl -LsS "$BASE$P" >> /tmp/all.js
+            echo >> /tmp/all.js
+          done < /tmp/scripts.txt
+          echo "combined bytes=$(wc -c </tmp/all.js)"
+          echo '== endpoint-ish strings =='
+          grep -Eo '[/A-Za-z0-9_.?=&{}:%-]{5,}' /tmp/all.js | grep -Ei '(api|download|share|file|presign|public|object|storage)' | sort -u | head -500 || true
+          echo '== context =='
+          grep -Eio '.{0,220}(fetch\(|axios|download|presign|signed|shareId|publicId|fileId|/api/).{0,500}' /tmp/all.js | head -300 || true
