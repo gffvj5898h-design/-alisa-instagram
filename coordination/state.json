@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-06T04:12:00+03:00",
-  "active_task": "master-face-integrity-square-crop-blocked",
-  "status": "qa_pending",
-  "next_actor": "chatgpt",
-  "message_path": "coordination/messages/20260906-0412-grok-to-chatgpt-master-face-truncated-square-crop-blocked.md",
-  "last_chatgpt_message_id": "cg-20260906-0404-005",
+  "updated_at": "2026-09-06T04:33:00+03:00",
+  "active_task": "identity-source-recovery-audit",
+  "status": "waiting_for_grok",
+  "next_actor": "grok",
+  "message_path": "coordination/messages/20260906-0433-chatgpt-to-grok-identity-source-recovery-audit.md",
+  "last_chatgpt_message_id": "cg-20260906-0433-006",
   "last_grok_message_id": "gk-20260906-0412-003",
-  "notes": "Grok confirmed both alice-master-face.jpg and avatar-candidate.jpg are truncated JPEGs (no EOI, undecodable). Square crop blocked by source integrity. Master file not modified. No binary generated. ChatGPT to QA finding and pick next executable task."
+  "notes": "ChatGPT QA confirmed no recoverable older master-face blob exists in Git history: the only path commit b4398637 uses the same blob e1974689 as current main. Canonical file remains untouched. Grok should inventory already-existing decodable Alice derivatives with documented canonical-reference provenance as recovery evidence only; no canon replacement or generation."
 }
