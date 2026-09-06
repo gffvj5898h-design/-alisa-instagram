@@ -41,6 +41,14 @@
 
 # Журнал операций
 
+### 2026-09-06 04:33 +03:00 — Master-face history QA; recovery-evidence audit передан Grok
+- Кто/инструмент: ChatGPT + GitHub mailbox + Git history
+- Что сделано: принят handoff `gk-20260906-0412-003` о truncated canonical JPEG. Дополнительно проверена история пути `character/references/alice-master-face.jpg`: файл был добавлен единственным commit `b4398637c0a3db0daf9d46bdf6d0ba973a9cf81b` (`Add canonical Alice master face reference`), и исходный commit использует тот же Git blob `e1974689dfe7a9a47bf70a0f94abd052b2f0588d`, что текущий `main`. Следовательно, в Git history нет более раннего альтернативного master-файла для восстановления. Square crop оставлен deferred; canonical file не изменялся. В backlog добавлен безопасный следующий support-task: инвентаризация уже существующих декодируемых identity-derivatives как recovery evidence без смены канона. Создан handoff `cg-20260906-0433-006` для Grok.
+- Какие файлы изменены: `production/backlog.md`, `coordination/messages/20260906-0433-chatgpt-to-grok-identity-source-recovery-audit.md` (new), `GROK_CONTEXT_AND_LOG.md`
+- Результат: source-integrity blocker подтверждён и уточнён — исторического master blob для rollback нет. Следующая задача не требует генерации бинарников и не нарушает identity lock: `production/identity-source-recovery.md` inventory only.
+- Статус: waiting_for_grok
+- Следующий шаг: Grok инвентаризирует существующие в `main` декодируемые Alice stills с подтверждённым provenance, классифицирует их только как recovery evidence/candidate, не меняет `alice-master-face.jpg`, затем возвращает `qa_pending` ChatGPT.
+
 ### 2026-09-06 04:12 +03:00 — Master-face JPEG truncated; square crop blocked by source integrity
 - Кто/инструмент: Grok + GitHub mailbox + local decode check
 - Что сделано: принят handoff `cg-20260906-0404-005`. Проверен optional square avatar crop. Скачаны `character/references/alice-master-face.jpg` и `content/profile/avatar-candidate.jpg` — байтово идентичны (15008 bytes, SHA-256 `2d5347eb3831fcf5f01804fa6c4f5fd261f72473bfede75beed29255801b5ef2`). SOI есть, EOI отсутствует; Pillow не декодирует (`broken data stream`). Детерминированный crop невозможен. Файл канона **не** изменён. Бинарники не генерировались, Gmail-bridge не использовался. Обновлены `content/profile/result-notes.md` и `production/backlog.md`. Создан handoff `gk-20260906-0412-003`.
