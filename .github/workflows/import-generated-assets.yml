@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - coordination-v4
     paths:
       - "production/import-queue/*.json"
   workflow_dispatch:
@@ -17,14 +18,14 @@ permissions:
   contents: write
 
 concurrency:
-  group: alice-binary-import-main
+  group: alice-binary-import-${{ github.ref_name }}
   cancel-in-progress: false
 
 jobs:
   import-assets:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout current main
+      - name: Checkout current branch
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
@@ -70,13 +71,16 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          branch='${{ github.ref_name }}'
+          [[ "$branch" == "main" || "$branch" == "coordination-v4" ]] || { echo "unexpected import branch: $branch" >&2; exit 2; }
           if git status --porcelain | grep -q .; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add content/ production/import-receipts/ production/import-rejected/ 2>/dev/null || true
             if ! git diff --cached --quiet; then
               git commit -m "binary-import: process manifest(s) [skip ci]"
-              git push origin HEAD:main
+              git pull --rebase origin "$branch"
+              git push origin "HEAD:$branch"
             fi
           fi
 
