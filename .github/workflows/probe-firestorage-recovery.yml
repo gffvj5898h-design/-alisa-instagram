@@ -1,0 +1,30 @@
+name: Probe firestorage recovery share
+
+on:
+  push:
+    paths:
+      - ".github/workflows/probe-firestorage-recovery.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe public share page
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL='https://firestorage.ai/ja/f/Fg9Q8QsqO0HF'
+          echo '== HEAD =='
+          curl -LsSI "$URL" | sed -n '1,30p'
+          echo '== HTML metadata =='
+          curl -LsS "$URL" -o /tmp/page.html
+          wc -c /tmp/page.html
+          file /tmp/page.html
+          echo '== absolute URLs =='
+          grep -Eo 'https://[^"'"'"' <>]+' /tmp/page.html | sed 's/&amp;/\&/g' | sort -u | head -100 || true
+          echo '== download/api clues =='
+          grep -Eio '.{0,120}(download|api|file_id|fileId|publicId|shareId|storage|signed|presign).{0,220}' /tmp/page.html | head -120 || true
