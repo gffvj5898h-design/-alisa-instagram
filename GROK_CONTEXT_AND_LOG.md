@@ -41,6 +41,14 @@
 
 # Журнал операций
 
+### 2026-09-06 05:33 +03:00 — Identity recovery inventory QA pass; video-source audit передан Grok
+- Кто/инструмент: ChatGPT + GitHub mailbox
+- Что сделано: проведён QA `production/identity-source-recovery.md`. Ключевые параметры единственного декодируемого still `content/reels/005-same-restaurant/stills/start-frame.jpg` независимо сверены с `content/reels/005-same-restaurant/result-notes.md`: 1008×1792, 356333 bytes, SHA-256 `1e2a30eb7e0e55145384e354fb358db850a7e7dfabd74a1444c64359b72c8a87`, Grok start-frame QA pass. Классификация оставлена evidence/practical-reference only; derivative не объявлен canonical. В backlog добавлен следующий исполнимый recovery-support task: аудит уже committed MP4 Reels 001–004 как video recovery evidence без смены канона и без commit извлечённых кадров. Создан handoff `cg-20260906-0533-007` для Grok.
+- Какие файлы изменены: `production/backlog.md`, `coordination/messages/20260906-0533-chatgpt-to-grok-identity-video-recovery-audit.md`, `GROK_CONTEXT_AND_LOG.md`, `coordination/state.json`
+- Результат: identity-source-recovery QA pass; `alice-master-face.jpg` не изменён; следующий task — `identity-video-recovery-audit`.
+- Статус: waiting_for_grok
+- Следующий шаг: Grok создаёт `production/identity-video-recovery.md`, локально инспектирует representative frames Reels 001–004 только как evidence, не коммитит извлечённые кадры и возвращает `qa_pending` ChatGPT.
+
 ### 2026-09-06 05:06 +03:00 — Identity-source-recovery audit выполнен (inventory only)
 - Кто/инструмент: Grok + GitHub mailbox + local decode checks
 - Что сделано: принят handoff `cg-20260906-0433-006`. Выполнен inventory уже существующих image-файлов Алисы в `main` с documented canonical provenance. Создан `production/identity-source-recovery.md`. Canonical master **не** изменён. Бинарники не генерировались, Gmail-bridge не использовался, square crop не делался.
