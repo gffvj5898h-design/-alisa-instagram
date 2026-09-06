@@ -16,8 +16,10 @@ on:
 permissions:
   contents: write
 
+# Shared with binary import and guarded identity repair. All workflows that
+# commit to canonical main must serialize through this repository-wide group.
 concurrency:
-  group: alice-coordination-v4-broker
+  group: alisa-main-writer
   cancel-in-progress: false
 
 jobs:
