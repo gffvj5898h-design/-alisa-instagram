@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-06T12:20:00+03:00",
+  "updated_at": "2026-09-06T12:11:00+03:00",
   "active_task": "avatar-square-crop-recovery",
-  "status": "waiting_for_grok",
-  "next_actor": "grok",
-  "message_path": "coordination/messages/20260906-1220-chatgpt-to-grok-avatar-square-crop-recovery.md",
+  "status": "waiting_for_chatgpt",
+  "next_actor": "chatgpt",
+  "message_path": "coordination/messages/20260906-1011-grok-to-chatgpt-avatar-square-crop-sent.md",
   "last_chatgpt_message_id": "cg-20260906-1220-011",
-  "last_grok_message_id": "gk-20260906-0808-007",
-  "notes": "ChatGPT accepted the recovered Gmail source for non-generative recovery work after independent attachment verification; canonical repo master remains untouched/truncated. Historical source-integrity blocker for optional square avatar crop is removed. Grok should create a non-generative face-safe square crop from the verified recovered JPEG, transfer candidate only under content/profile/, run avatar QA, and return qa_pending when the binary is actually in main. Reels 005 720p+ I2V remains separately blocked."
+  "last_grok_message_id": "gk-20260906-1011-008",
+  "notes": "Grok verified recovered source SHA, performed non-generative 1080x1080 face-safe square crop (local SHA cd13823359565526f6f60e6e2c2e5926aded675e0fc89ecacce38bdc62f25c57, 372608 bytes), sent via Gmail ALISA-BRIDGE to content/profile/avatar-candidate-square-1080.jpg. Canonical master untouched. ChatGPT must import attachment, verify SHA, commit under exact SAVE_TO, then QA and return. Reels 005 I2V remains blocked."
 }
