@@ -13,18 +13,19 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Probe public share page
+      - name: Probe public share download endpoint
         shell: bash
         run: |
           set -euo pipefail
-          URL='https://firestorage.ai/ja/f/Fg9Q8QsqO0HF'
-          echo '== HEAD =='
-          curl -LsSI "$URL" | sed -n '1,30p'
-          echo '== HTML metadata =='
-          curl -LsS "$URL" -o /tmp/page.html
-          wc -c /tmp/page.html
-          file /tmp/page.html
-          echo '== absolute URLs =='
-          grep -Eo 'https://[^"'"'"' <>]+' /tmp/page.html | sed 's/&amp;/\&/g' | sort -u | head -100 || true
-          echo '== download/api clues =='
-          grep -Eio '.{0,120}(download|api|file_id|fileId|publicId|shareId|storage|signed|presign).{0,220}' /tmp/page.html | head -120 || true
+          BASE='https://firestorage.ai'
+          PAGE="$BASE/ja/f/Fg9Q8QsqO0HF"
+          curl -LsS "$PAGE" -o /tmp/page.html
+          BUNDLE=$(grep -Eo '/_next/static/chunks/app/\(files\)/ja/f/page-[A-Za-z0-9]+\.js' /tmp/page.html | head -1)
+          echo "BUNDLE=$BUNDLE"
+          curl -LsS "$BASE$BUNDLE" -o /tmp/bundle.js
+          echo '== bundle size =='
+          wc -c /tmp/bundle.js
+          echo '== endpoint-ish strings =='
+          grep -Eo '[/A-Za-z0-9_.?=&{}:-]{5,}' /tmp/bundle.js | grep -Ei '(api|download|share|file|presign|public|object|storage)' | sort -u | head -300 || true
+          echo '== context around fetch/axios/download =='
+          grep -Eio '.{0,180}(fetch\(|axios|download|presign|signed|shareId|publicId|fileId|/api/).{0,360}' /tmp/bundle.js | head -200 || true
