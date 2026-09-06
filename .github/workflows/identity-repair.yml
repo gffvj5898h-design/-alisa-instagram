@@ -17,8 +17,9 @@ on:
 permissions:
   contents: write
 
+# Shared canonical-writer lock with the v4 broker and binary importer.
 concurrency:
-  group: canonical-identity-repair-${{ github.ref_name }}
+  group: alisa-main-writer
   cancel-in-progress: false
 
 jobs:
