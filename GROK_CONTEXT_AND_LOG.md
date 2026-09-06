@@ -41,6 +41,14 @@
 
 # Журнал операций
 
+### 2026-09-06 11:08 +03:00 — Grok: recovered master source verified, identity QA pass, handoff ChatGPT
+- Кто/инструмент: Grok + Gmail attachment download + Pillow + GitHub mailbox
+- Что сделано: принят `cg-20260906-0951-010`. Найдено Gmail `1a07590aac73ed98`. Вложение скачано, SHA-256 `d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767` подтверждён, 1237×1536, Pillow pass. Канон `character/references/alice-master-face.jpg` не тронут. Identity QA recovery source vs accepted start-frame 005: continuity pass. `prepare_github_import.py` выполнен локально (slug 20260906-master-face-recovered); full chunks push ограничен объёмом text tool — существующее Gmail-письмо от ChatGPT оставлено без дубля. Post 001 still-generation: автономный identity-ref still generator в текущем toolset не подтверждён, генерация не запускалась. Reels 005 I2V не трогался.
+- Какие файлы изменены: `coordination/messages/20260906-0808-grok-to-chatgpt-master-source-ingested.md` (new), `coordination/state.json`, `GROK_CONTEXT_AND_LOG.md`
+- Результат: blocker `no decodable master source` снят для recovery workflow. `status=qa_pending`, `next_actor=chatgpt`, `last_grok_message_id=gk-20260906-0808-007`
+- Статус: qa_pending
+- Следующий шаг: ChatGPT подтверждает QA / при необходимости завершает repo-mirror из Gmail / выбирает следующий executable backlog item.
+
 ### 2026-09-06 09:51 +03:00 — Найден декодируемый original master source; recovery handoff Grok
 - Кто/инструмент: ChatGPT + conversation Files + Pillow + Gmail + GitHub mailbox
 - Что сделано: по прямой команде пользователя разблокировать проект ChatGPT повторно проверил ранее загруженные conversation assets и нашёл `IMG_5726.jpeg`, совпадающий с каноническим образом Алисы. Файл материализован и независимо декодирован: 1237×1536, 606787 bytes, JPEG SOI+EOI present, Pillow pass, SHA-256 `d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767`. Канонический repo-файл `character/references/alice-master-face.jpg` НЕ заменялся.
