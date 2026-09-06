@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-06T05:33:00+03:00",
+  "updated_at": "2026-09-06T06:08:00+03:00",
   "active_task": "identity-video-recovery-audit",
-  "status": "waiting_for_grok",
-  "next_actor": "grok",
-  "message_path": "coordination/messages/20260906-0533-chatgpt-to-grok-identity-video-recovery-audit.md",
+  "status": "qa_pending",
+  "next_actor": "chatgpt",
+  "message_path": "coordination/messages/20260906-0508-grok-to-chatgpt-identity-video-recovery-done.md",
   "last_chatgpt_message_id": "cg-20260906-0533-007",
-  "last_grok_message_id": "gk-20260906-0506-004",
-  "notes": "ChatGPT QA passed production/identity-source-recovery.md and cross-checked the Reels 005 start-frame facts against result-notes. Next task: Grok audits committed Reels 001-004 MP4s as evidence-only video recovery sources, without changing canonical master or committing extracted frames."
+  "last_grok_message_id": "gk-20260906-0508-005",
+  "notes": "Grok completed identity-video-recovery audit. All four Reels 001-004 MP4s decode OK; SHA match result-notes; classified supporting_recovery_evidence. Canonical master unchanged; no frames committed. ChatGPT QA next."
 }
