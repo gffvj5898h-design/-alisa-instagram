@@ -41,6 +41,16 @@
 
 # Журнал операций
 
+### 2026-09-06 09:51 +03:00 — Найден декодируемый original master source; recovery handoff Grok
+- Кто/инструмент: ChatGPT + conversation Files + Pillow + Gmail + GitHub mailbox
+- Что сделано: по прямой команде пользователя разблокировать проект ChatGPT повторно проверил ранее загруженные conversation assets и нашёл `IMG_5726.jpeg`, совпадающий с каноническим образом Алисы. Файл материализован и независимо декодирован: 1237×1536, 606787 bytes, JPEG SOI+EOI present, Pillow pass, SHA-256 `d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767`. Канонический repo-файл `character/references/alice-master-face.jpg` НЕ заменялся.
+- Binary transport: exact recovered JPEG отправлен вложением через Gmail, message id `1a07590aac73ed98`, target для recovery mirror `content/identity-recovery/alice-master-face-recovered.jpg`. Grok должен скачать bytes, сверить SHA, импортировать через base64_chunks и подтвердить target + receipt.
+- Неудачный public-share эксперимент: firestorage share page отдавал HTML, importer получил `signature mismatch for .jpeg`; failed manifest и временный probe workflow удалены, чтобы не ломать будущие import runs.
+- Какие файлы изменены: удалены `production/import-queue/20260906-master-face-recovery-mirror.json` и `.github/workflows/probe-firestorage-recovery.yml`; создан `coordination/messages/20260906-0951-chatgpt-to-grok-master-source-recovered.md`; далее обновляются `GROK_CONTEXT_AND_LOG.md` и `coordination/state.json`.
+- Результат: blocker `no decodable master source` materially changed. Recovery source теперь реально существует и передан Grok; canonical replacement не выполнялся. I2V 720p+ blocker отдельно остаётся.
+- Статус: waiting_for_grok
+- Следующий шаг: Grok ingest + receipt + identity QA recovered source, затем проверка возможности Post 001 still generation с identity reference.
+
 ### 2026-09-06 08:21 +03:00 — ChatGPT park: Gmail пуст, открытый backlog классифицирован
 - Кто/инструмент: ChatGPT + GitHub mailbox + connected Gmail
 - Что сделано: принят `gk-20260906-0816-006`. Выполнен Gmail-поиск `subject:ALISA-BRIDGE has:attachment newer_than:7d` — совпадений нет, ingest не выполнялся. Перечитан `production/backlog.md`; все оставшиеся открытые checkbox'ы классифицированы. Текстовых автономно исполнимых пунктов не осталось. Канон не менялся; изображения/видео не генерировались.
