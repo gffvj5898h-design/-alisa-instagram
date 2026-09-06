@@ -21,11 +21,14 @@ jobs:
           PAGE="$BASE/ja/f/Fg9Q8QsqO0HF"
           curl -LsS "$PAGE" -o /tmp/page.html
           BUNDLE=$(grep -Eo '/_next/static/chunks/app/\(files\)/ja/f/page-[A-Za-z0-9]+\.js' /tmp/page.html | head -1)
+          ENC=$(printf '%s' "$BUNDLE" | sed 's/(/%28/g; s/)/%29/g')
           echo "BUNDLE=$BUNDLE"
-          curl -LsS "$BASE$BUNDLE" -o /tmp/bundle.js
-          echo '== bundle size =='
-          wc -c /tmp/bundle.js
-          echo '== endpoint-ish strings =='
-          grep -Eo '[/A-Za-z0-9_.?=&{}:-]{5,}' /tmp/bundle.js | grep -Ei '(api|download|share|file|presign|public|object|storage)' | sort -u | head -300 || true
-          echo '== context around fetch/axios/download =='
-          grep -Eio '.{0,180}(fetch\(|axios|download|presign|signed|shareId|publicId|fileId|/api/).{0,360}' /tmp/bundle.js | head -200 || true
+          echo "ENC=$ENC"
+          for P in "$BUNDLE" "$ENC"; do
+            echo "== GET $P =="
+            CODE=$(curl -LsS -w '%{http_code}' "$BASE$P" -o /tmp/bundle.js)
+            echo "HTTP=$CODE bytes=$(wc -c </tmp/bundle.js)"
+            head -c 500 /tmp/bundle.js; echo
+          done
+          echo '== scripts on page =='
+          grep -Eo '<script[^>]+src="[^"]+' /tmp/page.html | sed 's/^.*src="//' | head -100 || true
