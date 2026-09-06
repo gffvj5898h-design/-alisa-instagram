@@ -38,7 +38,9 @@
 ## P2 — запуск аккаунта
 
 - [ ] Утвердить username Instagram
-  - editorial-кандидат после QA 2026-09-05: `alisa.vetrova`; запасной `alisa.vetrova.spb`; доступность/регистрация в Instagram пока не подтверждены.
+  - [x] Public evidence verification 2026-09-06: `alisa.vetrova` подтверждённо занят по handoff Grok; `vetrova.life` также занят.
+  - Текущий регистрационный кандидат: `alisa.vetrova.spb`.
+  - Статус `alisa.vetrova.spb`: публично unresolved; доступность не подтверждена. Не закрывать этот backlog-пункт до фактической успешной регистрации или надёжного availability signal.
 - [x] Сделать аватар профиля из master face — identity-safe fallback
   - `content/profile/avatar-candidate.jpg` = exact copy of `alice-master-face.jpg`
   - 320×400, 15008 bytes, SHA-256 `2d5347eb3831fcf5f01804fa6c4f5fd261f72473bfede75beed29255801b5ef2`
