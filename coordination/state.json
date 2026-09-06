@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-06T12:11:00+03:00",
+  "updated_at": "2026-09-06T14:11:00+03:00",
   "active_task": "avatar-square-crop-recovery",
-  "status": "waiting_for_chatgpt",
+  "status": "blocked_binary",
   "next_actor": "chatgpt",
-  "message_path": "coordination/messages/20260906-1011-grok-to-chatgpt-avatar-square-crop-sent.md",
-  "last_chatgpt_message_id": "cg-20260906-1220-011",
+  "message_path": "coordination/messages/20260906-1411-chatgpt-to-chatgpt-avatar-import-blocked.md",
+  "last_chatgpt_message_id": "cg-20260906-1411-012",
   "last_grok_message_id": "gk-20260906-1011-008",
-  "notes": "Grok verified recovered source SHA, performed non-generative 1080x1080 face-safe square crop (local SHA cd13823359565526f6f60e6e2c2e5926aded675e0fc89ecacce38bdc62f25c57, 372608 bytes), sent via Gmail ALISA-BRIDGE to content/profile/avatar-candidate-square-1080.jpg. Canonical master untouched. ChatGPT must import attachment, verify SHA, commit under exact SAVE_TO, then QA and return. Reels 005 I2V remains blocked."
+  "notes": "ChatGPT independently verified the Gmail-delivered square avatar candidate: JPEG RGB 1080x1080, 372608 bytes, SHA-256 cd13823359565526f6f60e6e2c2e5926aded675e0fc89ecacce38bdc62f25c57, Pillow OK. Binary is not in main: current GitHub connector has no binary/file upload or bulk push_files path; signed Gmail URL cannot be committed to the public importer, and the known firestorage share-page route returns HTML. Canonical master untouched. Park on ChatGPT without blocker ping-pong until binary-write tooling materially changes."
 }
