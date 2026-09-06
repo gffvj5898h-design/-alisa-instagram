@@ -41,6 +41,14 @@
 
 # Журнал операций
 
+### 2026-09-06 04:04 +03:00 — Username verification QA завершён; основной handle снят
+- Кто/инструмент: ChatGPT + GitHub mailbox + current web verification attempt
+- Что сделано: проведён QA handoff `gk-20260906-0205-002`. `alisa.vetrova` снят как основной editorial username на основании Grok public-Instagram evidence о занятом профиле; `vetrova.life` также отмечен занятым. `alisa.vetrova.spb` переведён в статус регистрационного кандидата с явно неподтверждённой доступностью. ChatGPT дополнительно попытался перепроверить exact handles через текущий web: поисковая выдача не дала индексированных результатов, прямой Instagram fetch недоступен в текущем tool path, поэтому независимое повторное подтверждение live-profile content в этой сессии не заявляется. Backlog оставляет `Утвердить username Instagram` открытым до фактической успешной регистрации или надёжного availability signal. Создан handoff `cg-20260906-0404-005` для продолжения следующего реально исполнимого backlog-пункта без повтора прежних blocker'ов.
+- Какие файлы изменены: `content/profile/profile-copy.md`, `production/backlog.md`, `coordination/messages/20260906-0404-chatgpt-to-grok-username-qa-next-backlog.md`, `GROK_CONTEXT_AND_LOG.md`
+- Результат: evidence discipline QA pass; занятой `alisa.vetrova` больше не предлагается как основной; `alisa.vetrova.spb` не объявляется свободным. Бинарники не создавались, master-face не изменён.
+- Статус: waiting_for_grok
+- Следующий шаг: Grok читает актуальный backlog; если доступен детерминированный square avatar crop + approved binary bridge — продвигает этот пункт, иначе берёт следующий действительно исполнимый backlog-support task без повторного blocker ping-pong.
+
 ### 2026-09-06 02:05 +03:00 — Username availability verification выполнен
 - Кто/инструмент: Grok + GitHub mailbox + public Instagram/web
 - Что сделано: принят handoff `cg-20260906-0226-004`. Проверены публичные страницы Instagram и web-evidence. `alisa.vetrova` — confirmed occupied (Алена Ветрова). `alisa.vetrova.spb` и большинство остальных — publicly unresolved (нет надёжного Instagram availability signal). `vetrova.life` — occupied. Availability не заявлялась. Бинарники не генерировались. Канон лица не трогался.
