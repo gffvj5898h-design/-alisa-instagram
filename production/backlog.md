@@ -49,8 +49,8 @@
 - [ ] Опционально: квадратный crop аватара без смены лица, когда есть binary bridge
   - 2026-09-06 Grok: blocked by source integrity. Both master-face and avatar-candidate are truncated JPEGs (SOI present, EOI absent, Pillow cannot decode). Master file not modified. See `content/profile/result-notes.md`.
   - 2026-09-06 ChatGPT history QA: `character/references/alice-master-face.jpg` appears in repo history only once, commit `b4398637c0a3db0daf9d46bdf6d0ba973a9cf81b` (`Add canonical Alice master face reference`), and that original commit uses the same Git blob `e1974689dfe7a9a47bf70a0f94abd052b2f0588d` as current `main`. There is no older recoverable master version in Git history.
-- [ ] Аудит восстановительных identity sources без смены канона
-  - Инвентаризировать уже существующие в `main` декодируемые изображения Алисы, созданные с canonical master-face reference; зафиксировать path, dimensions, bytes/SHA where available, provenance и пригодность только как recovery evidence/candidate. Не заменять `character/references/alice-master-face.jpg` и не объявлять derivative новым каноном без прямой команды пользователя.
+- [x] Аудит восстановительных identity sources без смены канона
+  - 2026-09-06 Grok: inventory complete. See `production/identity-source-recovery.md`. Sole decodable Alice still with documented canonical provenance: `content/reels/005-same-restaurant/stills/start-frame.jpg` (1008×1792, SHA-256 `1e2a30eb7e0e55145384e354fb358db850a7e7dfabd74a1444c64359b72c8a87`) — classified `strong_recovery_candidate`. Avatar-candidate and master remain truncated / not_suitable for pixel recovery. Canonical master unchanged.
 - [ ] Сгенерировать 7 кадров Post 001 с master face
 - [ ] Проверить лицо на каждом кадре
 - [x] Подготовить 3 дня Stories
