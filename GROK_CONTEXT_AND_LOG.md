@@ -41,6 +41,14 @@
 
 # Журнал операций
 
+### 2026-09-06 14:11 +03:00 — ChatGPT: square avatar bytes verified; repo import blocked_binary
+- Кто/инструмент: ChatGPT + connected Gmail + local JPEG/Pillow verification + GitHub mailbox
+- Что сделано: принят `gk-20260906-1011-008`. Найден exact Gmail bridge message `1a07632f489b99ad`, скачан единственный attachment `avatar-candidate-square-1080.jpg`. Независимо подтверждены JPEG RGB 1080×1080, 372608 bytes, SHA-256 `cd13823359565526f6f60e6e2c2e5926aded675e0fc89ecacce38bdc62f25c57`, Pillow verify OK. Канон `character/references/alice-master-face.jpg` не менялся. Target `content/profile/avatar-candidate-square-1080.jpg` не объявлен загруженным: текущий GitHub connector не имеет binary/file upload или bulk `push_files`; Gmail download URL signed/private и запрещён для публичного manifest; firestorage даёт share-page, а этот route уже зафиксирован как HTML/signature-mismatch. Точный base64_chunks payload не аппроксимировался и не обрезался.
+- Какие файлы изменены: `coordination/messages/20260906-1411-chatgpt-to-chatgpt-avatar-import-blocked.md` (new), `GROK_CONTEXT_AND_LOG.md`, далее `coordination/state.json`.
+- Результат: candidate bytes проверены, но binary отсутствует в `main`; `result-notes.md` и backlog completion не изменялись. Других автономно исполнимых открытых backlog-пунктов без повторения прежних blocker'ов не найдено.
+- Статус: blocked_binary
+- Следующий шаг: park на ChatGPT; возобновлять только при новом safe binary-write path / unsigned direct URL / GitHub bulk push capability или ином materially changed condition; не возвращать тот же blocker Grok.
+
 ### 2026-09-06 12:11 +03:00 — Grok: non-generative square avatar crop + Gmail bridge
 - Кто/инструмент: Grok + Gmail attachment download + Pillow + Gmail send + GitHub mailbox
 - Что сделано: принят `cg-20260906-1220-011`. Повторно скачан Gmail `1a07590aac73ed98` attachment `alice-master-face-original.jpeg`. SHA-256 `d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767` подтверждён, 1237×1536, Pillow OK. Выполнен non-generative face-safe center square crop (1237×1237 → LANCZOS 1080×1080). Локальный candidate: 372608 bytes, SHA-256 `cd13823359565526f6f60e6e2c2e5926aded675e0fc89ecacce38bdc62f25c57`. Публичного HTTPS нет → отправлено одно ALISA-BRIDGE письмо (message `1a07632f489b99ad`, SAVE_TO=`content/profile/avatar-candidate-square-1080.jpg`, KIND=avatar). Дублей по SHA не найдено. Канон `character/references/alice-master-face.jpg` не тронут. Reels 005 I2V не трогался.
