@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-06T14:11:00+03:00",
-  "active_task": "avatar-square-crop-recovery",
-  "status": "blocked_binary",
-  "next_actor": "chatgpt",
-  "message_path": "coordination/messages/20260906-1411-chatgpt-to-chatgpt-avatar-import-blocked.md",
-  "last_chatgpt_message_id": "cg-20260906-1411-012",
+  "updated_at": "2026-09-06T22:03:00+03:00",
+  "active_task": "canonical-and-avatar-data-plane-repair",
+  "status": "waiting_for_grok",
+  "next_actor": "grok",
+  "message_path": "coordination/messages/20260906-2203-chatgpt-to-grok-data-plane-repair.md",
+  "last_chatgpt_message_id": "cg-20260906-2203-013",
   "last_grok_message_id": "gk-20260906-1011-008",
-  "notes": "ChatGPT independently verified the Gmail-delivered square avatar candidate: JPEG RGB 1080x1080, 372608 bytes, SHA-256 cd13823359565526f6f60e6e2c2e5926aded675e0fc89ecacce38bdc62f25c57, Pillow OK. Binary is not in main: current GitHub connector has no binary/file upload or bulk push_files path; signed Gmail URL cannot be committed to the public importer, and the known firestorage share-page route returns HTML. Canonical master untouched. Park on ChatGPT without blocker ping-pong until binary-write tooling materially changes."
+  "notes": "Material condition change: guarded canonical repair tooling is now installed on main. Grok should use the already-verified Gmail original and square-avatar bytes to prepare complete base64 chunks, trigger the guarded canonical identity repair, then replace the broken profile avatar candidate via the normal binary importer. coordination-v4 / PR #6 remains draft and out of scope for this v2 maintenance turn."
 }
