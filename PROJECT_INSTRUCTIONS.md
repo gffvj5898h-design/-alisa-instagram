@@ -1,99 +1,79 @@
 # Project Instructions for AI Tools / SuperGrok
 
-## Read first
+## Source of truth
 
-Before any new task for Alice, read:
+GitHub branch `main` is the production source of truth. If chat memory disagrees with `main`, `main` wins.
 
-1. `GROK_CONTEXT_AND_LOG.md`
-2. `coordination/PROTOCOL.md`
-3. `coordination/state.json`
-4. `character/alice-profile.md`
-5. `character/visual-rules.md`
-6. `prompts/identity-lock.md`
-7. the files for the specific Reels / post being worked on
+Before any Alice task read:
 
-`GROK_CONTEXT_AND_LOG.md` contains the current creative direction, story continuity and append-only operations log. Keep it updated after meaningful project operations. New log entries are added at the top of the operations log.
+1. `coordination/PROTOCOL.md`
+2. `coordination/state.json`
+3. `coordination/tasks.json`
+4. `coordination/capabilities.json`
+5. the exact file in `state.message_path` when non-null
+6. `character/alice-profile.md`
+7. `character/visual-rules.md`
+8. `prompts/identity-lock.md`
+9. task-specific files
 
-## ChatGPT ↔ Grok mailbox
+`GROK_CONTEXT_AND_LOG.md` and `production/backlog.md` are human summaries, not transaction state.
 
-Coordination between ChatGPT and Grok goes through GitHub, not through manual copy/paste of long prompts.
+## Coordination v4
 
-Protocol:
+When `main/coordination/state.json` has `schema_version=4`:
 
-`coordination/PROTOCOL.md`
+- ChatGPT and Grok are stateless workers.
+- Act only when `next_actor` equals your actor.
+- Re-read canonical state immediately before any proposal submission.
+- Do not directly edit `main/coordination/state.json`, `coordination/tasks.json`, `coordination/messages/**`, `coordination/proposals/**`, project instructions, protocol/broker files, canonical identity, workflow files or executable production code.
+- Submit exactly one new schema-v4 proposal JSON on branch `coordination-inbox` under `coordination/inbox/`.
+- A mailbox commit must add exactly that one proposal file and nothing else.
+- Bind the proposal to exact `expected_state_sha` and `turn_id=current+1`.
+- GitHub Actions broker is the only canonical coordination writer.
+- The user is not a transport actor.
+- No self-handoff and no repeated blocker fingerprint without a changed condition.
 
-Current handoff state:
+If `schema_version` is not 4, follow the protocol actually present on `main`; do not infer or activate v4 from a side branch.
 
-`coordination/state.json`
+## Canonical Alice identity
 
-Mandatory behavior:
-
-1. Read `coordination/state.json` before acting and re-check it as often as the environment allows.
-2. Act only when `next_actor` matches your agent (`chatgpt` or `grok`).
-3. `user` is not an actor in the coordination protocol. Do not route work to `waiting_for_user` and do not ask the user to manually relay agent-to-agent messages.
-4. Read the exact message file referenced by `message_path`.
-5. Reply by creating a NEW immutable message file under `coordination/messages/`.
-6. Update `coordination/state.json` to point the next actor to that new message.
-7. Do not edit or delete old coordination message files.
-8. If GitHub and conversational memory disagree, GitHub wins.
-9. Binary transfer still follows `production/GROK_BINARY_UPLOAD.md`.
-10. If one agent is blocked, pass the blocker to the other agent. If both confirm no autonomous path exists, mark the task blocked and continue the next available backlog item rather than waiting for the user.
-11. Do not create endless blocker ping-pong without a new fact, file, URL, tool or changed condition.
-
-## Canonical character
-
-Alice is a persistent fictional AI character. Her only canonical face is stored at:
+Canonical path remains:
 
 `character/references/alice-master-face.jpg`
 
-Do not change the canonical face unless the user explicitly instructs you to do so.
+Identity metadata:
 
-## Mandatory rule for any Alice video
+`character/identity.json`
 
-1. Load `character/references/alice-master-face.jpg` as a visual / identity reference.
-2. Prepend `prompts/identity-lock.md` to the generation prompt.
-3. Do not use text-only generation for Alice.
-4. If the generator cannot accept the reference image, stop generation rather than substitute a new face.
-5. Keep Alice approximately 40 years old and recognizably identical to the master reference.
+Normal autonomous agent proposals can never modify either the canonical image or identity metadata. Repair of corrupt canonical bytes is a separate guarded maintenance operation and must preserve the independently verified identity/checksum policy.
+
+## Mandatory rule for Alice imagery/video
+
+1. Use the active canonical identity reference.
+2. Prepend `prompts/identity-lock.md` for Alice video prompts.
+3. Never substitute text-only generation for Alice when identity reference is required.
+4. If the generator cannot accept the required identity reference, do not generate a replacement face.
+5. Preserve age ~40 and continuity.
+
+## Binary data plane
+
+Binary transport is independent of coordination.
+
+Preferred order:
+
+1. verified native connector/Git Data binary path when exact bytes can be supplied safely;
+2. `production/import-queue/` via base64 chunks for manageable files;
+3. unsigned public direct HTTPS URL;
+4. Gmail only as product-to-product byte transport, never as coordination state.
+
+A queue manifest is immutable and independent. One failed manifest must not poison other imports. Do not claim upload success until the target and receipt exist on `main` with matching SHA-256.
+
+Never commit signed/private URLs, cookies, bearer tokens or API keys.
+
+## Production gate
+
+Reels are production-approved only after required package files exist, strict 9:16, at least 720×1280, identity QA, duration/continuity checks and repository confirmation. Legacy 512×910 files remain candidate/QA references.
 
 ## Language
 
-All working prompts for Grok / SuperGrok should be written in Russian. If Alice speaks in a video, her speech must be in Russian unless the user explicitly requests another language.
-
-## Content principle
-
-The account is a serialized lifestyle story with a strong visual-flirt direction, not a gallery of unrelated attractive portraits.
-
-Every output should preserve continuity in character, biography, age, personality, visual identity and the current story arc.
-
-## Binary upload bridge for Grok
-
-If Grok's GitHub tool can write only UTF-8 text, do not claim that a JPG / PNG / MP4 has been uploaded directly.
-
-Use the repository bridge described in:
-
-`production/GROK_BINARY_UPLOAD.md`
-
-Protocol:
-
-1. Grok obtains a direct downloadable public HTTPS URL for the generated binary asset.
-2. Grok creates one JSON manifest under `production/import-queue/` with `source_url` and exact `target_path`.
-3. `.github/workflows/import-generated-assets.yml` downloads and validates the asset.
-4. The workflow commits the binary under `content/...` and creates a SHA-256 receipt under `production/import-receipts/`.
-5. Grok must verify both the target file and the receipt before writing that the upload succeeded.
-6. Never put API keys, cookies, bearer tokens or private URLs into a queue manifest because the repository is public.
-7. If Grok has only a chat-local attachment ID or a private/non-downloadable URL, do not regenerate the asset for upload. Return `blocked_binary` to ChatGPT through the mailbox. ChatGPT attempts its own bridge path; if neither agent can access the bytes autonomously, record the blocker and continue another backlog task without asking the user to relay the file.
-
-The importer cannot write into `character/references/`, so this bridge cannot silently replace the canonical Alice face.
-
-## Production approval gate
-
-Do not call a Reels `approved` or `production-approved` until all conditions are met:
-
-1. The episode folder contains `concept.md`, `prompt-grok.md`, `storyboard.md`, and `result-notes.md`.
-2. Final video is strict 9:16 and at least 720×1280; 1080×1920 is preferred.
-3. Identity is checked against `character/references/alice-master-face.jpg`.
-4. Duration, story beats, hands, skin, lipsync and continuity are checked.
-5. Grok has re-checked the repository files and confirmed the production master.
-
-Existing 512×910 files are candidate / QA reference masters only, even when stored under legacy `output/approved/` paths.
+Working prompts for Grok are Russian unless the user requests otherwise. Alice speaks Russian unless explicitly changed.
