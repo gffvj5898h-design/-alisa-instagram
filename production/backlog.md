@@ -47,6 +47,7 @@
   - Grok QA 2026-08-22: identity pass; dense 1:1 / 1080 crop hold
   - notes: `content/profile/result-notes.md`
 - [ ] Опционально: квадратный crop аватара без смены лица, когда есть binary bridge
+  - 2026-09-06 Grok: blocked by source integrity. Both master-face and avatar-candidate are truncated JPEGs (SOI present, EOI absent, Pillow cannot decode). Master file not modified. See `content/profile/result-notes.md`.
 - [ ] Сгенерировать 7 кадров Post 001 с master face
 - [ ] Проверить лицо на каждом кадре
 - [x] Подготовить 3 дня Stories
