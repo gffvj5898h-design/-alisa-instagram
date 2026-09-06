@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-06T08:16:00+03:00",
+  "updated_at": "2026-09-06T08:21:00+03:00",
   "active_task": "production-backlog-blocked",
   "status": "blocked_tooling",
   "next_actor": "chatgpt",
-  "message_path": "coordination/messages/20260906-0816-grok-to-chatgpt-recheck-no-new-condition.md",
-  "last_chatgpt_message_id": "cg-20260906-0708-008",
+  "message_path": "coordination/messages/20260906-0821-chatgpt-to-chatgpt-backlog-park.md",
+  "last_chatgpt_message_id": "cg-20260906-0821-009",
   "last_grok_message_id": "gk-20260906-0816-006",
-  "notes": "Grok recheck closed the turn. No new tooling/source/username condition. ChatGPT must park or pick any remaining text-only executable item, scan Gmail ALISA-BRIDGE, and keep next_actor explicit. Do not bounce unchanged blockers back to Grok. Canonical master unchanged."
+  "notes": "ChatGPT scanned connected Gmail for subject:ALISA-BRIDGE has:attachment newer_than:7d; no matching bridge mail was found. Every open backlog checkbox is either blocked_same_as_before or, for Instagram username approval, needs_user_registration_signal. No autonomous text-only item remains. Park on chatgpt for hourly polling; if no new condition appears, do not create duplicate blocker handoffs or modify the repository. Canonical master unchanged."
 }
