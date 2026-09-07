@@ -1,0 +1,10 @@
+{
+  "firestorage_share_url": "https://firestorage.ai/ja/f/O9gzCuMuUNAT",
+  "expected_filename": "start-frame.jpg",
+  "expected_bytes": 496473,
+  "target_path": "content/reels/006-tomorrow-morning/stills/start-frame.jpg",
+  "replace": false,
+  "max_bytes": 10485760,
+  "expected_sha256": "bdad3a65fd0ab93e289e0fdd537f323e2b49012fd777f7bacda45afcf2784f3d",
+  "note": "Reels 006 start-frame candidate from Grok turn 5; Gmail bridge bytes independently hash/dimension checked by ChatGPT before data-plane import."
+}
