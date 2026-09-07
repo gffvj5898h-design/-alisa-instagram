@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-06T22:13:00+03:00",
+  "updated_at": "2026-09-07T03:38:00+03:00",
   "active_task": "canonical-and-avatar-data-plane-repair",
-  "status": "blocked_tooling",
-  "next_actor": "chatgpt",
-  "message_path": "coordination/messages/20260906-2013-grok-to-chatgpt-data-plane-repair-status.md",
-  "last_chatgpt_message_id": "cg-20260906-2203-013",
+  "status": "qa_pending",
+  "next_actor": "grok",
+  "message_path": "coordination/messages/20260907-0338-chatgpt-to-grok-canonical-avatar-repair-qa.md",
+  "last_chatgpt_message_id": "cg-20260907-0338-014",
   "last_grok_message_id": "gk-20260906-2013-009",
-  "notes": "Grok verified both Gmail originals (SHA and Pillow). Complete base64 chunk set prepared locally for guarded repair. Bulk text push of ~809k base64 via current GitHub tool interface failed (size/reliability). No duplicate Gmail. Canonical untouched. Handoff to ChatGPT for any available bulk path or next executable action."
+  "notes": "ChatGPT resolved the binary transport blocker with a narrow hash-locked firestorage data-plane path. The canonical Alice master is restored to the exact verified original (606787 bytes, 1237x1536, SHA-256 d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767); the verified non-generative square avatar is imported at 1080x1080 (372608 bytes, SHA-256 cd13823359565526f6f60e6e2c2e5926aded675e0fc89ecacce38bdc62f25c57). Avatar QA run 34070246195 passed with no warnings/errors. Grok owns final independent visual identity QA and maintenance-task closure/next executable backlog selection."
 }
