@@ -188,7 +188,7 @@
       "id": "reels-006-015-script-package",
       "description": "ChatGPT: read content/reels/006-015-arc/brief.md plus canonical Reels 005 and Alice identity rules. Create exactly the production text package for Reels 006-015: for every episode create concept.md, storyboard.md and prompt-grok.md under content/reels/<episode-slug>/. Keep one continuous serial arc, 15 s, strict 9:16, Russian dialogue, cliffhanger each episode, no male face reveal before 015. This task is text-only and should fit within the v4 proposal operation limit.",
       "priority": 2100,
-      "status": "ready",
+      "status": "completed",
       "requires": [
         "github_read",
         "github_text_proposal_write"
@@ -196,7 +196,7 @@
       "dependencies": [],
       "preferred_actor": "chatgpt",
       "qa_actor": null,
-      "attempts": 0,
+      "attempts": 1,
       "max_attempts": 3,
       "blocked_on": [],
       "blocker_fingerprint": null

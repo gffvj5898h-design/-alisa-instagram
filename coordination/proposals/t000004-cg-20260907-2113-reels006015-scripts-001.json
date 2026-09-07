@@ -1,0 +1,164 @@
+{
+  "schema_version": 4,
+  "actor": "chatgpt",
+  "message_id": "cg-20260907-2113-reels006015-scripts-001",
+  "task_id": "reels-006-015-script-package",
+  "expected_state_sha": "6505d81713950d264ca9a87a5663e062cffadcd8",
+  "turn_id": 4,
+  "outcome": "completed",
+  "summary": "Prepared the complete production text package for Reels 006-015: 10 concepts, 10 timed storyboards and 10 Grok-ready generation prompts, preserving canonical Alice identity and withholding the man's face until Reels 015.",
+  "handoff_body": "The text arc is ready. Scheduler should assign Grok the Reels 006 start-frame capability probe. Grok must actually use the canonical Alice reference, generate one 1080x1920 no-text start frame, import exact bytes through the binary data plane, and prove target+receipt on main before claiming completion.",
+  "operations": [
+    {
+      "action": "create",
+      "path": "content/reels/006-tomorrow-morning/concept.md",
+      "content": "# Reels 006 — Завтра утром\n\n## Задача эпизода\nОтветить на вопрос Reels 005 «Зачем ты мне написал?» и без пафоса довести линию до первой короткой встречи.\n\n## Новый факт\nОн хотел подойти к Алисе ещё в ресторане, но не стал; вместо свидания предлагает просто кофе завтра утром.\n\n## Локация\nПоздний вечер дома у Алисы после студии: окно, тёплый локальный свет, тихая квартира, телефон в руке.\n\n## Эмоциональная дуга\nнастороженность → удивление его тактичности → любопытство → лёгкий вызов.\n\n## Визуальный образ Алисы\nСпокойный вечерний образ после работы: чёрный или графитовый топ/жакет, естественный макияж, волосы чуть расслаблены. Возраст около 40, без омоложения.\n\n## Production gate\n- 15 секунд; строго 9:16; целевой master 1080×1920, минимум 720×1280;\n- photorealistic smartphone cinematic;\n- речь только на русском;\n- Алиса только по `character/references/alice-master-face.jpg`;\n- мужчина только голосом, в кадре не появляется;\n- без текста, логотипов, watermark и крупного сгенерированного UI телефона.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/006-tomorrow-morning/storyboard.md",
+      "content": "# Reels 006 — storyboard\n\n## 0–4 с\nАлиса дома после студии: снимает серьги или кладёт рабочую папку, включает голосовое.\n\n**Мужчина:** «Потому что вчера я хотел подойти. Но ты ушла раньше.»\n\n## 4–9 с\nОна замирает у окна и слушает; взгляд становится мягче.\n\n**Мужчина:** «И ты совсем не выглядела человеком, которому нужно ещё одно странное свидание.»\n\n## 9–12 с\nПредложение звучит без романтического ярлыка.\n\n**Мужчина:** «Давай без свиданий. Просто кофе. Завтра утром.»\n\n## 12–15 с\nАлиса едва улыбается и отвечает голосом.\n\n**Алиса:** «Утром? Смело.»\n**Мужчина:** «В девять.»\n**Алиса:** «Посмотрим.»\n\n## Cliffhanger\n«В девять» / «Посмотрим» — зритель должен ждать, придёт ли она. Мужчина лицом не показывается.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/006-tomorrow-morning/prompt-grok.md",
+      "content": "# Reels 006 — production prompt\n\n## Identity lock\nUse the actually attached `character/references/alice-master-face.jpg` as Alice's canonical identity reference. Preserve exactly the same woman: facial structure, eyes, nose, lips, jawline, recognizable proportions, blonde identity and apparent age about 40. Do not create a similar woman, generic blonde, younger reinterpretation or beauty-filter replacement. Identity consistency has priority over styling.\n\n## Start frame to generate first\nExactly one still, 1080×1920, no text: late evening in Alice's Saint Petersburg apartment. Alice near a window in an elegant dark work-to-home outfit, phone in one hand, composed curiosity, warm practical lamp plus cool city light, medium smartphone-style framing. No man visible.\n\n## 15-second I2V scene\nPhotorealistic handheld smartphone cinematic, strict 9:16. Begin from the approved start frame. Alice naturally puts down work things / removes an earring, plays a voice note, walks to the window and reacts without talking-head stiffness. Natural skin, hands and fabric; no logos or readable phone UI.\n\nExact Russian dialogue:\n- Мужчина off-screen: «Потому что вчера я хотел подойти. Но ты ушла раньше.»\n- Мужчина: «И ты совсем не выглядела человеком, которому нужно ещё одно странное свидание.»\n- Мужчина: «Давай без свиданий. Просто кофе. Завтра утром.»\n- Алиса: «Утром? Смело.»\n- Мужчина: «В девять.»\n- Алиса: «Посмотрим.»\n\nEmotional arc: guarded → surprised by tact → curious → faint challenge. The unknown man is voice-only. Do not show any male face/body. End on Alice's restrained smile after «Посмотрим».\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/007-your-coffee/concept.md",
+      "content": "# Reels 007 — Ваш кофе\n\n## Задача эпизода\nПоказать первую реальную встречу, не раскрывая мужчину, и превратить анонимность в осознанное правило между ними.\n\n## Новый факт\nАлиса действительно приходит утром и сама приносит ему кофе; она сознательно не спрашивает его имя.\n\n## Локация\nУтро в Санкт-Петербурге. POV из салона припаркованной машины через открытое боковое окно.\n\n## Эмоциональная дуга\nсомнение → решимость → короткая химия → игра в анонимность.\n\n## Визуальный образ Алисы\nСветлый тренч/пальто, лаконичный топ, естественный макияж, волосы живые от ветра.\n\n## Production gate\n15 с; strict 9:16; 1080×1920; canonical Alice reference; русский язык; без male face; допустима только рука мужчины/POV; без текста и watermark.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/007-your-coffee/storyboard.md",
+      "content": "# Reels 007 — storyboard\n\n## 0–4 с\nPOV из машины через открытое окно. Алиса подходит близко и протягивает стакан кофе.\n\n**Алиса:** «Ваш кофе.»\n\n## 4–9 с\nМужская рука принимает стакан; лицо полностью вне кадра.\n\n**Мужчина:** «Ты всё-таки пришла.»\n**Алиса:** «Я ещё ничего не обещала.»\n\n## 9–12 с\nАлиса остаётся у окна, не спешит уходить.\n\n**Мужчина:** «Ты даже имя моё не спросила.»\n\n## 12–15 с\nОна смотрит в сторону водителя, камера остаётся POV.\n\n**Алиса:** «Значит, пока не нужно.»\n\n## Cliffhanger\nАлиса намеренно сохраняет его анонимность.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/007-your-coffee/prompt-grok.md",
+      "content": "# Reels 007 — production prompt\n\n## Identity lock\nUse the actually attached canonical `alice-master-face.jpg`; preserve Alice as the exact same 40-year-old blonde woman. No similar/generic face, no rejuvenation, no identity drift.\n\n## Start frame\nExactly one 1080×1920 no-text still: POV from inside a parked car through an open side window. Canonical Alice stands close outside in soft morning Saint Petersburg light, extending one takeaway coffee toward the lens, light trench, subtle caution and private smile. Only a man's hand may enter from camera side; absolutely no male face.\n\n## Video\n15 seconds, strict 9:16, photoreal smartphone cinematic. Natural micro-movements, morning street ambience, believable handoff of coffee. No readable phone/dashboard text. Exact Russian dialogue: Алиса «Ваш кофе.» Мужчина off-camera «Ты всё-таки пришла.» Алиса «Я ещё ничего не обещала.» Мужчина «Ты даже имя моё не спросила.» Алиса «Значит, пока не нужно.»\n\nSTRICT REVEAL RULE: no male face, reflection or identifiable portrait. End on Alice holding his gaze from POV.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/008-no-names-yet/concept.md",
+      "content": "# Reels 008 — Пока без имён\n\n## Задача эпизода\nЗакрепить анонимность как взаимную игру и запустить формат личных вопросов.\n\n## Новый факт\nОни договариваются: один день — один вопрос, пока без имён.\n\n## Локация\nДень, улица или набережная Санкт-Петербурга после утреннего кофе.\n\n## Эмоциональная дуга\nпослевкусие встречи → улыбка → согласие на игру → первый укол в уязвимое место.\n\n## Образ\nГородской smart-casual: тренч/пальто, тонкий свитер, минимум украшений, естественный ветер.\n\n## Production gate\n15 с; 9:16; 1080×1920; canonical Alice; русский язык; мужчина voice-only; без текста/watermark.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/008-no-names-yet/storyboard.md",
+      "content": "# Reels 008 — storyboard\n\n## 0–4 с\nАлиса идёт по Петербургу, приходит голосовое.\n\n**Мужчина:** «Тогда давай честно. Пока без имён.»\n\n## 4–9 с\nОна слушает на ходу, чуть улыбается.\n\n**Мужчина:** «Один день. Один вопрос. Без лишнего.»\n\n## 9–12 с\nАлиса записывает ответ.\n\n**Алиса:** «И кто начинает?»\n\n## 12–15 с\nОтвет приходит почти сразу; её улыбка исчезает.\n\n**Мужчина:** «Я. Почему ты всё время уходишь первой?»\n\n## Cliffhanger\nПервый вопрос попадает прямо в её защитную привычку.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/008-no-names-yet/prompt-grok.md",
+      "content": "# Reels 008 — production prompt\n\nUse the actually attached canonical Alice identity reference; exact same woman, age about 40, blonde, realistic skin, no identity drift or younger generic model.\n\nSTART FRAME: exactly one 1080×1920 still, no text. Daytime Saint Petersburg street/naberezhnaya, Alice walking naturally with phone in hand, light wind in blonde hair, urban background softly alive, faint private smile after the morning meeting. No man visible.\n\nVIDEO: 15 s strict 9:16 photoreal handheld smartphone cinematic. Alice stays in natural movement rather than talking-head. Exact Russian audio: Мужчина off-screen «Тогда давай честно. Пока без имён.» / «Один день. Один вопрос. Без лишнего.» Алиса «И кто начинает?» Мужчина «Я. Почему ты всё время уходишь первой?» End as her smile fades into thoughtful seriousness. Male voice only; no male face/reflection/body.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/009-why-you-leave-first/concept.md",
+      "content": "# Reels 009 — Почему ты уходишь первой?\n\n## Задача\nРаскрыть защитный механизм Алисы и впервые проверить мужчину прямым вопросом о его статусе.\n\n## Новый факт\nАлиса уходит первой, когда чувствует фальшь; мужчина не женат, но говорит, что «всё чуть сложнее».\n\n## Локация\nТихое дневное кафе у окна или спокойная зона студии между встречами.\n\n## Эмоциональная дуга\nзащита → честность → встречная проверка → тревожная интрига.\n\n## Образ\nДневной образ дизайнера: жакет/рубашка спокойного оттенка, натуральная кожа и возраст.\n\n## Gate\n15 с; 9:16; 1080×1920; canonical Alice; мужчина voice-only; русский язык; без текста/watermark.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/009-why-you-leave-first/storyboard.md",
+      "content": "# Reels 009 — storyboard\n\n## 0–4 с\nАлиса у окна, переслушивает его вопрос и несколько секунд не отвечает.\n\n## 4–9 с\nНажимает запись.\n\n**Алиса:** «Потому что я научилась не досиживать там, где уже всё понятно.»\n\n## 9–12 с\nБез кокетства задаёт свой вопрос.\n\n**Алиса:** «Теперь мой. Ты женат?»\n\n## 12–15 с\nПриходит короткий ответ; Алиса слегка хмурится.\n\n**Мужчина:** «Нет. Но всё чуть сложнее.»\n\n## Cliffhanger\nЧто именно у него «чуть сложнее»?\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/009-why-you-leave-first/prompt-grok.md",
+      "content": "# Reels 009 — production prompt\n\nUse the attached canonical Alice face as mandatory identity reference. Preserve the exact 40-year-old blonde identity, natural mature skin and facial proportions.\n\nSTART FRAME: one 1080×1920 no-text still. Quiet daylight cafe/window scene; Alice three-quarter to camera, phone in/near her hand, serious collected expression after hearing a personal question, soft city reflections, no man visible.\n\n15-second strict 9:16 smartphone-cinematic scene. Natural pause before she records. Exact Russian dialogue: Алиса «Потому что я научилась не досиживать там, где уже всё понятно.» / «Теперь мой. Ты женат?» Мужчина off-screen «Нет. Но всё чуть сложнее.» End on her subtle concern. No male face/body/reflection; no readable generated phone UI; no text/watermark.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/010-a-bit-more-complicated/concept.md",
+      "content": "# Reels 010 — Чуть сложнее\n\n## Задача\nДать мужчине эмоциональную глубину без биографического раскрытия и показать, что он узнаёт в Алисе собственную усталость.\n\n## Новый факт\nОн давно избегает новых отношений не потому, что не хотел их, а потому что не умел начать заново.\n\n## Локация\nВечер: Алиса одна в дизайн-студии или дома после рабочего дня.\n\n## Эмоциональная дуга\nподозрение → честный ответ → вопрос Алисы → ощущение, что он видит её слишком точно.\n\n## Образ\nТёмный приталенный жакет/топ, брюки, минималистичные серьги, взрослый сдержанно-сексуальный стиль.\n\n## Gate\n15 с; 9:16; 1080×1920; canonical Alice; male voice only; русский язык; без текста/watermark.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/010-a-bit-more-complicated/storyboard.md",
+      "content": "# Reels 010 — storyboard\n\n## 0–4 с\nАлиса закрывает ноутбук и включает его голосовое.\n\n**Мужчина:** «Нет. Я не женат.»\n\n## 4–9 с\nОна идёт по комнате, слушает дальше.\n\n**Мужчина:** «Просто я давно не начинаю всё с нуля. И не потому, что не хотел.»\n\n## 9–12 с\nОна отвечает сразу.\n\n**Алиса:** «Тогда зачем начал сейчас?»\n\n## 12–15 с\nКороткая пауза.\n\n**Мужчина:** «Потому что ты вчера выглядела так, будто тоже устала делать вид, что всё нормально.»\n\n## Cliffhanger\nОн видит её состояние точнее, чем она ожидала.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/010-a-bit-more-complicated/prompt-grok.md",
+      "content": "# Reels 010 — production prompt\n\nMandatory canonical Alice identity reference: exact same face/person, about 40, blonde, realistic texture; no similar model, no rejuvenation, no identity drift.\n\nSTART FRAME: one 1080×1920 no-text still in evening design studio/home. Alice in dark tailored jacket/top closes a laptop while holding/listening to phone, warm desk light + cool Saint Petersburg window tones, alert expression turning personal. No man.\n\nVIDEO: 15 seconds strict 9:16, photoreal smartphone cinematic, natural movement around work materials. Russian dialogue exactly: Мужчина off-screen «Нет. Я не женат.» / «Просто я давно не начинаю всё с нуля. И не потому, что не хотел.» Алиса «Тогда зачем начал сейчас?» Мужчина «Потому что ты вчера выглядела так, будто тоже устала делать вид, что всё нормально.» Male remains voice-only. End on Alice absorbing the accuracy of his observation. No text/UI/watermark.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/011-on-foot/concept.md",
+      "content": "# Reels 011 — Пешком\n\n## Задача\nСделать вторую физическую встречу ощутимо ближе и показать, что уверенный голос принадлежит нервничающему живому человеку.\n\n## Новый факт\nРядом с Алисой он заметно нервничает и признаётся в этом.\n\n## Локация\nВечерняя прогулка по Петербургу: набережная/тихая улица, влажный асфальт, городские огни.\n\n## Эмоциональная дуга\nкомфорт рядом → лёгкая ирония → признание нервозности → взаимное притяжение.\n\n## Образ\nДлинное пальто, тёмный топ, аккуратные украшения; женственно, но не вечернее платье.\n\n## Gate\n15 с; 9:16; 1080×1920; canonical Alice. До 015 лицо мужчины запрещено: только плечо, рука, спина/силуэт.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/011-on-foot/storyboard.md",
+      "content": "# Reels 011 — storyboard\n\n## 0–4 с\nКамера движется рядом. Алиса идёт; на краю кадра только мужское плечо/рука.\n\n**Мужчина:** «Сегодня без машины. Так честнее.»\n\n## 4–9 с\nАлиса улыбается и смотрит в его сторону, лицо мужчины остаётся вне кадра.\n\n**Алиса:** «Ты всегда всё так формулируешь?»\n\n## 9–12 с\nОн тихо смеётся.\n\n**Мужчина:** «Только когда нервничаю.»\n\n## 12–15 с\nАлиса задерживает взгляд.\n\n**Алиса:** «А сейчас?»\n**Мужчина:** «Сильно.»\n\n## Cliffhanger\nПритяжение становится взаимным, но его лицо всё ещё не раскрыто.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/011-on-foot/prompt-grok.md",
+      "content": "# Reels 011 — production prompt\n\nUse actual canonical Alice identity reference. Keep exact same mature 40-year-old blonde face/person; realistic skin/hands, no identity drift.\n\nSTART FRAME: exactly one 1080×1920 no-text evening Saint Petersburg walking still. Alice clearly visible in long elegant coat, naturally moving and glancing toward companion beside her. Only companion's shoulder/forearm at extreme frame edge; wet pavement and city lights.\n\nVIDEO: 15 s strict 9:16 handheld smartphone cinematic, walking camera, subtle chemistry. Dialogue: Мужчина «Сегодня без машины. Так честнее.» Алиса «Ты всегда всё так формулируешь?» Мужчина «Только когда нервничаю.» Алиса «А сейчас?» Мужчина «Сильно.»\n\nSTRICT MALE REVEAL RULE: no readable male face in direct view, mirror, glass, shadow detail or reflection. Shoulder/forearm/hand/back silhouette only. End on Alice's longer look toward him.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/012-how-you-found-me/concept.md",
+      "content": "# Reels 012 — Как ты меня нашёл?\n\n## Задача\nЗакрыть логическую дыру контакта и сделать его поиск Алисы намеренным, но не магическим и не криминальным.\n\n## Новый факт\nОн нашёл её по названию студии на рабочих материалах и трижды удалял первое сообщение перед отправкой.\n\n## Локация\nПоздний вечер после прогулки: Алиса дома у окна или в спокойном такси, уже одна.\n\n## Эмоциональная дуга\nостаточное тепло → рациональный вопрос → настороженность → неожиданная уязвимость мужчины.\n\n## Образ\nПальто снято/расстёгнуто, простой топ, слегка растрёпанные волосы, минимум постановочности.\n\n## Gate\n15 с; 9:16; 1080×1920; canonical Alice; мужчина voice-only; без текста/UI/watermark.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/012-how-you-found-me/storyboard.md",
+      "content": "# Reels 012 — storyboard\n\n## 0–4 с\nАлиса одна, отправляет прямой вопрос.\n\n**Алиса:** «Откуда ты вообще меня нашёл?»\n\n## 4–9 с\nСлушает ответ, взгляд становится внимательнее.\n\n**Мужчина:** «У тебя в руках были материалы студии. Название я запомнил.»\n\n## 9–12 с\nОна сразу уточняет.\n\n**Алиса:** «То есть ты меня всё-таки искал.»\n\n## 12–15 с\nОтвет без оправданий.\n\n**Мужчина:** «Да. И первое сообщение я три раза удалял, прежде чем отправить.»\n\n## Cliffhanger\nЗа его уверенностью тоже была нерешительность.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/012-how-you-found-me/prompt-grok.md",
+      "content": "# Reels 012 — production prompt\n\nMandatory actual canonical Alice identity reference. Same person, same mature facial proportions and apparent age ~40, blonde, no generic replacement or beautification drift.\n\nSTART FRAME: one 1080×1920 no-text late-evening still by a window in Alice's apartment, city reflections behind her, phone near chest/face, expression between suspicion and tenderness, slightly wind-tossed hair after the walk. No man.\n\n15-second strict 9:16 photoreal smartphone cinematic. Russian dialogue exactly: Алиса «Откуда ты вообще меня нашёл?» Мужчина off-screen «У тебя в руках были материалы студии. Название я запомнил.» Алиса «То есть ты меня всё-таки искал.» Мужчина «Да. И первое сообщение я три раза удалял, прежде чем отправить.» Male voice only; no face/body/reflection. Keep contact-discovery grounded and non-creepy. No text/readable UI/watermark.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/013-what-i-dont-say/concept.md",
+      "content": "# Reels 013 — То, о чём я молчу\n\n## Задача\nДовести общение до первой настоящей уязвимости Алисы и показать, что мужчина её не торопит.\n\n## Новый факт\nАлиса признаётся, что давно никого не подпускала и привычно уходит первой, чтобы потом не собирать себя заново.\n\n## Локация\nНочь дома: тихая гостиная/спальня без эротизации, личное пространство и тишина.\n\n## Эмоциональная дуга\nрешение сказать правду → уязвимость → страх ответа → спокойное принятие.\n\n## Образ\nМягкая рубашка/тонкий трикотаж, минимум макияжа, естественная кожа и усталость.\n\n## Gate\n15 с; strict 9:16; 1080×1920; canonical Alice; мужчина voice-only; no male face; без текста/watermark.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/013-what-i-dont-say/storyboard.md",
+      "content": "# Reels 013 — storyboard\n\n## 0–4 с\nАлиса долго держит запись, затем начинает.\n\n**Алиса:** «Я давно никого к себе не подпускала. Если честно.»\n\n## 4–9 с\nНе смотрит в объектив; договаривает сложнее.\n\n**Алиса:** «Мне проще уйти первой, чем потом собирать себя заново.»\n\n## 9–12 с\nПриходит голосовой ответ; она слушает неподвижно.\n\n**Мужчина:** «Я это понял ещё в ресторане.»\n\n## 12–15 с\nАлиса почти шёпотом.\n\n**Алиса:** «И всё равно написал.»\n**Мужчина:** «И всё равно написал.»\n\n## Cliffhanger\nИх связь впервые звучит как взаимный осознанный риск.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/013-what-i-dont-say/prompt-grok.md",
+      "content": "# Reels 013 — production prompt\n\nUse actual attached canonical Alice reference. Preserve exact identity and age about 40; realistic mature skin, no younger/glossy substitute, no face drift.\n\nSTART FRAME: exactly one 1080×1920 no-text intimate but non-erotic night home still. Alice sits near window/sofa in soft knit or loose shirt, phone in both hands, warm practical light, vulnerable thoughtful gaze away from lens. No man.\n\nVIDEO: 15 s strict 9:16, quiet photoreal smartphone cinematic, restrained micro-expression. Russian dialogue: Алиса «Я давно никого к себе не подпускала. Если честно.» / «Мне проще уйти первой, чем потом собирать себя заново.» Мужчина off-screen «Я это понял ещё в ресторане.» Алиса «И всё равно написал.» Мужчина «И всё равно написал.» Male voice only, no male body/face. Avoid melodramatic crying; vulnerability stays adult and controlled.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/014-no-more-games-tomorrow/concept.md",
+      "content": "# Reels 014 — Завтра без игр\n\n## Задача\nЗакрыть этап анонимности и дать прямое обещание раскрытия в следующем эпизоде.\n\n## Новый факт\nОн сам предлагает закончить игру: завтра назовёт имя и объяснит, почему оказался в том ресторане.\n\n## Локация\nСледующий день, светлый интерьер студии/квартиры; Алиса занята обычным делом, когда приходит сообщение.\n\n## Эмоциональная дуга\nожидание → серьёзность → проверка намерений → обещание развязки.\n\n## Образ\nСветлый дневной smart-casual: кремовая рубашка/жакет, спокойный макияж; внешне собрана, внутри ждёт.\n\n## Gate\n15 с; 9:16; 1080×1920; canonical Alice; мужчина до конца эпизода voice-only; лицо запрещено даже в отражении/экране.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/014-no-more-games-tomorrow/storyboard.md",
+      "content": "# Reels 014 — storyboard\n\n## 0–4 с\nАлиса получает голосовое среди обычного дня.\n\n**Мужчина:** «Кажется, мы уже заигрались в тайну.»\n\n## 4–9 с\nОна перестаёт заниматься делом и слушает.\n\n**Мужчина:** «Если придёшь завтра — без игр. Я всё расскажу.»\n\n## 9–12 с\nОна отвечает спокойно, почти жёстко.\n\n**Алиса:** «Всё — это что именно?»\n\n## 12–15 с\nОн отвечает без ухода от темы.\n\n**Мужчина:** «Как меня зовут. И почему я тогда вообще оказался в том ресторане.»\n\n## Cliffhanger\nReels 015 обязан дать лицо, имя и объяснение ресторана.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/014-no-more-games-tomorrow/prompt-grok.md",
+      "content": "# Reels 014 — production prompt\n\nUse canonical attached Alice identity reference, exact same woman around 40, blonde, natural skin/facial structure. No identity drift or generic model.\n\nSTART FRAME: one 1080×1920 no-text bright daytime studio/apartment still. Alice in light cream smart-casual outfit has paused mid-task with phone in hand, serious anticipatory gaze, clean natural daylight. No male visible.\n\n15-second strict 9:16 photoreal smartphone cinematic. Russian dialogue exactly: Мужчина off-screen «Кажется, мы уже заигрались в тайну.» / «Если придёшь завтра — без игр. Я всё расскажу.» Алиса «Всё — это что именно?» Мужчина «Как меня зовут. И почему я тогда вообще оказался в том ресторане.»\n\nSTRICT: no male face in direct view, phone screen, glass, mirror, silhouette detail or generated insert. End with Alice understanding that tomorrow is the reveal.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/015-andrey/concept.md",
+      "content": "# Reels 015 — Андрей\n\n## Задача\nВпервые раскрыть мужчину лицом, именем и профессией; завершить арку «неизвестного» и открыть арку реальных отношений.\n\n## Новый факт\nОн — Андрей Лавров, 44, архитектор-реставратор; в тот ресторан он тоже пришёл на личную встречу, которая фактически не состоялась.\n\n## Локация\nСпокойное петербургское кафе или архитектурное пространство днём/ранним вечером, без театральности.\n\n## Эмоциональная дуга\nожидание → первое полноценное узнавание → объяснение → тёплое принятие нового этапа.\n\n## Образ Алисы\nЛаконичный жакет/пальто, мягкий макияж, уверенная взрослая женственность.\n\n## Андрей — первый визуальный канон\n44 года; интеллектуальный, неброский; тёмно-русые/каштановые волосы с лёгкой сединой, аккуратная лёгкая щетина, спокойное зрелое лицо, тёмный качественный жакет/пальто. Не глянцевая модель.\n\n## Gate\n15 с; 9:16; 1080×1920; canonical Alice. Это ПЕРВЫЙ разрешённый full male face reveal. Без текста/watermark.\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/015-andrey/storyboard.md",
+      "content": "# Reels 015 — storyboard\n\n## 0–4 с\nВпервые двойной/общий кадр. Мужчина поворачивается к Алисе; лицо читаемо.\n\n**Андрей:** «Привет. Андрей.»\n\n## 4–9 с\nОни остаются напротив друг друга; камера естественно держит обоих.\n\n**Андрей:** «Андрей Лавров. Сорок четыре. Я архитектор-реставратор.»\n\n## 9–12 с\nОн коротко объясняет ресторан.\n\n**Андрей:** «В тот вечер я тоже ждал человека. Встреча, по сути, не случилась. А потом увидел, как уходишь ты.»\n\n## 12–15 с\nАлиса смотрит на него уже без игры и улыбается.\n\n**Алиса:** «Ну здравствуй, Андрей.»\n\n## Cliffhanger\nТайна закончена. Следующий вопрос сериала — не «кто он?», а «что у них получится по-настоящему?».\n"
+    },
+    {
+      "action": "create",
+      "path": "content/reels/015-andrey/prompt-grok.md",
+      "content": "# Reels 015 — production prompt\n\n## Alice identity\nUse the actually attached `alice-master-face.jpg` as mandatory canonical reference. Preserve exact same Alice, age about 40, blonde, natural mature skin and facial proportions. No similar/generic/younger substitute.\n\n## First Andrey reveal / start frame\nExactly one 1080×1920 no-text still. Refined but natural Saint Petersburg cafe/architectural interior. Canonical Alice faces a 44-year-old man, Andrey Lavrov: intelligent understated appearance, dark blond/brown hair with subtle gray, neat light stubble, calm mature face, tailored dark coat/jacket. Natural first-recognition tension; both faces readable. This is the FIRST permitted full male face reveal and should become Andrey's later visual-continuity reference.\n\n## Video\n15 seconds strict 9:16, photoreal smartphone cinematic, understated acting, no glossy commercial aesthetic. Exact Russian dialogue: Андрей «Привет. Андрей.» / «Андрей Лавров. Сорок четыре. Я архитектор-реставратор.» / «В тот вечер я тоже ждал человека. Встреча, по сути, не случилась. А потом увидел, как уходишь ты.» Алиса «Ну здравствуй, Андрей.»\n\nEnd on Alice's warm restrained smile. No text, logos, watermarks or readable generated UI. Preserve Alice identity above all.\n"
+    }
+  ],
+  "blocker_fingerprint": null
+}
