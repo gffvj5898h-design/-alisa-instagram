@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "active": {
+    "path": "character/references/alice-master-face.jpg",
+    "sha256": "d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767",
+    "bytes": 606787,
+    "width": 1237,
+    "height": 1536,
+    "format": "JPEG",
+    "mode": "RGB",
+    "source": "verified original user upload recovered 2026-09-06",
+    "transport": "verified firestorage public share",
+    "status": "canonical"
+  },
+  "repaired_from": {
+    "sha256": "2d5347eb3831fcf5f01804fa6c4f5fd261f72473bfede75beed29255801b5ef2",
+    "bytes": 15008,
+    "status": "truncated-corrupt",
+    "note": "Historical corrupt bytes remain in Git history; this repair restores the same canonical identity."
+  }
+}
