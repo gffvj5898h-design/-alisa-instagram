@@ -249,7 +249,7 @@
       "id": "reels-008-start-frame",
       "description": "Grok: generate exactly one 1080x1920 canonical-identity start-frame for Reels 008 from content/reels/008-no-names-yet/prompt-grok.md. Alice walking in daytime Saint Petersburg with phone, no male face, no text. Import to content/reels/008-no-names-yet/stills/start-frame.jpg and verify receipt; ChatGPT QA follows.",
       "priority": 1890,
-      "status": "ready",
+      "status": "blocked",
       "requires": [
         "github_read",
         "github_text_proposal_write",
@@ -261,10 +261,12 @@
       ],
       "preferred_actor": "grok",
       "qa_actor": "chatgpt",
-      "attempts": 0,
+      "attempts": 1,
       "max_attempts": 3,
-      "blocked_on": [],
-      "blocker_fingerprint": null
+      "blocked_on": [
+        "reels008:imagine-output-bytes-not-available-in-sandbox-for-data-plane"
+      ],
+      "blocker_fingerprint": "reels008:imagine-output-bytes-not-available-in-sandbox-for-data-plane"
     },
     {
       "id": "reels-009-start-frame",
