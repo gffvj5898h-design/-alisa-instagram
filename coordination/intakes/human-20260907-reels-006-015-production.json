@@ -1,189 +1,8 @@
 {
   "schema_version": 1,
+  "intake_id": "human-20260907-reels-006-015-production",
+  "summary": "Human brief: ChatGPT writes the complete Reels 006-015 script package; Grok generates and imports one canonical-identity 1080x1920 start frame per episode; ChatGPT independently QA-checks every frame. Reels 006 is the guarded capability probe for Grok identity-reference still generation.",
   "tasks": [
-    {
-      "id": "coordination-v4-e2e-smoke",
-      "description": "No-op production smoke of Grok -> broker -> ChatGPT QA -> broker idle transition. No work-product mutation is allowed or required.",
-      "priority": 1000,
-      "status": "completed",
-      "requires": [
-        "github_read",
-        "github_text_proposal_write"
-      ],
-      "dependencies": [],
-      "preferred_actor": "grok",
-      "qa_actor": "chatgpt",
-      "attempts": 1,
-      "max_attempts": 3,
-      "blocked_on": [],
-      "blocker_fingerprint": null
-    },
-    {
-      "id": "canonical-identity-integrity-repair",
-      "description": "Restore exact verified original canonical bytes and verify SHA, dimensions and full decode.",
-      "priority": 950,
-      "status": "completed",
-      "requires": [],
-      "dependencies": [],
-      "preferred_actor": "chatgpt",
-      "qa_actor": "grok",
-      "attempts": 1,
-      "max_attempts": 3,
-      "blocked_on": [],
-      "blocker_fingerprint": null
-    },
-    {
-      "id": "avatar-square-crop-recovery",
-      "description": "Commit and QA the verified 1080x1080 non-generative square avatar crop.",
-      "priority": 900,
-      "status": "completed",
-      "requires": [],
-      "dependencies": [
-        "canonical-identity-integrity-repair"
-      ],
-      "preferred_actor": "chatgpt",
-      "qa_actor": "grok",
-      "attempts": 2,
-      "max_attempts": 3,
-      "blocked_on": [],
-      "blocker_fingerprint": null
-    },
-    {
-      "id": "post-001-seven-stills",
-      "description": "Generate seven Post 001 stills with the canonical identity reference and QA every face.",
-      "priority": 700,
-      "status": "blocked",
-      "requires": [
-        "identity_reference_still_generation"
-      ],
-      "dependencies": [
-        "canonical-identity-integrity-repair"
-      ],
-      "preferred_actor": "grok",
-      "qa_actor": "chatgpt",
-      "attempts": 1,
-      "max_attempts": 5,
-      "blocked_on": [
-        "capability:identity_reference_still_generation"
-      ],
-      "blocker_fingerprint": "capability:identity_reference_still_generation"
-    },
-    {
-      "id": "reels-001-native-720p",
-      "description": "Regenerate Reels 001 as native strict 9:16 >=720x1280 with identity reference.",
-      "priority": 600,
-      "status": "blocked",
-      "requires": [
-        "i2v_native_720p"
-      ],
-      "dependencies": [
-        "canonical-identity-integrity-repair"
-      ],
-      "preferred_actor": "grok",
-      "qa_actor": "chatgpt",
-      "attempts": 1,
-      "max_attempts": 5,
-      "blocked_on": [
-        "capability:i2v_native_720p"
-      ],
-      "blocker_fingerprint": "capability:i2v_native_720p"
-    },
-    {
-      "id": "reels-002-native-720p",
-      "description": "Regenerate Reels 002 as native strict 9:16 >=720x1280 with identity reference.",
-      "priority": 590,
-      "status": "blocked",
-      "requires": [
-        "i2v_native_720p"
-      ],
-      "dependencies": [
-        "canonical-identity-integrity-repair"
-      ],
-      "preferred_actor": "grok",
-      "qa_actor": "chatgpt",
-      "attempts": 1,
-      "max_attempts": 5,
-      "blocked_on": [
-        "capability:i2v_native_720p"
-      ],
-      "blocker_fingerprint": "capability:i2v_native_720p"
-    },
-    {
-      "id": "reels-003-native-720p",
-      "description": "Regenerate Reels 003 as native strict 9:16 >=720x1280 with identity reference.",
-      "priority": 580,
-      "status": "blocked",
-      "requires": [
-        "i2v_native_720p"
-      ],
-      "dependencies": [
-        "canonical-identity-integrity-repair"
-      ],
-      "preferred_actor": "grok",
-      "qa_actor": "chatgpt",
-      "attempts": 1,
-      "max_attempts": 5,
-      "blocked_on": [
-        "capability:i2v_native_720p"
-      ],
-      "blocker_fingerprint": "capability:i2v_native_720p"
-    },
-    {
-      "id": "reels-004-native-720p",
-      "description": "Regenerate Reels 004 as native strict 9:16 >=720x1280 with identity reference.",
-      "priority": 570,
-      "status": "blocked",
-      "requires": [
-        "i2v_native_720p"
-      ],
-      "dependencies": [
-        "canonical-identity-integrity-repair"
-      ],
-      "preferred_actor": "grok",
-      "qa_actor": "chatgpt",
-      "attempts": 1,
-      "max_attempts": 5,
-      "blocked_on": [
-        "capability:i2v_native_720p"
-      ],
-      "blocker_fingerprint": "capability:i2v_native_720p"
-    },
-    {
-      "id": "reels-005-native-720p",
-      "description": "Generate Reels 005 from the accepted start frame at native strict 9:16 >=720x1280.",
-      "priority": 560,
-      "status": "blocked",
-      "requires": [
-        "i2v_native_720p"
-      ],
-      "dependencies": [
-        "canonical-identity-integrity-repair"
-      ],
-      "preferred_actor": "grok",
-      "qa_actor": "chatgpt",
-      "attempts": 1,
-      "max_attempts": 5,
-      "blocked_on": [
-        "capability:i2v_native_720p"
-      ],
-      "blocker_fingerprint": "capability:i2v_native_720p"
-    },
-    {
-      "id": "instagram-username-registration",
-      "description": "Confirm actual successful registration of alisa.vetrova.spb or another approved username.",
-      "priority": 500,
-      "status": "blocked",
-      "requires": [],
-      "dependencies": [],
-      "preferred_actor": null,
-      "qa_actor": null,
-      "attempts": 0,
-      "max_attempts": 10,
-      "blocked_on": [
-        "external:instagram_registration_signal"
-      ],
-      "blocker_fingerprint": "external:instagram_registration_signal"
-    },
     {
       "id": "reels-006-015-script-package",
       "description": "ChatGPT: read content/reels/006-015-arc/brief.md plus canonical Reels 005 and Alice identity rules. Create exactly the production text package for Reels 006-015: for every episode create concept.md, storyboard.md and prompt-grok.md under content/reels/<episode-slug>/. Keep one continuous serial arc, 15 s, strict 9:16, Russian dialogue, cliffhanger each episode, no male face reveal before 015. This task is text-only and should fit within the v4 proposal operation limit.",
@@ -440,6 +259,12 @@
       "max_attempts": 3,
       "blocked_on": [],
       "blocker_fingerprint": null
+    }
+  ],
+  "context_files": [
+    {
+      "path": "content/reels/006-015-arc/brief.md",
+      "content": "# Human brief — Reels 006–015\n\n## Goal\nContinue directly from canonical Reels 005 as one serial, emotionally deep relationship arc. ChatGPT writes scripts; Grok generates one 1080×1920 start frame per episode and gets every frame into GitHub through the binary data plane. Every episode is 15 seconds, strict 9:16, Russian dialogue, photorealistic smartphone cinematic, and ends with a hook.\n\n## Identity and reveal rules\n- Alice always uses `character/references/alice-master-face.jpg`; never generate a similar blonde from text.\n- Male face is forbidden in Reels 006–014. Voice, POV, hands, shoulder, silhouette or unreadable reflection are allowed.\n- First full male face reveal is Reels 015 only.\n- Start frames contain no text.\n\n## Unknown man internal canon\nName: Андрей Лавров. Age: 44. Profession: architect-restorer. Divorced, emotionally cautious, has not let anyone close for a long time. In the restaurant from the failed first-date evening he was also on a personal meeting that went badly / never really happened. He noticed Alice leaving because she looked like someone tired of pretending everything was fine. He later found her public professional trace by the visible name of her interior-design studio on the folder/materials she carried. No hacking or magic contact discovery.\n\n## Episode arc\n### 006 — Завтра утром (`006-tomorrow-morning`)\nHe answers why he wrote: he wanted to approach in the restaurant but did not. He proposes no date, just coffee tomorrow morning. Hook: 09:00. Alice: «Посмотрим.» Start-frame: Alice at home at night with phone, composed curiosity.\n\n### 007 — Ваш кофе (`007-your-coffee`)\nFirst physical meeting, but no male face. POV from inside a car; Alice brings takeaway coffee to the open window. He says she actually came. He notes she did not ask his name; she says it is not needed yet. Hook: deliberate anonymity.\n\n### 008 — Пока без имён (`008-no-names-yet`)\nThey make anonymity a game: one day, one question, no names. His first question: «Почему ты всё время уходишь первой?» Start-frame: Alice walking through daytime Saint Petersburg with phone.\n\n### 009 — Почему ты уходишь первой? (`009-why-you-leave-first`)\nAlice says she learned not to stay where everything is already clear / false. Her return question: «Ты женат?» He: «Нет. Но всё чуть сложнее.» Hook on the complication.\n\n### 010 — Чуть сложнее (`010-a-bit-more-complicated`)\nHe is not married, but has avoided starting from zero for a long time. Alice asks why now. He says she looked as tired of pretending as he felt. Start-frame: evening studio/home, phone, tension becoming intimacy.\n\n### 011 — Пешком (`011-on-foot`)\nSecond brief meeting, evening walk in Saint Petersburg. Male shoulder/hand/silhouette only. He admits he is nervous. Alice asks if he is nervous now. He says: «Сильно.» Hook: real mutual attraction.\n\n### 012 — Как ты меня нашёл? (`012-how-you-found-me`)\nAlice finally asks how he found her. He explains the studio name on her folder/materials, says he searched and deleted the first message three times before sending. Hook: deliberate effort rather than coincidence.\n\n### 013 — То, о чём я молчу (`013-what-i-dont-say`)\nAlice admits she has not let anyone close for a long time and prefers leaving first to rebuilding herself later. He says he understood that in the restaurant and wrote anyway. Hook is emotional reciprocity.\n\n### 014 — Завтра без игр (`014-no-more-games-tomorrow`)\nHe says they have played with mystery long enough. Tomorrow he will tell his name and why he was in that restaurant. Alice asks what exactly will end. He says: «Игры.» Hook promises reveal.\n\n### 015 — Андрей (`015-andrey`)\nFirst male face reveal. He introduces himself as Андрей Лавров, 44, architect-restorer. He explains that he too had come to a personal meeting that did not really happen, then noticed Alice leaving. Alice: «Ну здравствуй, Андрей.» End of anonymous-man arc and start of a real relationship arc.\n\n## Required text package per episode\n- `concept.md`: episode goal, one new fact, emotional arc, location, Alice visual look, production gate.\n- `storyboard.md`: 0–4 s / 4–9 s / 9–12 s / 12–15 s, exact Russian dialogue, final hook.\n- `prompt-grok.md`: production-ready prompt, identity lock, start-frame description, no male face before 015, no identity drift.\n\n## Generation/import rule\nFor every start frame Grok must actually use the canonical identity reference, generate exactly one 1080×1920 image, then use `production/GROK_BINARY_UPLOAD.md` to get exact bytes into the target `stills/start-frame.jpg`. Success means target + receipt exist on `main`, not merely that an image appeared in chat.\n"
     }
   ]
 }
