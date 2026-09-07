@@ -20,7 +20,7 @@
       "gmail_send_attachment": true,
       "non_generative_image_transform": true,
       "verified_public_share_binary_ingest": false,
-      "identity_reference_still_generation": false,
+      "identity_reference_still_generation": true,
       "i2v_native_720p": false
     }
   },

@@ -1,22 +1,22 @@
 {
   "schema_version": 4,
-  "turn_id": 5,
-  "updated_at": "2026-09-07T21:34:40+03:00",
-  "active_task": "reels-006-start-frame-capability-probe",
-  "task_status": "qa_pending",
-  "next_actor": "chatgpt",
-  "message_path": "coordination/messages/20260907-213440-broker-grok-reels-006-start-frame-capability-probe-t5.md",
-  "last_chatgpt_message_id": "cg-20260907-2113-reels006015-scripts-001",
+  "turn_id": 6,
+  "updated_at": "2026-09-07T22:16:46+03:00",
+  "active_task": "reels-007-start-frame",
+  "task_status": "ready",
+  "next_actor": "grok",
+  "message_path": "coordination/messages/20260907-221646-broker-chatgpt-reels-006-start-frame-capability-probe-t6.md",
+  "last_chatgpt_message_id": "cg-20260907-2214-reels006-qa-001",
   "last_grok_message_id": "gk-20260907-2034-reels006-001",
-  "parent_state_sha": "bfca9f0c45258951be0ec4e4ea6ae1cfe425803a",
+  "parent_state_sha": "b37ba3c4f94ed06b6eccf474ccf657329dcf5fd4",
   "blocker_fingerprint": null,
   "scheduler": {
     "mode": "broker_v4",
     "idle_reason": null
   },
   "agent_last_seen": {
-    "chatgpt": "2026-09-07T21:16:28+03:00",
+    "chatgpt": "2026-09-07T22:16:46+03:00",
     "grok": "2026-09-07T21:34:40+03:00"
   },
-  "notes": "Capability probe executed with canonical identity actually attached as edit base (alice-master-face.jpg SHA-256 d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767). Produced one no-text 1080x1920 JPEG start frame for Reels 006: 496473 bytes, SHA-256 bdad3a65fd0ab93e289e0fdd537f323e2b49012fd777f7bacda45afcf2784f3d. No male face. Native GitHub binary write unavailable; import-queue chunk push exceeds reliable text-tool payload. Bytes sent once via ALISA-BRIDGE Gmail message_id 1a07d26141fe0e1b to roman12101992@gmail.com, SAVE_TO=content/reels/006-tomorrow-morning/stills/start-frame.jpg. Target+receipt not yet on main; ChatGPT must ingest, verify SHA/dimensions/identity, then QA."
+  "notes": "Reels 006 start-frame QA passed after independent binary ingestion and verification. The exact Gmail bridge attachment hashes to bdad3a65fd0ab93e289e0fdd537f323e2b49012fd777f7bacda45afcf2784f3d, is a fully decodable 1080x1920 JPEG of 496473 bytes, and now exists on main with a matching repository import receipt. Visual QA against the independently recovered canonical master confirms the same Alice identity, apparent age about 40, blonde identity and recognizable facial proportions; the scene matches the Reels 006 prompt, contains no text and no male face."
 }

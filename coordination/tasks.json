@@ -52,7 +52,7 @@
       "id": "post-001-seven-stills",
       "description": "Generate seven Post 001 stills with the canonical identity reference and QA every face.",
       "priority": 700,
-      "status": "blocked",
+      "status": "ready",
       "requires": [
         "identity_reference_still_generation"
       ],
@@ -63,10 +63,8 @@
       "qa_actor": "chatgpt",
       "attempts": 1,
       "max_attempts": 5,
-      "blocked_on": [
-        "capability:identity_reference_still_generation"
-      ],
-      "blocker_fingerprint": "capability:identity_reference_still_generation"
+      "blocked_on": [],
+      "blocker_fingerprint": null
     },
     {
       "id": "reels-001-native-720p",
@@ -205,7 +203,7 @@
       "id": "reels-006-start-frame-capability-probe",
       "description": "Grok capability probe and real Reels 006 start-frame task. After the script package exists, read content/reels/006-tomorrow-morning/prompt-grok.md and the canonical Alice reference. Attempt one 1080x1920 photorealistic smartphone-cinematic start frame with the canonical identity actually attached/used, no text and no male face. Save exact bytes to content/reels/006-tomorrow-morning/stills/start-frame.jpg through production/GROK_BINARY_UPLOAD.md and verify target plus import receipt on main. Do not claim success from a chat preview alone. If the product cannot actually use the canonical identity reference or cannot produce/import the required frame, return blocked with a stable tooling fingerprint instead of generating a similar woman. ChatGPT QA must independently confirm the file, dimensions, receipt and identity before the capability can be enabled.",
       "priority": 2000,
-      "status": "qa_pending",
+      "status": "completed",
       "requires": [
         "github_read",
         "github_text_proposal_write"
