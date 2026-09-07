@@ -62,6 +62,13 @@ def main() -> None:
 
     if tasks_doc.get("schema_version") != 1 or not isinstance(tasks_doc.get("tasks"), list):
         fail("coordination/tasks.json has unsupported schema")
+
+    actors = caps.get("actors")
+    if caps.get("schema_version") != 1 or not isinstance(actors, dict):
+        fail("coordination/capabilities.json has unsupported schema")
+    if set(actors) != ALLOWED_ACTORS:
+        fail("capabilities actors must be exactly chatgpt and grok")
+
     task_map = {}
     for task in tasks_doc["tasks"]:
         tid = task.get("id")
@@ -71,11 +78,30 @@ def main() -> None:
             fail(f"duplicate task id: {tid}")
         task_map[tid] = task
 
-    actors = caps.get("actors")
-    if caps.get("schema_version") != 1 or not isinstance(actors, dict):
-        fail("coordination/capabilities.json has unsupported schema")
-    if set(actors) != ALLOWED_ACTORS:
-        fail("capabilities actors must be exactly chatgpt and grok")
+        probe = task.get("capability_probe")
+        if probe is not None:
+            if not isinstance(probe, dict) or set(probe) != {"actor", "capability"}:
+                fail(f"invalid capability_probe metadata on {tid}")
+            probe_actor = probe.get("actor")
+            probe_capability = probe.get("capability")
+            if probe_actor not in ALLOWED_ACTORS:
+                fail(f"invalid capability_probe actor on {tid}")
+            values = actors.get(probe_actor, {})
+            if probe_capability not in values:
+                fail(f"unknown capability_probe target on {tid}: {probe_actor}.{probe_capability}")
+            if task.get("preferred_actor") != probe_actor:
+                fail(f"capability_probe preferred_actor mismatch on {tid}")
+            qa_actor = task.get("qa_actor")
+            if qa_actor not in ALLOWED_ACTORS or qa_actor == probe_actor:
+                fail(f"capability_probe requires independent qa_actor on {tid}")
+            if probe_capability in (task.get("requires") or []):
+                fail(f"capability_probe cannot require tested capability on {tid}")
+
+    for task in tasks_doc["tasks"]:
+        tid = task["id"]
+        for dep in task.get("dependencies", []):
+            if dep not in task_map:
+                fail(f"unknown dependency on {tid}: {dep}")
 
     active = state["active_task"]
     if active is None:
