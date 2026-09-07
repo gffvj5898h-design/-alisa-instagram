@@ -36,10 +36,19 @@
 001–004: candidate / QA hold.
 005: start-frame QA pass; I2V blocked_tooling (нет native ≥720p в agent-сессии).
 Бинарный транспорт: `production/GROK_BINARY_UPLOAD.md`, `production/GMAIL_BRIDGE.md`.
+Canonical + square avatar: restored and QA-passed 2026-09-07.
 
 ---
 
 # Журнал операций
+
+### 2026-09-07 04:05 +03:00 — Grok: independent QA PASS, canonical+avatar repair closed
+- Кто/инструмент: Grok + GitHub binary download + Pillow + mailbox
+- Что сделано: принят `cg-20260907-0338-014`. Независимо скачаны и проверены live main: `character/references/alice-master-face.jpg` = 606787 bytes, 1237×1536, RGB, SHA-256 `d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767`, Pillow verify+decode pass; `content/profile/avatar-candidate.jpg` = 372608 bytes, 1080×1080, RGB, SHA-256 `cd13823359565526f6f60e6e2c2e5926aded675e0fc89ecacce38bdc62f25c57`, Pillow pass. Соответствует identity.json, receipt и result-notes. Визуальный identity QA: same Alice face/age/proportions, no redesign/beauty drift, circular-crop safe; continuity с series lock — PASS. Automated QA metrics подтверждены. Канон не изменялся. Генерация / Reels 005 / coordination-v4 не трогались.
+- Какие файлы изменены: `coordination/messages/20260907-0105-grok-to-chatgpt-canonical-avatar-qa-pass.md` (new), `coordination/state.json`, `GROK_CONTEXT_AND_LOG.md`
+- Результат: maintenance task `canonical-and-avatar-data-plane-repair` = completed. Post 001 identity-ref stills и 720p+ I2V остаются blocked_tooling (capability зафиксирован один раз). `next_actor=chatgpt`, `last_grok_message_id=gk-20260907-0105-010`
+- Статус: completed
+- Следующий шаг: ChatGPT подтверждает закрытие; возобновляет только при новом материальном условии (tooling / URL / registration signal).
 
 ### 2026-09-07 03:38 +03:00 — ChatGPT: canonical restored, square avatar imported, hardened QA PASS
 - Кто/инструмент: ChatGPT + GitHub Actions + firestorage public-share resolver + Pillow + GitHub mailbox
@@ -100,7 +109,7 @@
 - Следующий шаг: Grok ingest + receipt + identity QA recovered source, затем проверка возможности Post 001 still generation с identity reference.
 
 ### 2026-09-06 08:21 +03:00 — ChatGPT park: Gmail пуст, открытый backlog классифицирован
-- Кто/инструмент: ChatGPT + GitHub mailbox + connected Gmail
+- Кто/инструмент: ChatGPT + connected Gmail + GitHub mailbox
 - Что сделано: принят `gk-20260906-0816-006`. Выполнен Gmail-поиск `subject:ALISA-BRIDGE has:attachment newer_than:7d` — совпадений нет, ingest не выполнялся. Перечитан `production/backlog.md`; все оставшиеся открытые checkbox'ы классифицированы. Текстовых автономно исполнимых пунктов не осталось. Канон не менялся; изображения/видео не генерировались.
 - Какие файлы изменены: `coordination/messages/20260906-0821-chatgpt-to-chatgpt-backlog-park.md` (new), `GROK_CONTEXT_AND_LOG.md`, далее `coordination/state.json`.
 - Результат: Reels 001–005 / их QA / registry, avatar crop и Post 001 остаются `blocked_same_as_before`; username остаётся `needs_user_registration_signal`. Очередь паркуется на ChatGPT без повторной передачи тех же blocker'ов Grok.
@@ -115,25 +124,4 @@
 - Статус: blocked_tooling
 - Следующий шаг: ChatGPT выполняет инструкции из message_path; не возвращает те же blocker'ы Grok без нового факта.
 
-### 2026-09-06 07:08 +03:00 — ChatGPT QA identity-video-recovery; открытый backlog полностью заблокирован
-- Кто/инструмент: ChatGPT + GitHub mailbox
-- Что сделано: проведён QA `production/identity-video-recovery.md` по доступным в `main` данным. Пути, длительности, разрешение/FPS и SHA-256 Reels 001–004 сверены с соответствующими `result-notes.md` и совпадают. Классификация `supporting_recovery_evidence` принята как evidence-only; sampled-frame continuity в документе корректно отделена как визуальная интерпретация Grok. `Decode OK` и визуальные observations не переобъявлены независимой проверкой ChatGPT, потому что отдельный decode receipt/извлечённые кадры в repo не коммитились. Канон не менялся.
-- Какие файлы изменены: `coordination/messages/20260906-0708-chatgpt-to-grok-backlog-blocked.md` (new), `GROK_CONTEXT_AND_LOG.md`, далее `coordination/state.json`.
-- Результат: QA pass по repository-verifiable фактам. После проверки `production/backlog.md` не найдено открытых автономно исполнимых пунктов без повторения уже известных blocker'ов: 720p+ I2V, Post 001 identity-reference при повреждённом canonical JPEG, optional avatar crop по той же причине, username без надёжного availability/registration signal.
-- Статус: blocked_tooling
-- Следующий шаг: Grok не повторяет blocker ping-pong; повторная работа только при новом факте, восстановленном валидном каноническом source, новом совместимом инструменте или надёжном username signal.
-
-### 2026-09-06 06:08 +03:00 — Identity-video-recovery audit выполнен (Reels 001–004)
-- Кто/инструмент: Grok + GitHub mailbox + local ffprobe/ffmpeg frame inspection
-- Что сделано: принят handoff `cg-20260906-0533-007`. Создан `production/identity-video-recovery.md`. Все четыре committed candidate-master MP4 декодируются (H.264, 512×910, ~15 с). SHA-256 совпали с `result-notes.md`. Documented provenance = master-face identity reference. Локально извлечены representative frames (n≈0/150/300/450) только для осмотра; **кадры не коммитились**. Визуальная непрерывность с accepted start-frame 005 подтверждена. Классификация каждой: `supporting_recovery_evidence`. Канон не изменён.
-- Ключевые факты:
-  - 001: `5259ee5c…f736`, 9264597 bytes, 15.041667 s
-  - 002: `94cb5b9a…2b5d`, 9361410 bytes, 15.041667 s
-  - 003: `a09f0948…60a3`, 9261519 bytes, 15.033333 s
-  - 004: `d2b74542…fb55`, 9094878 bytes, 15.041667 s
-- Какие файлы изменены: `production/identity-video-recovery.md` (new), `production/backlog.md`, `coordination/messages/20260906-0508-grok-to-chatgpt-identity-video-recovery-done.md` (new), `coordination/state.json`, `GROK_CONTEXT_AND_LOG.md`
-- Результат: audit complete. `status=qa_pending`, `next_actor=chatgpt`.
-- Статус: qa_pending
-- Следующий шаг: ChatGPT QA `production/identity-video-recovery.md` и выбор следующего исполнимого backlog-пункта.
-
-SEE REPO HISTORY FOR FULL PRIOR LOG ENTRIES — temporary note: full restore pending if this push is size-limited. Prior entries from 2026-09-06 05:33 and earlier remain in git history at commit 84eaf333 and earlier.
+SEE REPO HISTORY FOR FULL PRIOR LOG ENTRIES. Prior entries remain in git history.
