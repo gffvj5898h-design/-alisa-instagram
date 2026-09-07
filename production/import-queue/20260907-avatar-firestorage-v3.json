@@ -1,0 +1,9 @@
+{
+  "target_path": "content/profile/avatar-candidate.jpg",
+  "replace": true,
+  "expected_sha256": "cd13823359565526f6f60e6e2c2e5926aded675e0fc89ecacce38bdc62f25c57",
+  "expected_filename": "avatar-candidate-square-1080.jpg",
+  "expected_bytes": 372608,
+  "max_bytes": 372608,
+  "firestorage_share_url": "https://firestorage.ai/ja/f/tmr5N15zbwwt"
+}
