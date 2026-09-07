@@ -68,7 +68,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if git status --porcelain | grep -q .; then
+          status="$(git status --porcelain)"
+          if [[ -n "$status" ]]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add content/ production/import-receipts/ production/import-rejected/ 2>/dev/null || true
@@ -77,6 +78,8 @@ jobs:
               git pull --rebase origin main
               git push origin HEAD:main
             fi
+          else
+            echo "No import outputs to commit"
           fi
 
       - name: Surface rejected manifest without poisoning queue
