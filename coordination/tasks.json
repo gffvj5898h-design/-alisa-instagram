@@ -295,7 +295,7 @@
       "id": "reels-010-start-frame",
       "description": "Grok: generate one 1080x1920 canonical-identity start-frame for Reels 010 from content/reels/010-a-bit-more-complicated/prompt-grok.md. Evening Alice in studio/home, phone in hand, no male face, no text. Import to content/reels/010-a-bit-more-complicated/stills/start-frame.jpg and verify receipt; ChatGPT QA follows.",
       "priority": 1870,
-      "status": "ready",
+      "status": "blocked",
       "requires": [
         "github_read",
         "github_text_proposal_write",
@@ -307,10 +307,12 @@
       ],
       "preferred_actor": "grok",
       "qa_actor": "chatgpt",
-      "attempts": 0,
+      "attempts": 1,
       "max_attempts": 3,
-      "blocked_on": [],
-      "blocker_fingerprint": null
+      "blocked_on": [
+        "reels010:imagine-output-bytes-not-available-in-sandbox-for-data-plane"
+      ],
+      "blocker_fingerprint": "reels010:imagine-output-bytes-not-available-in-sandbox-for-data-plane"
     },
     {
       "id": "reels-011-start-frame",
