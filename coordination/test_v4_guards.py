@@ -59,8 +59,28 @@ def read_state() -> dict:
     return json.loads(STATE.read_text(encoding="utf-8"))
 
 
+def assert_workflow_guards() -> None:
+    broker_wf = (ROOT / ".github/workflows/coordination-v4-broker.yml").read_text(encoding="utf-8")
+    importer_wf = (ROOT / ".github/workflows/import-generated-assets.yml").read_text(encoding="utf-8")
+    repair_wf = (ROOT / ".github/workflows/identity-repair.yml").read_text(encoding="utf-8")
+
+    # Regression for production run #15: optional/missing pathspecs made
+    # `git add ... || true` silently stage nothing after a valid broker apply.
+    assert "git add -A" in broker_wf
+    assert "git add coordination/state.json" not in broker_wf
+
+    # All Actions that can write canonical main must serialize through one lock.
+    for name, text in {
+        "broker": broker_wf,
+        "binary importer": importer_wf,
+        "identity repair": repair_wf,
+    }.items():
+        assert "group: alisa-main-writer" in text, f"{name} missing shared main-writer lock"
+
+
 def main() -> None:
     run([sys.executable, "coordination/validate_state.py"])
+    assert_workflow_guards()
 
     # Pure validation/dry-run guards.
     good = write_tmp(proposal())
