@@ -1,0 +1,32 @@
+name: Coordination v4 validate
+
+on:
+  push:
+    branches:
+      - coordination-v4
+    paths:
+      - "coordination/**"
+      - ".github/workflows/coordination-v4-*.yml"
+      - "PROJECT_INSTRUCTIONS.md"
+  pull_request:
+    paths:
+      - "coordination/**"
+      - ".github/workflows/coordination-v4-*.yml"
+      - "PROJECT_INSTRUCTIONS.md"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Compile control-plane code
+        run: python3 -m py_compile coordination/validate_state.py coordination/validate_proposal.py coordination/broker.py coordination/test_v4_guards.py
+      - name: Validate v4 canonical snapshot
+        run: python3 coordination/validate_state.py
+      - name: Run broker guard tests
+        run: python3 coordination/test_v4_guards.py

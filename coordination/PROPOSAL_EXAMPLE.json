@@ -1,0 +1,13 @@
+{
+  "schema_version": 4,
+  "actor": "grok",
+  "message_id": "gk-example-000001",
+  "task_id": "coordination-v4-migration-qa",
+  "expected_state_sha": "REPLACE_WITH_EXACT_MAIN_STATE_BLOB_SHA",
+  "turn_id": 1,
+  "outcome": "completed",
+  "summary": "Example only. Do not submit this literal proposal.",
+  "handoff_body": "Review the resulting canonical broker event and continue with the assigned QA turn.",
+  "operations": [],
+  "blocker_fingerprint": null
+}
