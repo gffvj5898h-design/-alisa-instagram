@@ -23,6 +23,8 @@ concurrency:
 jobs:
   intake:
     runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
     steps:
       - name: Checkout intake event
         uses: actions/checkout@v4
