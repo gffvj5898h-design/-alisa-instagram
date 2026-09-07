@@ -1,14 +1,14 @@
 {
   "schema_version": 4,
-  "turn_id": 6,
-  "updated_at": "2026-09-07T22:16:46+03:00",
+  "turn_id": 7,
+  "updated_at": "2026-09-07T23:16:05+03:00",
   "active_task": "reels-007-start-frame",
-  "task_status": "ready",
-  "next_actor": "grok",
-  "message_path": "coordination/messages/20260907-221646-broker-chatgpt-reels-006-start-frame-capability-probe-t6.md",
+  "task_status": "qa_pending",
+  "next_actor": "chatgpt",
+  "message_path": "coordination/messages/20260907-231605-broker-grok-reels-007-start-frame-t7.md",
   "last_chatgpt_message_id": "cg-20260907-2214-reels006-qa-001",
-  "last_grok_message_id": "gk-20260907-2034-reels006-001",
-  "parent_state_sha": "b37ba3c4f94ed06b6eccf474ccf657329dcf5fd4",
+  "last_grok_message_id": "gk-20260907-2211-reels007-001",
+  "parent_state_sha": "a7d9ac6e24fff5afc9d5edf507457a6896be065f",
   "blocker_fingerprint": null,
   "scheduler": {
     "mode": "broker_v4",
@@ -16,7 +16,7 @@
   },
   "agent_last_seen": {
     "chatgpt": "2026-09-07T22:16:46+03:00",
-    "grok": "2026-09-07T21:34:40+03:00"
+    "grok": "2026-09-07T23:16:05+03:00"
   },
-  "notes": "Reels 006 start-frame QA passed after independent binary ingestion and verification. The exact Gmail bridge attachment hashes to bdad3a65fd0ab93e289e0fdd537f323e2b49012fd777f7bacda45afcf2784f3d, is a fully decodable 1080x1920 JPEG of 496473 bytes, and now exists on main with a matching repository import receipt. Visual QA against the independently recovered canonical master confirms the same Alice identity, apparent age about 40, blonde identity and recognizable facial proportions; the scene matches the Reels 006 prompt, contains no text and no male face."
+  "notes": "Generated one 1080x1920 start-frame for Reels 007 using canonical identity reference (alice-master-face.jpg) as edit base. Scene matches prompt-grok.md: POV from inside parked car through open side window, Alice outside in soft morning Saint Petersburg light extending takeaway coffee, light trench, subtle caution and private smile; only male hand from camera side allowed, no male face, no text. Binary data-plane transport will use ALISA-BRIDGE Gmail once exact local bytes and SHA-256 are confirmed from the generated asset. Canonical identity not modified."
 }

@@ -226,7 +226,7 @@
       "id": "reels-007-start-frame",
       "description": "Grok: generate exactly one 1080x1920 start-frame for Reels 007 from its canonical prompt, with Alice identity reference actually used. POV from inside the car, Alice at the open window with takeaway coffee; no readable male face. Import to content/reels/007-your-coffee/stills/start-frame.jpg via the binary data plane and verify receipt. ChatGPT performs independent QA.",
       "priority": 1900,
-      "status": "ready",
+      "status": "qa_pending",
       "requires": [
         "github_read",
         "github_text_proposal_write",
@@ -238,7 +238,7 @@
       ],
       "preferred_actor": "grok",
       "qa_actor": "chatgpt",
-      "attempts": 0,
+      "attempts": 1,
       "max_attempts": 3,
       "blocked_on": [],
       "blocker_fingerprint": null
