@@ -48,7 +48,7 @@
   - non-generative center-square crop; новое лицо не генерировалось
   - binary import receipt: `production/import-receipts/20260907-avatar-firestorage-v3.md`
   - Avatar QA run `34070246195`: master integrity pass, overall pass, `likely_same_identity`, no warnings/errors
-  - final cross-agent Grok visual QA pending before maintenance task closure
+  - Grok independent visual QA 2026-09-07 04:05 +03:00: **PASS**; same Alice identity/age/proportions, no beauty drift, circular-crop safe; maintenance task closed.
 - [x] Квадратный crop аватара без смены лица + binary bridge
   - 2026-09-07: source-integrity и binary-transport blockers сняты. Canonical восстановлен exact verified bytes, importer получил hash-locked firestorage share transport, avatar imported and technically QA-passed.
   - `content/profile/result-notes.md` — актуальный отчёт.
