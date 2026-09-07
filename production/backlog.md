@@ -10,6 +10,7 @@
 - [x] Восстановить пакет `concept.md`, `prompt-grok.md`, `storyboard.md`, `result-notes.md` для Reels 003
 - [x] Восстановить пакет `concept.md`, `prompt-grok.md`, `storyboard.md`, `result-notes.md` для Reels 004
 - [x] Синхронизировать канон лица на `character/references/alice-master-face.jpg`
+  - 2026-09-07: guarded repair восстановил exact verified original: 1237×1536, 606787 bytes, SHA-256 `d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767`, full Pillow decode pass.
 - [x] Обновить `result-notes.md` Reels 001–004 после Grok-аудита
 - [x] Перевести реестр 001–004 в QA hold до выполнения production gate
 - [ ] Пересобрать / перегенерировать Reels 001 в нативном 9:16 минимум 720×1280
@@ -41,20 +42,22 @@
   - [x] Public evidence verification 2026-09-06: `alisa.vetrova` подтверждённо занят по handoff Grok; `vetrova.life` также занят.
   - Текущий регистрационный кандидат: `alisa.vetrova.spb`.
   - Статус `alisa.vetrova.spb`: публично unresolved; доступность не подтверждена. Не закрывать этот backlog-пункт до фактической успешной регистрации или надёжного availability signal.
-- [x] Сделать аватар профиля из master face — identity-safe fallback
-  - `content/profile/avatar-candidate.jpg` = exact copy of `alice-master-face.jpg`
-  - 320×400, 15008 bytes, SHA-256 `2d5347eb3831fcf5f01804fa6c4f5fd261f72473bfede75beed29255801b5ef2`
-  - Grok QA 2026-08-22: identity pass; dense 1:1 / 1080 crop hold
-  - notes: `content/profile/result-notes.md`
-- [ ] Опционально: квадратный crop аватара без смены лица, когда есть binary bridge
-  - Исторический blocker source-integrity снят 2026-09-06 для recovery-workflow: восстановлен исходный JPEG 1237×1536, 606787 bytes, SHA-256 `d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767`; ChatGPT и Grok независимо подтвердили одно и то же Gmail-вложение и checksum. Канонический `character/references/alice-master-face.jpg` не менялся и остаётся truncated.
-  - Следующий шаг: non-generative face-safe square crop из verified recovered JPEG, затем binary bridge + avatar QA. Handoff: `cg-20260906-1220-011`.
+- [x] Сделать production-usable квадратный аватар профиля из verified master source
+  - `content/profile/avatar-candidate.jpg`
+  - 1080×1080, 372608 bytes, SHA-256 `cd13823359565526f6f60e6e2c2e5926aded675e0fc89ecacce38bdc62f25c57`
+  - non-generative center-square crop; новое лицо не генерировалось
+  - binary import receipt: `production/import-receipts/20260907-avatar-firestorage-v3.md`
+  - Avatar QA run `34070246195`: master integrity pass, overall pass, `likely_same_identity`, no warnings/errors
+  - final cross-agent Grok visual QA pending before maintenance task closure
+- [x] Квадратный crop аватара без смены лица + binary bridge
+  - 2026-09-07: source-integrity и binary-transport blockers сняты. Canonical восстановлен exact verified bytes, importer получил hash-locked firestorage share transport, avatar imported and technically QA-passed.
+  - `content/profile/result-notes.md` — актуальный отчёт.
 - [x] Аудит восстановительных identity sources без смены канона
-  - 2026-09-06 Grok: inventory complete. See `production/identity-source-recovery.md`. Sole decodable Alice still with documented canonical provenance: `content/reels/005-same-restaurant/stills/start-frame.jpg` (1008×1792, SHA-256 `1e2a30eb7e0e55145384e354fb358db850a7e7dfabd74a1444c64359b72c8a87`) — classified `strong_recovery_candidate`. Avatar-candidate and master remain truncated / not_suitable for pixel recovery. Canonical master unchanged.
-  - 2026-09-06 ChatGPT QA: pass. `content/reels/005-same-restaurant/result-notes.md` independently confirms the same path, dimensions, byte size, SHA-256 and Grok start-frame QA-pass status. Classification remains evidence/practical-reference only; no derivative is canonical.
-  - 2026-09-06 master-source recovery: original source independently recovered outside the canonical path and verified by both agents: 1237×1536, 606787 bytes, SHA-256 `d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767`, Pillow decode pass. Accepted for recovery-reference work only; canonical repo file unchanged.
+  - 2026-09-06 Grok: inventory complete. See `production/identity-source-recovery.md`. Sole decodable Alice still с документированной provenance на момент аудита: `content/reels/005-same-restaurant/stills/start-frame.jpg` (1008×1792, SHA-256 `1e2a30eb7e0e55145384e354fb358db850a7e7dfabd74a1444c64359b72c8a87`) — `strong_recovery_candidate`.
+  - 2026-09-06 original master source independently recovered and verified by both agents: 1237×1536, 606787 bytes, SHA-256 `d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767`, Pillow pass.
+  - 2026-09-07 guarded maintenance repair promoted those exact verified bytes back to canonical path; this was integrity restoration, not identity redesign.
 - [x] Аудит существующих Reels 001–004 как video recovery sources без смены канона
-  - 2026-09-06 Grok: audit complete. See `production/identity-video-recovery.md`. All four MP4s decode OK (512×910, ~15 s, H.264). SHA-256 match result-notes. Documented provenance = master-face identity reference. Visual continuity with 005 start-frame confirmed on representative frames (local only, not committed). Classification: `supporting_recovery_evidence` for each. Canonical master unchanged; no frames committed.
+  - 2026-09-06 Grok: audit complete. See `production/identity-video-recovery.md`. All four MP4s decode OK (512×910, ~15 s, H.264). SHA-256 match result-notes. Documented provenance = master-face identity reference. Classification: `supporting_recovery_evidence` for each.
 - [ ] Сгенерировать 7 кадров Post 001 с master face
 - [ ] Проверить лицо на каждом кадре
 - [x] Подготовить 3 дня Stories
