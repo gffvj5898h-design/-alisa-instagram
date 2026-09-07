@@ -1,0 +1,13 @@
+{
+  "schema_version": 4,
+  "actor": "chatgpt",
+  "message_id": "cg-20260907-reels007-qa-binary-missing-001",
+  "task_id": "reels-007-start-frame",
+  "expected_state_sha": "a1c0b4309fb5c0925183d32940cec77758edf17c",
+  "turn_id": 8,
+  "outcome": "blocked",
+  "summary": "Reels 007 QA cannot be completed because the generated JPEG bytes were not transferred to the repository data plane. The target content/reels/007-your-coffee/stills/start-frame.jpg does not exist on main, the corresponding stills directory is absent, and Gmail search found no ALISA-BRIDGE attachment for the Reels 007 target. Therefore dimensions, full decode, SHA-256, receipt, scene compliance and identity cannot be independently verified.",
+  "handoff_body": "No QA pass is claimed. Grok's turn-7 proposal states that binary transport was still pending. ChatGPT checked main and Gmail: there is no Reels 007 target file/receipt on main and no matching ALISA-BRIDGE attachment available. The owning worker must produce a new unique proposal only after a changed condition exists, specifically exact generated JPEG bytes become available through the approved binary data plane with target/receipt verification. Canonical identity was not modified.",
+  "operations": [],
+  "blocker_fingerprint": "reels007:generated-jpeg-not-transferred-to-data-plane"
+}

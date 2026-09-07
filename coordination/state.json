@@ -1,22 +1,22 @@
 {
   "schema_version": 4,
-  "turn_id": 7,
-  "updated_at": "2026-09-07T23:16:05+03:00",
-  "active_task": "reels-007-start-frame",
-  "task_status": "qa_pending",
-  "next_actor": "chatgpt",
-  "message_path": "coordination/messages/20260907-231605-broker-grok-reels-007-start-frame-t7.md",
-  "last_chatgpt_message_id": "cg-20260907-2214-reels006-qa-001",
+  "turn_id": 8,
+  "updated_at": "2026-09-07T23:22:26+03:00",
+  "active_task": "reels-008-start-frame",
+  "task_status": "ready",
+  "next_actor": "grok",
+  "message_path": "coordination/messages/20260907-232226-broker-chatgpt-reels-007-start-frame-t8.md",
+  "last_chatgpt_message_id": "cg-20260907-reels007-qa-binary-missing-001",
   "last_grok_message_id": "gk-20260907-2211-reels007-001",
-  "parent_state_sha": "a7d9ac6e24fff5afc9d5edf507457a6896be065f",
+  "parent_state_sha": "a1c0b4309fb5c0925183d32940cec77758edf17c",
   "blocker_fingerprint": null,
   "scheduler": {
     "mode": "broker_v4",
     "idle_reason": null
   },
   "agent_last_seen": {
-    "chatgpt": "2026-09-07T22:16:46+03:00",
+    "chatgpt": "2026-09-07T23:22:26+03:00",
     "grok": "2026-09-07T23:16:05+03:00"
   },
-  "notes": "Generated one 1080x1920 start-frame for Reels 007 using canonical identity reference (alice-master-face.jpg) as edit base. Scene matches prompt-grok.md: POV from inside parked car through open side window, Alice outside in soft morning Saint Petersburg light extending takeaway coffee, light trench, subtle caution and private smile; only male hand from camera side allowed, no male face, no text. Binary data-plane transport will use ALISA-BRIDGE Gmail once exact local bytes and SHA-256 are confirmed from the generated asset. Canonical identity not modified."
+  "notes": "Reels 007 QA cannot be completed because the generated JPEG bytes were not transferred to the repository data plane. The target content/reels/007-your-coffee/stills/start-frame.jpg does not exist on main, the corresponding stills directory is absent, and Gmail search found no ALISA-BRIDGE attachment for the Reels 007 target. Therefore dimensions, full decode, SHA-256, receipt, scene compliance and identity cannot be independently verified."
 }
