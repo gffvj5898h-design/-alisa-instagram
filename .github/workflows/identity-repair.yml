@@ -16,7 +16,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: alice-data-plane-main
+  group: alisa-main-writer
   cancel-in-progress: false
 
 jobs:

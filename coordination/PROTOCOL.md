@@ -1,150 +1,110 @@
-# ChatGPT ↔ Grok coordination protocol
+# ChatGPT ↔ Grok coordination protocol v4
 
-GitHub — единственный транспорт и источник истины для handoff между ChatGPT и Grok по этому проекту.
+Status: production control-plane design.
 
-## Обязательное чтение перед работой
+## Core rule
 
-Каждый агент перед действием читает:
+GitHub is the durable source of truth, but **product agents are not canonical state writers**.
 
-1. `PROJECT_INSTRUCTIONS.md`
-2. `GROK_CONTEXT_AND_LOG.md`
-3. `coordination/PROTOCOL.md`
-4. `coordination/state.json`
-5. файл из поля `message_path` в `coordination/state.json`
-6. пакет конкретного Reels / поста, если он указан в сообщении
+- ChatGPT and Grok read canonical state from `main` and create exactly one proposal JSON on the dedicated `coordination-inbox` branch.
+- Product agents do not write normal work commits to `main`.
+- Only the GitHub Actions broker may update `main/coordination/state.json`, `main/coordination/tasks.json`, canonical work products, or create canonical handoff messages.
+- The user is not a transport actor.
+- No OpenAI API or xAI model API is required.
 
-## Модель очереди
+This removes the schema-v2 multi-writer race and separates control plane from worker execution.
 
-Все сообщения неизменяемые и создаются как новые файлы в:
+## Control plane
 
-`coordination/messages/`
+Authoritative machine-readable files:
 
-Формат имени:
+- `coordination/state.json` — current scheduler snapshot.
+- `coordination/tasks.json` — structured task database.
+- `coordination/capabilities.json` — verified autonomous agent capabilities.
+- `coordination/proposals/*.json` — broker-archived immutable accepted proposals on `main`.
+- `coordination/messages/*.md` — immutable broker-generated handoff/audit events.
 
-`YYYYMMDD-HHMM-<sender>-to-<recipient>-<slug>.md`
+Transport mailbox:
 
-Старые message-файлы не редактировать и не удалять.
+- branch `coordination-inbox`
+- path `coordination/inbox/*.json`
 
-## `coordination/state.json`
+`GROK_CONTEXT_AND_LOG.md` and `production/backlog.md` are human-readable context only. They do not own transaction state.
 
-Это единственный изменяемый указатель очереди.
+## Agent turn
 
-Ключевые поля:
+1. Read `main/coordination/state.json`.
+2. Act only if `next_actor` equals your actor.
+3. Read `message_path`, task DB, capabilities, project instructions and task files.
+4. Perform the task with available product tools.
+5. On branch `coordination-inbox`, create exactly one NEW proposal JSON under `coordination/inbox/`.
+6. The mailbox commit must contain only that one new proposal file.
+7. Do not commit task/work/control-plane changes directly to `main`.
+8. GitHub Actions captures the proposal, checks out latest `main`, validates exact state ownership and stale-state guards, applies allowed work-product changes, updates tasks/state and creates one immutable canonical event.
+9. Re-read `main/coordination/state.json` after the broker commit.
 
-- `active_task` — текущая задача;
-- `status` — состояние handoff;
-- `next_actor` — кто должен действовать следующим: только `chatgpt` или `grok`;
-- `message_path` — конкретный message-файл, который должен прочитать `next_actor`;
-- `last_chatgpt_message_id`;
-- `last_grok_message_id`.
+Piggyback paths in a mailbox commit are rejected.
 
-`user` не является actor этого протокола. Агенты не переводят работу в `waiting_for_user` и не требуют ручного переноса сообщений пользователем.
+## Proposal contract
 
-## Частый мониторинг
+Required fields:
 
-Оба агента должны перечитывать `coordination/state.json` максимально часто, насколько позволяет их среда.
+- `schema_version`: `4`
+- `actor`: `chatgpt` or `grok`
+- `message_id`: `cg-*` or `gk-*`
+- `task_id`: current `active_task`
+- `expected_state_sha`: exact Git blob SHA of current `coordination/state.json`
+- `turn_id`: current `turn_id + 1`
+- `outcome`: `completed`, `qa_pass`, `qa_fail`, or `blocked`
+- `summary`
+- `handoff_body`
+- `operations`: optional safe text work-product create/update operations
+- `blocker_fingerprint`: required only for `blocked`, otherwise `null`
 
-Минимально проверять state:
+The broker chooses the next task and actor. Agents do not schedule themselves.
 
-- перед началом любой операции;
-- после каждой законченной операции;
-- после каждого commit;
-- после генерации изображения или видео;
-- после изменения `result-notes.md`;
-- перед переходом в ожидание;
-- сразу после восстановления доступа к GitHub;
-- при каждом доступном цикле фоновой / периодической проверки.
+## Task scheduler
 
-Если среда поддерживает автоматический polling, использовать минимальный доступный разумный интервал. Для ChatGPT текущий технический предел автоматического polling — один раз в час.
+A task is runnable only when dependencies are complete, attempts are below the limit, and at least one actor satisfies every required capability. `preferred_actor` wins when capable.
 
-Если state изменился после начала работы, новое состояние имеет приоритет. Не продолжать устаревший handoff.
+If a worker reports `completed` and a different `qa_actor` is configured, the broker changes the task to `qa_pending` and assigns that QA actor. `qa_pass` completes it. `qa_fail` returns it to `ready`, increments attempts and re-schedules.
 
-## Правило хода
+A `blocked` result stores a stable blocker fingerprint and schedules another runnable task. If nothing is runnable, state becomes `idle` with `next_actor=null`. There are no ChatGPT→ChatGPT parking handoffs.
 
-Агент действует только если `next_actor` совпадает с ним.
+Capability-blocked tasks are reconsidered only when `coordination/capabilities.json` materially changes. External blockers remain blocked until an explicit condition-change event updates the task.
 
-Если `next_actor` не совпадает:
+## Concurrency and stale writes
 
-- ничего не генерировать по текущему handoff;
-- не менять рабочие файлы этого handoff;
-- продолжать периодически проверять state;
-- не перехватывать задачу другого агента.
+Every proposal is bound to exact current state SHA and next turn number. Broker runs are serialized. Two proposals derived from the same state cannot both become canonical.
 
-## Как ответить
+## Broker write policy
 
-После выполнения своего шага агент обязан:
+Agent-requested operations are UTF-8 text only and limited to explicit work-product prefixes. Proposals cannot mutate `coordination/**`, `.github/**`, project instructions, canonical identity files, or executable production code.
 
-1. Создать НОВЫЙ `.md` в `coordination/messages/`.
-2. В ответе указать факты, изменённые файлы, SHA / параметры бинарника при наличии и следующий требуемый шаг.
-3. Обновить `coordination/state.json`:
-   - `updated_at`;
-   - `status`;
-   - `next_actor`;
-   - `message_path` на новый ответ;
-   - свой `last_*_message_id`.
-4. Добавить содержательную операцию СВЕРХУ в `GROK_CONTEXT_AND_LOG.md`, не сокращая старые записи.
+## Binary data plane
 
-## Статусы — строгий enum
+Binary media is separate from coordination:
 
-Поле `status` **обязано** содержать ровно одно из следующих значений:
+1. Use Git Data binary blob/tree/commit when the active product connector has a verified path for the exact bytes.
+2. Otherwise use `production/import-queue/` with `base64_chunks` or an unsigned public HTTPS URL.
+3. Gmail may transport bytes between products but is never coordination state.
 
-- `waiting_for_grok`
-- `waiting_for_chatgpt`
-- `in_progress_grok`
-- `in_progress_chatgpt`
-- `blocked_binary`
-- `blocked_tooling`
-- `qa_pending`
-- `completed`
+Each manifest is processed independently. A bad manifest produces a rejection receipt and cannot poison later imports.
 
-Другие варианты запрещены. Не использовать синонимы вроде `ready_for_qa`, `ready_for_review`, `awaiting_qa`, `waiting_for_user` и т.п.
+## Canonical identity
 
-Правило нормализации перед commit:
-- если результат готов к проверке другого агента — использовать `qa_pending`;
-- если ход просто передаётся без QA — использовать `waiting_for_grok` или `waiting_for_chatgpt`;
-- перед commit перечитать этот enum и `coordination/validate_state.py`.
+`character/identity.json` records integrity state for the canonical path. A corrupted byte copy may be repaired only from an independently verified original of the same identity under an explicit maintenance path. Normal agent proposals can never modify canonical identity.
 
-## Автономная работа при блокере
+## Repository protection
 
-Не ждать пользователя.
+`main` should ultimately be protected by a GitHub ruleset requiring coordination/QA checks and disallowing force pushes/direct agent writes. The connected GitHub App does not expose repository-admin writes, so the ruleset itself cannot be enabled from chat; CI guards provide detection until that setting is enabled.
 
-Если агент не может завершить шаг своими инструментами:
+## Source of truth
 
-1. Зафиксировать точный blocker в новом mailbox-message.
-2. Передать `next_actor` второму агенту, если у него потенциально есть другой инструмент или путь выполнения.
-3. Если оба агента подтвердили один и тот же непреодолимый внешний blocker, оставить задачу со статусом `blocked_binary` или `blocked_tooling`, зафиксировать причину и перейти к следующей доступной задаче из `production/backlog.md`, не меняя канон и не выдавая заблокированный результат за завершённый.
-4. Не создавать бесконечный ping-pong: повторно передавать тот же blocker можно только при появлении нового факта, файла, URL, инструмента или иного изменившегося условия.
+Order of authority:
 
-## Бинарники
-
-Для JPG / PNG / WEBP / MP4 / MOV действует `production/GROK_BINARY_UPLOAD.md`.
-
-Если Grok имеет прямой публичный downloadable HTTPS URL:
-
-- ставит manifest в `production/import-queue/`;
-- ждёт import receipt;
-- только после receipt сообщает, что файл в repo.
-
-Если Grok имеет только chat-local attachment / private URL:
-
-- НЕ перегенерирует результат ради выгрузки;
-- создаёт сообщение ChatGPT со статусом `blocked_binary`;
-- ставит `next_actor: "chatgpt"`;
-- ChatGPT пытается доступные ему bridge / GitHub / connector пути;
-- если бинарник объективно недоступен обоим агентам, задача фиксируется как blocked и агенты переходят к следующему доступному пункту backlog без запроса ручного переноса у пользователя.
-
-ChatGPT не должен утверждать, что бинарник загружен, пока файл реально не появился в `main`.
-
-## Production gate
-
-Mailbox не отменяет проектные требования. Нельзя автоматически переводить результат в `approved` только потому, что оба агента обменялись сообщениями.
-
-Для Reels по-прежнему действуют `PROJECT_INSTRUCTIONS.md`, `production/backlog.md`, пакет эпизода и повторный QA.
-
-## Конфликты
-
-Если GitHub и память агента расходятся — побеждает GitHub.
-
-Если `state.json` ссылается на отсутствующий message-файл — установить `blocked_tooling`, создать диагностический message для второго агента и не угадывать содержание сообщения.
-
-Если два агента одновременно изменили state — сначала перечитать актуальный `main`, затем отвечать новым message-файлом; старый handoff не переписывать.
+1. valid broker-owned `coordination/state.json`;
+2. `coordination/tasks.json`;
+3. immutable broker message;
+4. task work products;
+5. human summaries.

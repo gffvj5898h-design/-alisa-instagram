@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "allowed_text_extensions": [".md", ".txt", ".json", ".yaml", ".yml"],
+  "allowed_operation_prefixes": ["content/", "prompts/generated/", "production/qa-receipts/", "production/reports/"],
+  "allowed_operation_files": ["production/published.md"],
+  "protected_prefixes": ["coordination/", ".github/", "character/references/", "production/import-queue/", "production/import-receipts/", "production/import-rejected/"],
+  "protected_files": ["PROJECT_INSTRUCTIONS.md", "character/identity.json", "production/import_generated_asset.py", "production/prepare_github_import.py", "production/emit_push_files_json.py", "production/validate_avatar.py", "production/backlog.md", "GROK_CONTEXT_AND_LOG.md"],
+  "max_operations_per_turn": 40,
+  "max_text_chars_per_operation": 250000
+}

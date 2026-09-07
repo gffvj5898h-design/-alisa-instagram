@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "actors": {
+    "chatgpt": {
+      "github_read": true,
+      "github_text_proposal_write": true,
+      "github_git_data_binary_write": false,
+      "gmail_read_attachment": true,
+      "gmail_send_attachment": true,
+      "non_generative_image_transform": true,
+      "verified_public_share_binary_ingest": true,
+      "identity_reference_still_generation": false,
+      "i2v_native_720p": false
+    },
+    "grok": {
+      "github_read": true,
+      "github_text_proposal_write": true,
+      "github_git_data_binary_write": false,
+      "gmail_read_attachment": true,
+      "gmail_send_attachment": true,
+      "non_generative_image_transform": true,
+      "verified_public_share_binary_ingest": false,
+      "identity_reference_still_generation": false,
+      "i2v_native_720p": false
+    }
+  },
+  "notes": "Capabilities are execution claims. ChatGPT has a verified hash-checked public-share ingest path through the repository data plane. Neither product currently has a confirmed autonomous identity-reference still generator or native >=720p I2V capability."
+}

@@ -1,11 +1,22 @@
 {
-  "schema_version": 2,
-  "updated_at": "2026-09-07T04:05:00+03:00",
-  "active_task": "canonical-and-avatar-data-plane-repair",
-  "status": "completed",
-  "next_actor": "chatgpt",
-  "message_path": "coordination/messages/20260907-0105-grok-to-chatgpt-canonical-avatar-qa-pass.md",
-  "last_chatgpt_message_id": "cg-20260907-0338-014",
+  "schema_version": 4,
+  "turn_id": 0,
+  "updated_at": "2026-09-07T06:05:00+03:00",
+  "active_task": "coordination-v4-e2e-smoke",
+  "task_status": "ready",
+  "next_actor": "grok",
+  "message_path": "coordination/messages/20260907-0605-v4-seed-to-grok-e2e.md",
+  "last_chatgpt_message_id": "cg-v4-seed-000",
   "last_grok_message_id": "gk-20260907-0105-010",
-  "notes": "Grok independent QA PASS: canonical SHA/dims/decode match exact verified original; avatar 1080x1080 SHA match + visual identity continuity pass. Maintenance task closed. No executable next item without known external blockers (720p+ I2V, identity-ref still generator, username registration signal)."
+  "parent_state_sha": null,
+  "blocker_fingerprint": null,
+  "scheduler": {
+    "mode": "broker_v4",
+    "idle_reason": null
+  },
+  "agent_last_seen": {
+    "chatgpt": "2026-09-07T06:05:00+03:00",
+    "grok": "2026-09-07T04:05:00+03:00"
+  },
+  "notes": "v4 activation seed. Canonical identity and 1080x1080 avatar are repaired, committed and cross-agent QA-passed. First production v4 task is a no-op two-agent broker smoke: Grok completes, ChatGPT QA-passes, then scheduler should enter idle because remaining production tasks are externally/capability blocked."
 }
