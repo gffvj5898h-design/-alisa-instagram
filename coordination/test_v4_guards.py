@@ -55,9 +55,14 @@ def write_tmp(obj) -> Path:
     return Path(f.name)
 
 
+def read_state() -> dict:
+    return json.loads(STATE.read_text(encoding="utf-8"))
+
+
 def main() -> None:
     run([sys.executable, "coordination/validate_state.py"])
 
+    # Pure validation/dry-run guards.
     good = write_tmp(proposal())
     run([sys.executable, str(VALIDATE), str(good)])
     run([sys.executable, str(BROKER), str(good)])
@@ -89,7 +94,55 @@ def main() -> None:
     out = run([sys.executable, str(VALIDATE), str(write_tmp(traversal))], expect=1)
     assert "path traversal" in out
 
-    print("Coordination v4 guard tests OK")
+    # Local two-agent state-machine smoke. This mutates only the ephemeral CI checkout,
+    # never pushes, then restores the checkout before the test exits.
+    baseline = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+    try:
+        first = write_tmp(
+            proposal(
+                message_id="gk-v4-e2e-complete",
+                outcome="completed",
+                summary="Grok half of v4 e2e smoke",
+                handoff_body="Broker should route QA to ChatGPT.",
+            )
+        )
+        run([sys.executable, str(VALIDATE), str(first)])
+        run([sys.executable, str(BROKER), str(first), "--apply"])
+        s1 = read_state()
+        assert s1["turn_id"] == 1
+        assert s1["active_task"] == "coordination-v4-e2e-smoke"
+        assert s1["task_status"] == "qa_pending"
+        assert s1["next_actor"] == "chatgpt"
+        run([sys.executable, "coordination/validate_state.py"])
+
+        second = write_tmp(
+            proposal(
+                message_id="cg-v4-e2e-qa-pass",
+                outcome="qa_pass",
+                summary="ChatGPT QA half of v4 e2e smoke",
+                handoff_body="Smoke passed; scheduler should enter idle because remaining tasks are blocked.",
+            )
+        )
+        run([sys.executable, str(VALIDATE), str(second)])
+        run([sys.executable, str(BROKER), str(second), "--apply"])
+        s2 = read_state()
+        assert s2["turn_id"] == 2
+        assert s2["active_task"] is None
+        assert s2["task_status"] == "idle"
+        assert s2["next_actor"] is None
+        assert s2["scheduler"]["idle_reason"] == "no_runnable_task"
+        run([sys.executable, "coordination/validate_state.py"])
+    finally:
+        subprocess.run(["git", "reset", "--hard", baseline], cwd=ROOT, check=True, capture_output=True, text=True)
+        subprocess.run(
+            ["git", "clean", "-fd", "coordination/messages", "coordination/proposals"],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+
+    print("Coordination v4 guard + two-turn broker smoke tests OK")
 
 
 if __name__ == "__main__":
