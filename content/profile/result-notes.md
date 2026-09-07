@@ -1,39 +1,65 @@
 # Profile avatar — result notes
 
-## Candidate
+## Current candidate — 2026-09-07
 
 `content/profile/avatar-candidate.jpg`
 
-Источник: exact Git-blob copy of `character/references/alice-master-face.jpg`.
-Не Imagine-crop.
+Источник: non-generative center-square crop из verified recovered original Alice master source. Новое лицо не генерировалось.
 
-## Технические параметры (Grok, 2026-08-22)
+### Технические параметры
 
-- Git blob SHA: `e1974689dfe7a9a47bf70a0f94abd052b2f0588d`
-- bytes: 15008
-- resolution: 320×400
-- SHA-256: `2d5347eb3831fcf5f01804fa6c4f5fd261f72473bfede75beed29255801b5ef2`
-- cmp vs master-face: IDENTICAL
+- bytes: 372608
+- resolution: 1080×1080
+- mode: RGB
+- SHA-256: `cd13823359565526f6f60e6e2c2e5926aded675e0fc89ecacce38bdc62f25c57`
+- JPEG full decode: pass
+- EOI: present
+- binary import receipt: `production/import-receipts/20260907-avatar-firestorage-v3.md`
+- import workflow run: `34070153104` — success
 
-## QA
+### Canonical source after guarded repair
 
-- identity: pass
-- age ~40: pass
-- canon unchanged: pass
-- Instagram identity-safe fallback: pass
-- dense 1:1 / 1080 production avatar: hold
+`character/references/alice-master-face.jpg`
 
-Статус: candidate / identity-safe fallback. Не production-approved square avatar.
+- bytes: 606787
+- resolution: 1237×1536
+- mode: RGB
+- SHA-256: `d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767`
+- JPEG full decode: pass
+- EOI: present
+- guarded repair workflow run: `34069880776` — success
+- repair commit produced by GitHub Actions: `848d332`
+- metadata: `character/identity.json`
 
-## 2026-09-06 Grok diagnostic — binary integrity
+This was a byte-integrity restoration from the verified original user upload, not a character redesign.
 
-Both `character/references/alice-master-face.jpg` and `content/profile/avatar-candidate.jpg` are byte-identical (15008 bytes, SHA-256 `2d5347eb3831fcf5f01804fa6c4f5fd261f72473bfede75beed29255801b5ef2`).
+## Automated Avatar QA — 2026-09-07
 
-Integrity check:
-- SOI present (`FF D8`)
-- EOI **absent** (file does not end with `FF D9`)
-- Pillow / libjpeg: `OSError: broken data stream when reading image file`
+Workflow: `Avatar QA`, run `34070246195` — **success**.
 
-Consequence: any deterministic center/face-aware square crop (or other pixel-level processing) fails because the JPEG cannot be decoded. Optional backlog item «квадратный crop аватара без смены лица» therefore remains blocked by source-byte integrity, not by missing bridge.
+- canonical integrity: **pass**
+- overall: **pass**
+- avatar dimensions: 1080×1080
+- preferred square 1080: true
+- circular crop safe: true
+- identity kind: `likely_same_identity`
+- aHash Hamming: 24
+- MAE64: 0.073
+- errors: none
+- warnings: none
 
-Rule respected: `character/references/alice-master-face.jpg` was **not** modified. No new binary was generated or mailed.
+Technical status: **production-usable square avatar**. Final independent Grok visual identity QA remains the cross-agent gate before closing the maintenance task.
+
+---
+
+## Historical state — 2026-08-22 / 2026-09-06
+
+The old `content/profile/avatar-candidate.jpg` was an exact copy of the then-corrupted canonical file:
+
+- 15008 bytes
+- 320×400
+- SHA-256 `2d5347eb3831fcf5f01804fa6c4f5fd261f72473bfede75beed29255801b5ef2`
+- JPEG SOI present, EOI absent
+- Pillow/libjpeg decode failed
+
+That historical fallback is no longer the active candidate. The corrupt bytes remain recoverable through Git history for audit only.
