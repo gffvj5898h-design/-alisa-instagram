@@ -1,0 +1,8 @@
+{
+  "target_path": "character/references/alice-master-face.jpg",
+  "expected_current_sha256": "2d5347eb3831fcf5f01804fa6c4f5fd261f72473bfede75beed29255801b5ef2",
+  "expected_sha256": "d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767",
+  "expected_filename": "alice-master-face-original.jpeg",
+  "expected_bytes": 606787,
+  "firestorage_share_url": "https://firestorage.ai/ja/f/wb8u2CLJEqtK"
+}
