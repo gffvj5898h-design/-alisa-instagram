@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Probe share page without downloading asset
+      - name: Inspect share page client bundle
         shell: bash
         env:
           SHARE_URL: 'https://firestorage.ai/ja/f/uBRYlUuRpn-t'
@@ -24,27 +24,42 @@ jobs:
           import os, re, html
           from urllib.request import Request, urlopen
           from urllib.parse import urljoin
-          u=os.environ['SHARE_URL']; fn=os.environ['EXPECTED_FILE']
-          req=Request(u,headers={'User-Agent':'Mozilla/5.0'})
-          with urlopen(req,timeout=30) as r:
-              body=r.read().decode('utf-8','replace'); final=r.geturl(); ct=r.headers.get('content-type')
-          print('status=ok final=',final,'content-type=',ct,'chars=',len(body))
-          title=re.search(r'<title[^>]*>(.*?)</title>',body,re.I|re.S)
-          print('title=',html.unescape(re.sub('<[^>]+>',' ',title.group(1))).strip() if title else '<none>')
-          hrefs=re.findall(r'href=["\']([^"\']+)',body,re.I)
-          print('candidate hrefs:')
-          for h in hrefs:
-              x=urljoin(final,html.unescape(h))
-              low=x.lower()
-              if any(k in low for k in ('download','file','api','storage','asset')):
-                  print(x)
-          print('script srcs:')
-          for s in re.findall(r'<script[^>]+src=["\']([^"\']+)',body,re.I):
-              print(urljoin(final,html.unescape(s)))
-          for needle in (fn,'download','publicId','file_id','01a0782231247758bef5513f5eeb6c97','g95RF7RWPZ7nTcKe'):
-              print('--- needle',needle,'---')
-              for m in list(re.finditer(re.escape(needle),body,re.I))[:8]:
-                  a=max(0,m.start()-220); b=min(len(body),m.end()+420)
-                  snippet=re.sub(r'\s+',' ',body[a:b])
-                  print(snippet)
+
+          def get(url):
+              req=Request(url,headers={'User-Agent':'Mozilla/5.0'})
+              with urlopen(req,timeout=30) as r:
+                  return r.read().decode('utf-8','replace'), r.geturl(), r.headers.get('content-type')
+
+          body, final, ct = get(os.environ['SHARE_URL'])
+          print('page',final,ct,len(body))
+          scripts=[urljoin(final,html.unescape(s)) for s in re.findall(r'<script[^>]+src=["\']([^"\']+)',body,re.I)]
+          print('scripts',len(scripts))
+          needles=('download','signed','presign','share','public','file','object','storage','/api/','api/')
+          for script in scripts:
+              if '/app/(files)/' not in script and '/chunks/' not in script:
+                  continue
+              try:
+                  js,_,jct=get(script)
+              except Exception as exc:
+                  print('SCRIPT_FAIL',script,type(exc).__name__,exc)
+                  continue
+              hits=[]
+              low=js.lower()
+              for needle in needles:
+                  start=0
+                  while True:
+                      i=low.find(needle.lower(),start)
+                      if i<0: break
+                      a=max(0,i-220); b=min(len(js),i+520)
+                      snippet=re.sub(r'\s+',' ',js[a:b])
+                      if snippet not in hits: hits.append(snippet)
+                      start=i+len(needle)
+                      if len(hits)>=20: break
+                  if len(hits)>=20: break
+              if hits:
+                  print('\n=== SCRIPT',script,'chars',len(js),'===')
+                  for h in hits[:20]: print(h)
+              urls=sorted(set(re.findall(r'["\']((?:/|https://)[^"\']{1,220})["\']',js)))
+              interesting=[u for u in urls if any(k in u.lower() for k in ('api','download','share','file','storage'))]
+              for u in interesting[:80]: print('URL_LITERAL',u)
           PY
