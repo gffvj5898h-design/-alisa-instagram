@@ -9,6 +9,11 @@ from copy import deepcopy
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
+# `apply_human_intake.py` imports the local broker scheduler at runtime. The
+# intake workflow audits the working tree before committing, so Python bytecode
+# must never appear as an untracked control-plane diff.
+sys.dont_write_bytecode = True
+
 ROOT = Path(__file__).resolve().parents[1]
 STATE = ROOT / "coordination" / "state.json"
 TASKS = ROOT / "coordination" / "tasks.json"
