@@ -3,6 +3,7 @@ name: Coordination v4 validate
 on:
   push:
     branches:
+      - main
       - coordination-v4
     paths:
       - "coordination/**"
