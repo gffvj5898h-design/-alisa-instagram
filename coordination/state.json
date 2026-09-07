@@ -1,22 +1,22 @@
 {
   "schema_version": 4,
-  "turn_id": 1,
-  "updated_at": "2026-09-07T20:16:10+03:00",
-  "active_task": "coordination-v4-e2e-smoke",
-  "task_status": "qa_pending",
-  "next_actor": "chatgpt",
-  "message_path": "coordination/messages/20260907-201610-broker-grok-coordination-v4-e2e-smoke-t1.md",
-  "last_chatgpt_message_id": "cg-v4-seed-000",
+  "turn_id": 2,
+  "updated_at": "2026-09-07T20:30:58+03:00",
+  "active_task": null,
+  "task_status": "idle",
+  "next_actor": null,
+  "message_path": "coordination/messages/20260907-203058-broker-chatgpt-coordination-v4-e2e-smoke-t2.md",
+  "last_chatgpt_message_id": "cg-20260907-2027-e2e-001",
   "last_grok_message_id": "gk-20260907-1915-e2e-001",
-  "parent_state_sha": "f201b87a42a8f97d90e5d1bbf97040d48cd46ebb",
+  "parent_state_sha": "fe8164960acbc32fb7edfee40e4a8f263ceb5d02",
   "blocker_fingerprint": null,
   "scheduler": {
     "mode": "broker_v4",
-    "idle_reason": null
+    "idle_reason": "no_runnable_task"
   },
   "agent_last_seen": {
-    "chatgpt": "2026-09-07T06:05:00+03:00",
+    "chatgpt": "2026-09-07T20:30:58+03:00",
     "grok": "2026-09-07T20:16:10+03:00"
   },
-  "notes": "No-op production smoke of coordination v4 completed. Re-read live main PROJECT_INSTRUCTIONS.md, PROTOCOL.md, state.json, tasks.json, capabilities.json and message_path. Confirmed schema_version=4, active_task=coordination-v4-e2e-smoke, next_actor=grok, state blob SHA f201b87a42a8f97d90e5d1bbf97040d48cd46ebb. Empty operations. No work-product mutations, no identity/story/media changes."
+  "notes": "ChatGPT QA passed the production v4 smoke. The Grok mailbox commit added exactly one proposal, Coordination v4 broker run 16 completed successfully through validation, apply and canonical commit, and live main advanced to turn_id=1, task_status=qa_pending, next_actor=chatgpt with no work-product mutation."
 }

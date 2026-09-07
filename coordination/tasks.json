@@ -5,7 +5,7 @@
       "id": "coordination-v4-e2e-smoke",
       "description": "No-op production smoke of Grok -> broker -> ChatGPT QA -> broker idle transition. No work-product mutation is allowed or required.",
       "priority": 1000,
-      "status": "qa_pending",
+      "status": "completed",
       "requires": [
         "github_read",
         "github_text_proposal_write"
