@@ -98,6 +98,29 @@ def safe_slug(value: str) -> str:
     return value[:64] or "event"
 
 
+def apply_verified_capability_probe(task: dict, outcome: str, caps: dict) -> bool:
+    """Enable a probed capability only after independent QA passes.
+
+    The worker that claims the capability cannot self-certify it: human intake
+    validation requires a different qa_actor, and this function runs only on
+    that qa_pass transition.
+    """
+    probe = task.get("capability_probe")
+    if outcome != "qa_pass" or not isinstance(probe, dict):
+        return False
+    actor = probe.get("actor")
+    capability = probe.get("capability")
+    if actor not in {"chatgpt", "grok"}:
+        fail(f"invalid capability probe actor on task {task.get('id')}")
+    values = caps.get("actors", {}).get(actor)
+    if not isinstance(values, dict) or capability not in values:
+        fail(f"unknown probed capability on task {task.get('id')}: {actor}.{capability}")
+    if values[capability] is True:
+        return False
+    values[capability] = True
+    return True
+
+
 def apply(proposal_path: Path, do_apply: bool) -> None:
     subprocess.run([sys.executable, str(VALIDATE_STATE)], cwd=ROOT, check=True)
     subprocess.run([sys.executable, str(VALIDATE_PROPOSAL), str(proposal_path)], cwd=ROOT, check=True)
@@ -158,6 +181,8 @@ def apply(proposal_path: Path, do_apply: bool) -> None:
         task["blocked_on"] = [fp]
         task["blocker_fingerprint"] = fp
 
+    capability_changed = apply_verified_capability_probe(task, outcome, caps)
+
     if next_task is None:
         next_task, next_actor, idle_reason = schedule_next(tasks, caps)
 
@@ -191,6 +216,10 @@ def apply(proposal_path: Path, do_apply: bool) -> None:
     next_task_label = next_state["active_task"] or "idle"
     stamp = now.strftime("%Y%m%d-%H%M%S")
     message_rel = f"coordination/messages/{stamp}-broker-{safe_slug(actor)}-{safe_slug(current_task)}-t{proposal['turn_id']}.md"
+    capability_note = ""
+    if capability_changed:
+        probe = task["capability_probe"]
+        capability_note = f"\n- Capability enabled after independent QA: `{probe['actor']}.{probe['capability']}`\n"
     message = (
         f"# Broker event — turn {proposal['turn_id']}\n\n"
         f"- Message ID: `{proposal['message_id']}`\n"
@@ -199,7 +228,8 @@ def apply(proposal_path: Path, do_apply: bool) -> None:
         f"- Outcome: `{outcome}`\n"
         f"- Recipient: {recipient}\n"
         f"- Next task: `{next_task_label}`\n"
-        f"- Parent state SHA: `{parent_blob}`\n\n"
+        f"- Parent state SHA: `{parent_blob}`\n"
+        f"{capability_note}\n"
         f"## Summary\n\n{proposal['summary']}\n\n"
         f"## Handoff\n\n{proposal['handoff_body']}\n"
     )
@@ -210,6 +240,7 @@ def apply(proposal_path: Path, do_apply: bool) -> None:
     print(f"  proposal={proposal_path}")
     print(f"  current_task={current_task}")
     print(f"  outcome={outcome}")
+    print(f"  capability_changed={capability_changed}")
     print(f"  next_task={next_state['active_task']}")
     print(f"  next_actor={next_state['next_actor']}")
     print(f"  event={message_rel}")
@@ -220,6 +251,8 @@ def apply(proposal_path: Path, do_apply: bool) -> None:
         return
 
     write_json(TASKS, {"schema_version": 1, "tasks": tasks})
+    if capability_changed:
+        write_json(CAPS, caps)
     write_json(STATE, next_state)
     event_path = ROOT / message_rel
     event_path.parent.mkdir(parents=True, exist_ok=True)
