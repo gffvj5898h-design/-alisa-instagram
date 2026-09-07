@@ -1,0 +1,104 @@
+name: Coordination v4 human intake
+
+on:
+  push:
+    branches:
+      - coordination-intake
+    paths:
+      - "coordination/intake/*.json"
+  workflow_dispatch:
+    inputs:
+      intake_path:
+        description: "coordination/intake/*.json on coordination-intake"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: alisa-main-writer
+  cancel-in-progress: false
+
+jobs:
+  intake:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout intake event
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Verify intake commit shape and capture payload
+        id: intake
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            intake='${{ inputs.intake_path }}'
+            [[ "$intake" == coordination/intake/*.json ]] || { echo "invalid intake path" >&2; exit 1; }
+            [[ -f "$intake" ]] || { echo "intake missing" >&2; exit 1; }
+          else
+            mapfile -t changed < <(git diff-tree --no-commit-id --name-status -r HEAD^ HEAD)
+            [[ ${#changed[@]} -eq 1 ]] || {
+              echo "intake commit must contain exactly one changed path" >&2
+              printf '%s\n' "${changed[@]}" >&2
+              exit 1
+            }
+            status="${changed[0]%%$'\t'*}"
+            intake="${changed[0]#*$'\t'}"
+            [[ "$status" == "A" ]] || { echo "intake must be newly added" >&2; exit 1; }
+            [[ "$intake" == coordination/intake/*.json ]] || { echo "piggyback path rejected: $intake" >&2; exit 1; }
+          fi
+          cp "$intake" /tmp/alisa-v4-human-intake.json
+          echo "path=$intake" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout latest canonical main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git checkout -B main origin/main
+
+      - name: Validate canonical state
+        run: python3 coordination/validate_state.py
+
+      - name: Apply human intake
+        run: python3 coordination/apply_human_intake.py /tmp/alisa-v4-human-intake.json
+
+      - name: Reject unexpected intake diff
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import subprocess, sys
+          allowed_exact = {'coordination/state.json', 'coordination/tasks.json'}
+          allowed_prefixes = (
+              'coordination/messages/', 'coordination/intakes/',
+              'content/briefs/', 'content/reels/'
+          )
+          changed = subprocess.check_output(['git','status','--porcelain'], text=True).splitlines()
+          bad = []
+          for line in changed:
+              path = line[3:]
+              if ' -> ' in path:
+                  path = path.split(' -> ', 1)[1]
+              if path not in allowed_exact and not path.startswith(allowed_prefixes):
+                  bad.append(path)
+          if bad:
+              print('unexpected intake paths:', *bad, sep='\n', file=sys.stderr)
+              raise SystemExit(1)
+          PY
+
+      - name: Commit one canonical intake transition
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && { echo "human intake produced no changes" >&2; exit 1; }
+          turn="$(python3 -c 'import json; print(json.load(open("coordination/state.json"))["turn_id"])')"
+          iid="$(python3 -c 'import json; print(json.load(open("/tmp/alisa-v4-human-intake.json"))["intake_id"])')"
+          git commit -m "intake(v4): ${iid} turn ${turn}"
+          python3 coordination/validate_state.py --git-transition
+          git push origin HEAD:main
