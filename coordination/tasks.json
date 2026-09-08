@@ -408,7 +408,7 @@
       "id": "reels-015-start-frame",
       "description": "Grok: generate one 1080x1920 canonical-identity start-frame for Reels 015 from content/reels/015-andrey/prompt-grok.md. This is the first permitted male face reveal: Alice and Andrey at the meeting, emotionally natural, no text. Alice must remain canonical. Import to content/reels/015-andrey/stills/start-frame.jpg and verify receipt; ChatGPT QA follows.",
       "priority": 1820,
-      "status": "ready",
+      "status": "blocked",
       "requires": [
         "github_read",
         "github_text_proposal_write",
@@ -420,10 +420,12 @@
       ],
       "preferred_actor": "grok",
       "qa_actor": "chatgpt",
-      "attempts": 0,
+      "attempts": 1,
       "max_attempts": 3,
-      "blocked_on": [],
-      "blocker_fingerprint": null
+      "blocked_on": [
+        "reels015:imagine-output-bytes-not-available-in-sandbox-for-data-plane"
+      ],
+      "blocker_fingerprint": "reels015:imagine-output-bytes-not-available-in-sandbox-for-data-plane"
     },
     {
       "id": "reels-006-015-final-arc-qa",
