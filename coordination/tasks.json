@@ -341,7 +341,7 @@
       "id": "reels-012-start-frame",
       "description": "Grok: generate one 1080x1920 canonical-identity start-frame for Reels 012 from content/reels/012-how-you-found-me/prompt-grok.md. Alice near a window/in dim room reacting to phone, no male face and no text. Import to content/reels/012-how-you-found-me/stills/start-frame.jpg and verify receipt; ChatGPT QA follows.",
       "priority": 1850,
-      "status": "ready",
+      "status": "blocked",
       "requires": [
         "github_read",
         "github_text_proposal_write",
@@ -353,10 +353,12 @@
       ],
       "preferred_actor": "grok",
       "qa_actor": "chatgpt",
-      "attempts": 0,
+      "attempts": 1,
       "max_attempts": 3,
-      "blocked_on": [],
-      "blocker_fingerprint": null
+      "blocked_on": [
+        "reels012:imagine-output-bytes-not-available-in-sandbox-for-data-plane"
+      ],
+      "blocker_fingerprint": "reels012:imagine-output-bytes-not-available-in-sandbox-for-data-plane"
     },
     {
       "id": "reels-013-start-frame",
