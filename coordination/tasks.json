@@ -387,7 +387,7 @@
       "id": "reels-014-start-frame",
       "description": "Grok: generate one 1080x1920 canonical-identity start-frame for Reels 014 from content/reels/014-no-more-games-tomorrow/prompt-grok.md. Daylight Alice with phone, serious anticipation, no male face and no text. Import to content/reels/014-no-more-games-tomorrow/stills/start-frame.jpg and verify receipt; ChatGPT QA follows.",
       "priority": 1830,
-      "status": "ready",
+      "status": "qa_pending",
       "requires": [
         "github_read",
         "github_text_proposal_write",
@@ -399,7 +399,7 @@
       ],
       "preferred_actor": "grok",
       "qa_actor": "chatgpt",
-      "attempts": 0,
+      "attempts": 1,
       "max_attempts": 3,
       "blocked_on": [],
       "blocker_fingerprint": null
