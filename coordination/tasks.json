@@ -364,7 +364,7 @@
       "id": "reels-013-start-frame",
       "description": "Grok: generate one 1080x1920 canonical-identity start-frame for Reels 013 from content/reels/013-what-i-dont-say/prompt-grok.md. Intimate night home frame, Alice vulnerable but adult and realistic, no male face and no text. Import to content/reels/013-what-i-dont-say/stills/start-frame.jpg and verify receipt; ChatGPT QA follows.",
       "priority": 1840,
-      "status": "ready",
+      "status": "blocked",
       "requires": [
         "github_read",
         "github_text_proposal_write",
@@ -376,10 +376,12 @@
       ],
       "preferred_actor": "grok",
       "qa_actor": "chatgpt",
-      "attempts": 0,
+      "attempts": 1,
       "max_attempts": 3,
-      "blocked_on": [],
-      "blocker_fingerprint": null
+      "blocked_on": [
+        "reels013:imagine-output-bytes-not-available-in-sandbox-for-data-plane"
+      ],
+      "blocker_fingerprint": "reels013:imagine-output-bytes-not-available-in-sandbox-for-data-plane"
     },
     {
       "id": "reels-014-start-frame",
