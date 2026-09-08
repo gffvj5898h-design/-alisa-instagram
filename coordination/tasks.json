@@ -52,7 +52,7 @@
       "id": "post-001-seven-stills",
       "description": "Generate seven Post 001 stills with the canonical identity reference and QA every face.",
       "priority": 700,
-      "status": "ready",
+      "status": "blocked",
       "requires": [
         "identity_reference_still_generation"
       ],
@@ -61,10 +61,12 @@
       ],
       "preferred_actor": "grok",
       "qa_actor": "chatgpt",
-      "attempts": 1,
+      "attempts": 2,
       "max_attempts": 5,
-      "blocked_on": [],
-      "blocker_fingerprint": null
+      "blocked_on": [
+        "post001:imagine-output-bytes-not-available-in-sandbox-for-data-plane"
+      ],
+      "blocker_fingerprint": "post001:imagine-output-bytes-not-available-in-sandbox-for-data-plane"
     },
     {
       "id": "reels-001-native-720p",

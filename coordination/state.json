@@ -1,22 +1,22 @@
 {
   "schema_version": 4,
-  "turn_id": 17,
-  "updated_at": "2026-09-08T06:07:50+03:00",
-  "active_task": "post-001-seven-stills",
-  "task_status": "ready",
-  "next_actor": "grok",
-  "message_path": "coordination/messages/20260908-060750-broker-grok-reels-015-start-frame-t17.md",
+  "turn_id": 18,
+  "updated_at": "2026-09-08T07:11:57+03:00",
+  "active_task": null,
+  "task_status": "idle",
+  "next_actor": null,
+  "message_path": "coordination/messages/20260908-071157-broker-grok-post-001-seven-stills-t18.md",
   "last_chatgpt_message_id": "cg-20260908-reels014-qa-001",
-  "last_grok_message_id": "gk-20260908-reels015-start-frame-001",
-  "parent_state_sha": "88bd991c29319b17a0e140a456c3955f41506d4a",
+  "last_grok_message_id": "gk-20260908-post001-seven-stills-001",
+  "parent_state_sha": "e15f5c2bf2225de1a5ede580cfe7057369bb50a4",
   "blocker_fingerprint": null,
   "scheduler": {
     "mode": "broker_v4",
-    "idle_reason": null
+    "idle_reason": "no_runnable_task"
   },
   "agent_last_seen": {
     "chatgpt": "2026-09-08T05:52:02+03:00",
-    "grok": "2026-09-08T06:07:50+03:00"
+    "grok": "2026-09-08T07:11:57+03:00"
   },
-  "notes": "Reels 015 start-frame generation blocked: Imagine can produce the frame with identity reference in product UI, but exact output bytes are not available inside the agent sandbox for the binary data plane (prepare_github_import / Gmail attachment path). No local JPG/PNG produced that can be hashed and bridged. Canonical identity untouched. No new plot invented."
+  "notes": "Post 001 seven stills generation blocked: Imagine can produce frames with identity reference in product UI, but exact output bytes are not available inside the agent sandbox for the binary data plane (prepare_github_import / Gmail attachment path). No local JPG/PNG produced that can be hashed and bridged. Canonical identity untouched. No new plot invented."
 }
