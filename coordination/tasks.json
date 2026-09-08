@@ -318,7 +318,7 @@
       "id": "reels-011-start-frame",
       "description": "Grok: generate one 1080x1920 canonical-identity start-frame for Reels 011 from content/reels/011-on-foot/prompt-grok.md. Evening Saint Petersburg walk, Alice readable, only male shoulder/hand/silhouette allowed, male face must remain unrevealed, no text. Import to content/reels/011-on-foot/stills/start-frame.jpg and verify receipt; ChatGPT QA follows.",
       "priority": 1860,
-      "status": "ready",
+      "status": "blocked",
       "requires": [
         "github_read",
         "github_text_proposal_write",
@@ -330,10 +330,12 @@
       ],
       "preferred_actor": "grok",
       "qa_actor": "chatgpt",
-      "attempts": 0,
+      "attempts": 1,
       "max_attempts": 3,
-      "blocked_on": [],
-      "blocker_fingerprint": null
+      "blocked_on": [
+        "reels011:imagine-output-bytes-not-available-in-sandbox-for-data-plane"
+      ],
+      "blocker_fingerprint": "reels011:imagine-output-bytes-not-available-in-sandbox-for-data-plane"
     },
     {
       "id": "reels-012-start-frame",
