@@ -1,0 +1,19 @@
+{
+  "schema_version": 4,
+  "actor": "chatgpt",
+  "message_id": "cg-20260908-reels014-qa-001",
+  "task_id": "reels-014-start-frame",
+  "expected_state_sha": "fcc1959412ce7d7bc81654ec540cc938ac237095",
+  "turn_id": 16,
+  "outcome": "qa_pass",
+  "summary": "Reels 014 start-frame QA passed after independent binary ingestion and verification. The exact Gmail attachment hashes to 149513b06fa9cc3a1e7dbffb420826a8659435a0b5a3df6f1d771766e9cf4d09, is a fully decodable 1080x1920 RGB JPEG of 572461 bytes, and now exists on main with a matching repository import receipt. Independent visual QA against the exact recovered canonical master (SHA-256 d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767) confirms the same Alice identity, apparent age about 40, blonde identity and recognizable facial proportions. The frame matches the Reels 014 prompt: bright daytime apartment/studio, cream smart-casual outfit, phone in hand, serious anticipatory gaze, no text and no male face.",
+  "handoff_body": "## QA result\nPASS.\n\n## Binary verification\n- Target exists on main: `content/reels/014-no-more-games-tomorrow/stills/start-frame.jpg`.\n- Repository receipt exists: `production/import-receipts/20260908-reels014-start-frame-firestorage.md`.\n- Exact bytes independently downloaded from the unique Gmail ALISA-BRIDGE attachment and verified locally: 572461 bytes, SHA-256 `149513b06fa9cc3a1e7dbffb420826a8659435a0b5a3df6f1d771766e9cf4d09`, JPEG SOI+EOI, 1080x1920 RGB, Pillow verify and full load OK.\n- Receipt on main reports the same target, byte count, SHA-256 and 1080x1920 dimensions.\n\n## Identity and scene QA\n- Independently recovered canonical master attachment verifies to SHA-256 `d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767`, 1237x1536 JPEG.\n- Side-by-side visual inspection confirms the same Alice identity: same mature blonde woman, eye/nose/lip/jaw relationships and apparent age around 40; no generic-model replacement.\n- Scene conforms to the canonical Reels 014 start-frame prompt: bright daytime apartment/studio, light cream smart-casual outfit, phone in hand, serious anticipatory gaze.\n- No male face or male figure visible. No text. Phone display is blank/dark.\n- Canonical identity files were not modified.\n",
+  "operations": [
+    {
+      "action": "update",
+      "path": "content/reels/014-no-more-games-tomorrow/result-notes.md",
+      "content": "# Reels 014 — result notes\n\n## Start-frame 2026-09-08\n\n- Identity reference used: `character/references/alice-master-face.jpg` (SHA-256 `d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767`) as edit base.\n- Candidate JPEG: 1080×1920, 572461 bytes, SHA-256 `149513b06fa9cc3a1e7dbffb420826a8659435a0b5a3df6f1d771766e9cf4d09`.\n- Scene: bright daytime studio/apartment, cream smart-casual, phone in hand, serious anticipation, no text, no male face.\n- Transport: Gmail ALISA-BRIDGE message_id `1a07ee3d489f70c7`; SAVE_TO=`content/reels/014-no-more-games-tomorrow/stills/start-frame.jpg`.\n- Binary import completed through `production/import-queue/20260908-reels014-start-frame-firestorage.json`; matching receipt: `production/import-receipts/20260908-reels014-start-frame-firestorage.md`.\n- Independent ChatGPT verification: exact attachment 572461 bytes, SHA-256 `149513b06fa9cc3a1e7dbffb420826a8659435a0b5a3df6f1d771766e9cf4d09`, 1080×1920 RGB JPEG, SOI+EOI, Pillow verify+full load OK.\n- Identity QA against the independently recovered canonical master SHA-256 `d3a64a201e3466eb87a197a897116161578db51aac23e28be927fd2c89109767`: PASS. Same Alice identity, apparent age ~40, blonde identity and recognizable facial proportions.\n- Scene QA: PASS. Bright daytime apartment/studio, light cream smart-casual outfit, phone in hand, serious anticipatory gaze, no text, no male face.\n- Canonical identity not modified.\n- Final start-frame QA status: PASS.\n"
+    }
+  ],
+  "blocker_fingerprint": null
+}
