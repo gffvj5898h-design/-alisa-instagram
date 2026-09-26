@@ -1,0 +1,767 @@
+{
+  "exported_at": "2026-09-26",
+  "automations": [
+    {
+      "name": "«ДАЛЬШЕ» to Comment",
+      "id": "01a0b9e3-2775-7365-be9d-08d7e870dac7",
+      "detail": {
+        "id": "01a0b9e3-2775-7365-be9d-08d7e870dac7",
+        "name": "«ДАЛЬШЕ» to Comment",
+        "type": "Quick Setup",
+        "typeDescription": "Simple mobile-friendly form for subscription-check + link delivery, very limited",
+        "url": "https://app.chatplace.io/automations/create/keyword/?f=01a0b9e3-2775-7365-be9d-08d7e870dac7",
+        "status": "Active",
+        "platform": "instagram",
+        "botId": "01a0b9cb-af0a-7212-a8ec-68f79587d3f4",
+        "botUsername": "@alisa.vetrova.spb",
+        "triggerTypes": [
+          {
+            "value": 6,
+            "name": "Comment contains"
+          }
+        ],
+        "startMessages": [
+          "ДАЛЬШЕ",
+          "ЛИЧНОЕ"
+        ],
+        "startFrequency": 30,
+        "startFrequencyType": "Секунды",
+        "defaultStepId": "01a0b9e3-2841-7264-ad83-a30559076f91",
+        "steps": [
+          {
+            "id": "01a0b9e3-2841-7264-ad83-a30559076f91",
+            "name": "Flow 1",
+            "status": "InCompleted",
+            "isDefault": true,
+            "messages": [
+              {
+                "id": "01a0b9e3-2850-7072-89f1-5ed4b2113fc0",
+                "isFirstMessage": false,
+                "coordinatesX": 1123,
+                "coordinatesY": 101,
+                "commandType": "send_text",
+                "text": "<p>Он ушёл. Дверь закрылась. Тишина.\n\nЯ стояла на кухне с его кружкой. Кофе ещё тёплый.\n\nТелефон на столе. Ни одного сообщения.\n\n«Хорошего вечера», - сказала я вслух. Никому.\n\nЭто сцена, которой не будет в ленте. Только здесь.</p>",
+                "formType": 2,
+                "formTypeName": "Template",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 1,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba17-611f-72ba-93a6-48af344a19bf",
+                "inlineButtons": [
+                  {
+                    "id": "01a0b9e3-2850-7072-89f1-5ed4b26e1863",
+                    "text": "Что было дальше?",
+                    "type": 2,
+                    "typeName": "Button",
+                    "subtype": 1,
+                    "subtypeName": "NormalButton",
+                    "trackClicks": true,
+                    "oneTime": true,
+                    "position": 1,
+                    "clientsCount": 1,
+                    "ctr": 100,
+                    "url": null,
+                    "nextMessageId": "01a0ba17-611f-72ba-93a6-48af344a19bf",
+                    "tags": []
+                  }
+                ],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba45-9641-71fe-9b80-ba8064340162",
+                "isFirstMessage": false,
+                "coordinatesX": 1580,
+                "coordinatesY": 520,
+                "commandType": "send_text",
+                "text": "Ты уже видела, чем закончился тот вечер.\n\nУтром я открыла приложения знакомств с одной мыслью — удалить всё к чёрту.\n\nПалец уже был на кнопке. И тут я остановилась.",
+                "formType": 2,
+                "formTypeName": "Template",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba45-9d57-7076-b103-c3e80bb8bef4",
+                "inlineButtons": [
+                  {
+                    "id": "01a0ba45-fe19-7115-963d-f3d5e337b6c0",
+                    "text": "Почему?",
+                    "type": 1,
+                    "typeName": "QuickAnswer",
+                    "subtype": 1,
+                    "subtypeName": "NormalButton",
+                    "trackClicks": true,
+                    "oneTime": true,
+                    "position": 1,
+                    "clientsCount": 0,
+                    "ctr": 0,
+                    "url": null,
+                    "nextMessageId": "01a0ba45-9d57-7076-b103-c3e80bb8bef4",
+                    "tags": []
+                  }
+                ],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba45-a325-71b6-93d8-4969c7c4b664",
+                "isFirstMessage": false,
+                "coordinatesX": 2500,
+                "coordinatesY": 520,
+                "commandType": "send_text",
+                "text": "Ты бы после такого удалила приложение?",
+                "formType": 2,
+                "formTypeName": "Template",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba45-a9a2-730d-b722-7b9810c8e4b0",
+                "inlineButtons": [
+                  {
+                    "id": "01a0ba46-0aea-7116-8cef-b836950f9eb5",
+                    "text": "Да",
+                    "type": 1,
+                    "typeName": "QuickAnswer",
+                    "subtype": 1,
+                    "subtypeName": "NormalButton",
+                    "trackClicks": true,
+                    "oneTime": true,
+                    "position": 1,
+                    "clientsCount": 0,
+                    "ctr": 0,
+                    "url": null,
+                    "nextMessageId": "01a0ba45-a9a2-730d-b722-7b9810c8e4b0",
+                    "tags": []
+                  },
+                  {
+                    "id": "01a0ba46-1017-7069-b4b0-55991e6a005d",
+                    "text": "Нет",
+                    "type": 1,
+                    "typeName": "QuickAnswer",
+                    "subtype": 1,
+                    "subtypeName": "NormalButton",
+                    "trackClicks": true,
+                    "oneTime": true,
+                    "position": 2,
+                    "clientsCount": 0,
+                    "ctr": 0,
+                    "url": null,
+                    "nextMessageId": "01a0ba45-afd5-73e5-b26a-ba5cf00f1667",
+                    "tags": []
+                  }
+                ],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0b9e3-2862-7376-ba06-4650abb5707e",
+                "isFirstMessage": false,
+                "coordinatesX": 693,
+                "coordinatesY": 484,
+                "commandType": "send_text",
+                "text": "<p>Сцена только для своих. Подпишись и возвращайся.</p>",
+                "formType": 2,
+                "formTypeName": "Template",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0b9e3-284e-71b6-853b-476fde64b6bd",
+                "inlineButtons": [
+                  {
+                    "id": "01a0b9e3-2862-7376-ba06-4650ac8466c4",
+                    "text": "Проверить снова",
+                    "type": 2,
+                    "typeName": "Button",
+                    "subtype": 1,
+                    "subtypeName": "NormalButton",
+                    "trackClicks": true,
+                    "oneTime": false,
+                    "position": 1,
+                    "clientsCount": 0,
+                    "ctr": 0,
+                    "url": null,
+                    "nextMessageId": "01a0b9e3-284e-71b6-853b-476fde64b6bd",
+                    "tags": []
+                  }
+                ],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba45-9d57-7076-b103-c3e80bb8bef4",
+                "isFirstMessage": false,
+                "coordinatesX": 2040,
+                "coordinatesY": 520,
+                "commandType": "send_text",
+                "text": "Не из-за надежды.\n\nПросто вдруг разозлилась: с какой стати один неудачный вечер должен решать, что я больше никого не хочу видеть?",
+                "formType": 2,
+                "formTypeName": "Template",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba45-a325-71b6-93d8-4969c7c4b664",
+                "inlineButtons": [
+                  {
+                    "id": "01a0ba46-04c3-72c0-a248-e931d70576e7",
+                    "text": "И что сделала?",
+                    "type": 1,
+                    "typeName": "QuickAnswer",
+                    "subtype": 1,
+                    "subtypeName": "NormalButton",
+                    "trackClicks": true,
+                    "oneTime": true,
+                    "position": 1,
+                    "clientsCount": 0,
+                    "ctr": 0,
+                    "url": null,
+                    "nextMessageId": "01a0ba45-a325-71b6-93d8-4969c7c4b664",
+                    "tags": []
+                  }
+                ],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba17-67f2-7017-b2a0-978a14b22f5f",
+                "isFirstMessage": false,
+                "coordinatesX": 2040,
+                "coordinatesY": 100,
+                "commandType": "send_text",
+                "text": "Скажи честно: если после свидания человек молчит, ты бы написала первой?",
+                "formType": 2,
+                "formTypeName": "Template",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 1,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba17-78de-7380-abcd-546468061f2d",
+                "inlineButtons": [
+                  {
+                    "id": "01a0ba17-bc51-71f7-b125-b234c269efd7",
+                    "text": "Да",
+                    "type": 1,
+                    "typeName": "QuickAnswer",
+                    "subtype": 1,
+                    "subtypeName": "NormalButton",
+                    "trackClicks": true,
+                    "oneTime": true,
+                    "position": 1,
+                    "clientsCount": 1,
+                    "ctr": 100,
+                    "url": null,
+                    "nextMessageId": "01a0ba17-70ea-7152-9262-33772d22cd18",
+                    "tags": []
+                  },
+                  {
+                    "id": "01a0ba17-c27f-70ae-baee-70d2bb435ab0",
+                    "text": "Нет",
+                    "type": 1,
+                    "typeName": "QuickAnswer",
+                    "subtype": 1,
+                    "subtypeName": "NormalButton",
+                    "trackClicks": true,
+                    "oneTime": true,
+                    "position": 2,
+                    "clientsCount": 0,
+                    "ctr": 0,
+                    "url": null,
+                    "nextMessageId": "01a0ba17-78de-7380-abcd-546468061f2d",
+                    "tags": []
+                  }
+                ],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba45-b649-71de-b1d7-2fd7fea17052",
+                "isFirstMessage": false,
+                "coordinatesX": 3420,
+                "coordinatesY": 520,
+                "commandType": "send_text",
+                "text": "В общем, ничего я не удалила.\n\nА дальше всё стало ещё интереснее.",
+                "formType": 2,
+                "formTypeName": "Template",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba45-bba1-732e-8465-5ea46396e2a8",
+                "inlineButtons": [
+                  {
+                    "id": "01a0ba46-16db-70cf-8fc6-f506f1cb2e0d",
+                    "text": "Смотреть #4",
+                    "type": 2,
+                    "typeName": "Button",
+                    "subtype": 2,
+                    "subtypeName": "UrlButton",
+                    "trackClicks": true,
+                    "oneTime": true,
+                    "position": 1,
+                    "clientsCount": 0,
+                    "ctr": 0,
+                    "url": "https://www.instagram.com/reel/DdacG4jMJp8/",
+                    "nextMessageId": "01a0ba45-bba1-732e-8465-5ea46396e2a8",
+                    "tags": []
+                  }
+                ],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba17-804a-7373-a507-c77bc0b97f25",
+                "isFirstMessage": false,
+                "coordinatesX": 2960,
+                "coordinatesY": 160,
+                "commandType": "send_text",
+                "text": "И именно тогда я поняла: надо было уйти раньше.\n\nВот тот самый момент.",
+                "formType": 2,
+                "formTypeName": "Template",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 1,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0b9e3-285e-7324-807f-3215b4278f2b",
+                "inlineButtons": [
+                  {
+                    "id": "01a0ba17-cba1-710a-a581-59c15541b4c7",
+                    "text": "Смотреть дальше",
+                    "type": 2,
+                    "typeName": "Button",
+                    "subtype": 2,
+                    "subtypeName": "UrlButton",
+                    "trackClicks": true,
+                    "oneTime": true,
+                    "position": 1,
+                    "clientsCount": 1,
+                    "ctr": 100,
+                    "url": "https://www.instagram.com/reel/Ddaan_FMKhP/",
+                    "nextMessageId": "01a0b9e3-285e-7324-807f-3215b4278f2b",
+                    "tags": []
+                  }
+                ],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba17-611f-72ba-93a6-48af344a19bf",
+                "isFirstMessage": false,
+                "coordinatesX": 1580,
+                "coordinatesY": 100,
+                "commandType": "send_text",
+                "text": "Минут через десять я всё-таки взяла телефон.\n\nНаш чат был открыт на последнем «я подъехал».\n\nХотелось написать что-нибудь нейтральное. Хотя бы «доехал?».\n\nЯ набрала два слова — и стёрла.\n\nПотом вспомнила одну деталь этого вечера, которую почему-то всё время пыталась не замечать.",
+                "formType": 2,
+                "formTypeName": "Template",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 1,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba17-67f2-7017-b2a0-978a14b22f5f",
+                "inlineButtons": [
+                  {
+                    "id": "01a0ba17-b3d1-7173-b5e3-99c58cca3f9c",
+                    "text": "Покажи",
+                    "type": 1,
+                    "typeName": "QuickAnswer",
+                    "subtype": 1,
+                    "subtypeName": "NormalButton",
+                    "trackClicks": true,
+                    "oneTime": true,
+                    "position": 1,
+                    "clientsCount": 1,
+                    "ctr": 100,
+                    "url": null,
+                    "nextMessageId": "01a0ba17-67f2-7017-b2a0-978a14b22f5f",
+                    "tags": []
+                  }
+                ],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0b9e3-2841-7264-ad83-a30559a97852",
+                "isFirstMessage": true,
+                "coordinatesX": 100,
+                "coordinatesY": 100,
+                "commandType": "send_text",
+                "text": "<p>Хочешь увидеть, что было дальше? Нажми - пришлю сцену, которой нет в ленте.</p>",
+                "formType": 2,
+                "formTypeName": "Template",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 1,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0b9e3-284e-71b6-853b-476fde64b6bd",
+                "inlineButtons": [
+                  {
+                    "id": "01a0b9e3-2842-7381-85f8-7ea61eda2b33",
+                    "text": "Хочу увидеть",
+                    "type": 2,
+                    "typeName": "Button",
+                    "subtype": 1,
+                    "subtypeName": "NormalButton",
+                    "trackClicks": true,
+                    "oneTime": true,
+                    "position": 1,
+                    "clientsCount": 1,
+                    "ctr": 100,
+                    "url": null,
+                    "nextMessageId": "01a0b9e3-284e-71b6-853b-476fde64b6bd",
+                    "tags": []
+                  }
+                ],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba17-78de-7380-abcd-546468061f2d",
+                "isFirstMessage": false,
+                "coordinatesX": 2500,
+                "coordinatesY": 320,
+                "commandType": "send_text",
+                "text": "Вот и я решила не писать.\nНе из гордости. Просто в голове снова прокрутился один момент с этого вечера.",
+                "formType": 1,
+                "formTypeName": "QuickAnswer",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba17-804a-7373-a507-c77bc0b97f25",
+                "inlineButtons": [],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba45-bba1-732e-8465-5ea46396e2a8",
+                "isFirstMessage": false,
+                "coordinatesX": 3880,
+                "coordinatesY": 520,
+                "commandType": "send_text",
+                "text": null,
+                "formType": 3,
+                "formTypeName": "NoType",
+                "actionType": 3,
+                "actionTypeName": "Action",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": null,
+                "inlineButtons": [],
+                "conditionButtons": [],
+                "actionButtons": [
+                  {
+                    "id": "01a0ba45-bbad-73c6-b3fb-4f9ba75fa4ce",
+                    "subActions": [
+                      {
+                        "id": "01a0ba46-7215-719e-a778-dbfa80962151",
+                        "actionLabel": "add_tag",
+                        "tags": [
+                          "story-дальше-chapter-3-complete"
+                        ],
+                        "fields": []
+                      },
+                      {
+                        "id": "01a0ba46-721a-7245-82a9-f5e94f4f8f2c",
+                        "actionLabel": "make_conversion",
+                        "tags": [],
+                        "fields": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "01a0ba45-0fac-7017-8843-fec771388766",
+                "isFirstMessage": false,
+                "coordinatesX": 1120,
+                "coordinatesY": 360,
+                "commandType": "send_text",
+                "text": null,
+                "formType": 3,
+                "formTypeName": "NoType",
+                "actionType": 2,
+                "actionTypeName": "Condition",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba45-9641-71fe-9b80-ba8064340162",
+                "inlineButtons": [],
+                "conditionButtons": [
+                  {
+                    "id": "01a0ba45-230a-7289-838e-9e2a24d7a7cb",
+                    "isNoMatchButton": false,
+                    "matchType": 1,
+                    "matchTypeName": "Соответствует",
+                    "fulfilledType": 1,
+                    "fulfilledTypeName": "Соответствует всем",
+                    "nextMessageId": "01a0ba45-9641-71fe-9b80-ba8064340162",
+                    "subConditions": [
+                      {
+                        "id": "a8f284a0-f532-456d-afea-8763817c1cc6",
+                        "conditionLabel": "has_tags",
+                        "fulfilledType": 1,
+                        "fulfilledTypeName": "Соответствует всем",
+                        "tags": [
+                          "click-link-дальше-to-comment-2026-09-19-13-37"
+                        ],
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": "01a0ba45-0fc9-7301-95c9-c14a5173b78e",
+                    "isNoMatchButton": true,
+                    "matchType": 2,
+                    "matchTypeName": "Не соответствует",
+                    "fulfilledType": 1,
+                    "fulfilledTypeName": "Соответствует всем",
+                    "nextMessageId": "01a0b9e3-2850-7072-89f1-5ed4b2113fc0",
+                    "subConditions": []
+                  }
+                ],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba45-a9a2-730d-b722-7b9810c8e4b0",
+                "isFirstMessage": false,
+                "coordinatesX": 2960,
+                "coordinatesY": 420,
+                "commandType": "send_text",
+                "text": "Я тоже была в одном нажатии от этого.\nХотелось просто закрыть тему и больше к ней не возвращаться.",
+                "formType": 1,
+                "formTypeName": "QuickAnswer",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba45-b649-71de-b1d7-2fd7fea17052",
+                "inlineButtons": [],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0b9e3-284e-71b6-853b-476fde64b6bd",
+                "isFirstMessage": false,
+                "coordinatesX": 557,
+                "coordinatesY": 121,
+                "commandType": "send_text",
+                "text": null,
+                "formType": 3,
+                "formTypeName": "NoType",
+                "actionType": 2,
+                "actionTypeName": "Condition",
+                "clientsCount": 1,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0b9e3-2862-7376-ba06-4650abb5707e",
+                "inlineButtons": [],
+                "conditionButtons": [
+                  {
+                    "id": "01a0b9e3-284f-71a8-8fb5-12480a5f24c3",
+                    "isNoMatchButton": false,
+                    "matchType": 1,
+                    "matchTypeName": "Соответствует",
+                    "fulfilledType": 1,
+                    "fulfilledTypeName": "Соответствует всем",
+                    "nextMessageId": "01a0ba45-0fac-7017-8843-fec771388766",
+                    "subConditions": [
+                      {
+                        "id": "01a0b9e3-284f-71a8-8fb5-12480aef77d5",
+                        "conditionLabel": "check_subscription",
+                        "fulfilledType": 1,
+                        "fulfilledTypeName": "Соответствует всем",
+                        "tags": [],
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": "01a0b9e3-2850-7072-89f1-5ed4b1e1c9c6",
+                    "isNoMatchButton": true,
+                    "matchType": 2,
+                    "matchTypeName": "Не соответствует",
+                    "fulfilledType": 1,
+                    "fulfilledTypeName": "Соответствует всем",
+                    "nextMessageId": "01a0b9e3-2862-7376-ba06-4650abb5707e",
+                    "subConditions": []
+                  }
+                ],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0b9e3-285e-7324-807f-3215b4278f2b",
+                "isFirstMessage": false,
+                "coordinatesX": 3420,
+                "coordinatesY": 160,
+                "commandType": "send_text",
+                "text": null,
+                "formType": 3,
+                "formTypeName": "NoType",
+                "actionType": 3,
+                "actionTypeName": "Action",
+                "clientsCount": 1,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0b9e3-2861-7074-8755-7ee3db9231c3",
+                "inlineButtons": [],
+                "conditionButtons": [],
+                "actionButtons": [
+                  {
+                    "id": "01a0b9e3-285e-7324-807f-3215b50ca108",
+                    "subActions": [
+                      {
+                        "id": "01a0b9e3-285f-7354-87dd-d3c67aaa6fe6",
+                        "actionLabel": "add_tag",
+                        "tags": [
+                          "click-link-дальше-to-comment-2026-09-19-13-37"
+                        ],
+                        "fields": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "01a0b9e3-2861-7074-8755-7ee3db9231c3",
+                "isFirstMessage": false,
+                "coordinatesX": 3880,
+                "coordinatesY": 160,
+                "commandType": "send_text",
+                "text": null,
+                "formType": 3,
+                "formTypeName": "NoType",
+                "actionType": 3,
+                "actionTypeName": "Action",
+                "clientsCount": 1,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": null,
+                "inlineButtons": [],
+                "conditionButtons": [],
+                "actionButtons": [
+                  {
+                    "id": "01a0b9e3-2861-7074-8755-7ee3dc6fec88",
+                    "subActions": [
+                      {
+                        "id": "01a0b9e3-2861-7074-8755-7ee3dce9eab4",
+                        "actionLabel": "make_conversion",
+                        "tags": [],
+                        "fields": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "01a0b9e3-28a3-736a-b1af-353f2716d1ea",
+                "isFirstMessage": false,
+                "coordinatesX": 271,
+                "coordinatesY": 449,
+                "commandType": "send_text",
+                "text": null,
+                "formType": 3,
+                "formTypeName": "NoType",
+                "actionType": 3,
+                "actionTypeName": "Action",
+                "clientsCount": 1,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": null,
+                "inlineButtons": [],
+                "conditionButtons": [],
+                "actionButtons": [
+                  {
+                    "id": "01a0b9e3-28a3-736a-b1af-353f27722210",
+                    "subActions": [
+                      {
+                        "id": "01a0b9e3-28a3-736a-b1af-353f27b52906",
+                        "actionLabel": "add_tag",
+                        "tags": [
+                          "start-automation-дальше-to-comment-2026-09-19-13-37"
+                        ],
+                        "fields": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "01a0ba17-70ea-7152-9262-33772d22cd18",
+                "isFirstMessage": false,
+                "coordinatesX": 2500,
+                "coordinatesY": 20,
+                "commandType": "send_text",
+                "text": "Я почти так и сделала.\nНо остановилась за секунду до отправки. Не потому что решила играть в молчанку — просто вспомнила, как на самом деле прошёл этот вечер.",
+                "formType": 1,
+                "formTypeName": "QuickAnswer",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 1,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba17-804a-7373-a507-c77bc0b97f25",
+                "inlineButtons": [],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba45-afd5-73e5-b26a-ba5cf00f1667",
+                "isFirstMessage": false,
+                "coordinatesX": 2960,
+                "coordinatesY": 620,
+                "commandType": "send_text",
+                "text": "Вот и я в итоге подумала: слишком жирно — отдавать одному вечеру столько власти.",
+                "formType": 1,
+                "formTypeName": "QuickAnswer",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba45-b649-71de-b1d7-2fd7fea17052",
+                "inlineButtons": [],
+                "conditionButtons": [],
+                "actionButtons": []
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
