@@ -1,0 +1,830 @@
+{
+  "exported_at": "2026-09-26",
+  "automations": [
+    {
+      "name": "ДАЛЬШЕ #4",
+      "id": "01a0ba49-4fa6-71a2-9203-ca969c9e7278",
+      "detail": {
+        "id": "01a0ba49-4fa6-71a2-9203-ca969c9e7278",
+        "name": "ДАЛЬШЕ #4",
+        "type": "Regular",
+        "typeDescription": "Full-featured visual builder, complex but powerful, requires desktop",
+        "url": "https://app.chatplace.io/builder/?f=01a0ba49-4fad-7296-a038-94859684dff6",
+        "status": "Active",
+        "platform": "instagram",
+        "botId": "01a0b9cb-af0a-7212-a8ec-68f79587d3f4",
+        "botUsername": "@alisa.vetrova.spb",
+        "triggerTypes": [
+          {
+            "value": 6,
+            "name": "Comment contains"
+          }
+        ],
+        "startMessages": [
+          "ДАЛЬШЕ"
+        ],
+        "startFrequency": 1,
+        "startFrequencyType": "Минуты",
+        "defaultStepId": "01a0ba49-4fad-7296-a038-94859684dff6",
+        "steps": [
+          {
+            "id": "01a0ba49-4fad-7296-a038-94859684dff6",
+            "name": "Flow 1",
+            "status": "InCompleted",
+            "isDefault": true,
+            "messages": [
+              {
+                "id": "01a0ba49-4fb5-72a1-93af-4ae1c5498012",
+                "isFirstMessage": true,
+                "coordinatesX": 100,
+                "coordinatesY": 100,
+                "commandType": "send_text",
+                "text": "Хочешь увидеть, что было дальше? Эта сцена — только в Direct.",
+                "formType": 2,
+                "formTypeName": "Template",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba49-503c-7199-8f07-cce50e101e1b",
+                "inlineButtons": [
+                  {
+                    "id": "01a0ba49-507f-71f6-8a4b-2f23640d074a",
+                    "text": "Покажи",
+                    "type": 2,
+                    "typeName": "Button",
+                    "subtype": 1,
+                    "subtypeName": "NormalButton",
+                    "trackClicks": true,
+                    "oneTime": true,
+                    "position": 0,
+                    "clientsCount": 0,
+                    "ctr": 0,
+                    "url": null,
+                    "nextMessageId": "01a0ba49-503c-7199-8f07-cce50e101e1b",
+                    "tags": []
+                  }
+                ],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba49-5054-7142-bafa-bff198349b1b",
+                "isFirstMessage": false,
+                "coordinatesX": 1020,
+                "coordinatesY": 100,
+                "commandType": "send_text",
+                "text": "Я уже собиралась закрыть приложение, когда пришло сообщение.\n\nКороткое. Без приветствия.\n\n«Ну и как вчера?»",
+                "formType": 2,
+                "formTypeName": "Template",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba49-505e-714e-b2ea-ebbce656766d",
+                "inlineButtons": [
+                  {
+                    "id": "01a0ba49-50d0-72ef-ae0e-162a9a928c84",
+                    "text": "Дальше",
+                    "type": 2,
+                    "typeName": "Button",
+                    "subtype": 1,
+                    "subtypeName": "NormalButton",
+                    "trackClicks": true,
+                    "oneTime": true,
+                    "position": 0,
+                    "clientsCount": 0,
+                    "ctr": 0,
+                    "url": null,
+                    "nextMessageId": "01a0ba49-505e-714e-b2ea-ebbce656766d",
+                    "tags": []
+                  }
+                ],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba49-505e-714e-b2ea-ebbce656766d",
+                "isFirstMessage": false,
+                "coordinatesX": 1480,
+                "coordinatesY": 100,
+                "commandType": "send_text",
+                "text": "Я перечитала его дважды.\n\nПроблема была в одном: про вчерашнее свидание я почти никому не рассказывала.",
+                "formType": 2,
+                "formTypeName": "Template",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba49-5066-7180-8cda-812db1878f52",
+                "inlineButtons": [
+                  {
+                    "id": "01a0ba49-50f1-729f-853f-aa149e55561e",
+                    "text": "Смотреть #5",
+                    "type": 2,
+                    "typeName": "Button",
+                    "subtype": 2,
+                    "subtypeName": "UrlButton",
+                    "trackClicks": true,
+                    "oneTime": true,
+                    "position": 0,
+                    "clientsCount": 0,
+                    "ctr": 0,
+                    "url": "https://www.instagram.com/reel/DdalUA4tj40/",
+                    "nextMessageId": "01a0ba49-5066-7180-8cda-812db1878f52",
+                    "tags": []
+                  }
+                ],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba49-5078-73e0-9d1f-456f5e511a45",
+                "isFirstMessage": false,
+                "coordinatesX": 1020,
+                "coordinatesY": 380,
+                "commandType": "send_text",
+                "text": "Эта сцена только для подписчиков. Подпишись на Алису и нажми ещё раз.",
+                "formType": 2,
+                "formTypeName": "Template",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba49-503c-7199-8f07-cce50e101e1b",
+                "inlineButtons": [
+                  {
+                    "id": "01a0ba49-519a-70f6-91e2-64584362a911",
+                    "text": "Проверить снова",
+                    "type": 2,
+                    "typeName": "Button",
+                    "subtype": 1,
+                    "subtypeName": "NormalButton",
+                    "trackClicks": true,
+                    "oneTime": false,
+                    "position": 0,
+                    "clientsCount": 0,
+                    "ctr": 0,
+                    "url": null,
+                    "nextMessageId": "01a0ba49-503c-7199-8f07-cce50e101e1b",
+                    "tags": []
+                  }
+                ],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba49-503c-7199-8f07-cce50e101e1b",
+                "isFirstMessage": false,
+                "coordinatesX": 560,
+                "coordinatesY": 100,
+                "commandType": "send_text",
+                "text": null,
+                "formType": 3,
+                "formTypeName": "NoType",
+                "actionType": 2,
+                "actionTypeName": "Condition",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba49-5054-7142-bafa-bff198349b1b",
+                "inlineButtons": [],
+                "conditionButtons": [
+                  {
+                    "id": "01a0ba49-504e-72d8-803a-07bd77b06961",
+                    "isNoMatchButton": false,
+                    "matchType": 1,
+                    "matchTypeName": "Соответствует",
+                    "fulfilledType": 1,
+                    "fulfilledTypeName": "Соответствует всем",
+                    "nextMessageId": "01a0ba49-5054-7142-bafa-bff198349b1b",
+                    "subConditions": [
+                      {
+                        "id": "01a0ba49-50b8-73af-91c9-520281cb2d8a",
+                        "conditionLabel": "check_subscription",
+                        "fulfilledType": 1,
+                        "fulfilledTypeName": "Соответствует всем",
+                        "tags": [],
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": "01a0ba49-5044-72f0-93d0-f174f87a4feb",
+                    "isNoMatchButton": true,
+                    "matchType": 2,
+                    "matchTypeName": "Не соответствует",
+                    "fulfilledType": 1,
+                    "fulfilledTypeName": "Соответствует всем",
+                    "nextMessageId": "01a0ba49-5078-73e0-9d1f-456f5e511a45",
+                    "subConditions": []
+                  }
+                ],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba49-5066-7180-8cda-812db1878f52",
+                "isFirstMessage": false,
+                "coordinatesX": 1940,
+                "coordinatesY": 100,
+                "commandType": "send_text",
+                "text": null,
+                "formType": 3,
+                "formTypeName": "NoType",
+                "actionType": 3,
+                "actionTypeName": "Action",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": null,
+                "inlineButtons": [],
+                "conditionButtons": [],
+                "actionButtons": [
+                  {
+                    "id": "01a0ba49-5070-702f-b3ce-e852921c5e87",
+                    "subActions": [
+                      {
+                        "id": "01a0ba49-5182-7239-aa87-280ca8251e70",
+                        "actionLabel": "add_tag",
+                        "tags": [
+                          "story-дальше-4-complete"
+                        ],
+                        "fields": []
+                      },
+                      {
+                        "id": "01a0ba49-5183-7145-b9fe-40d11d18aaad",
+                        "actionLabel": "make_conversion",
+                        "tags": [],
+                        "fields": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "ДАЛЬШЕ #3",
+      "id": "01a0ba48-4d05-71d1-a26e-003092f3aeda",
+      "detail": {
+        "id": "01a0ba48-4d05-71d1-a26e-003092f3aeda",
+        "name": "ДАЛЬШЕ #3",
+        "type": "Regular",
+        "typeDescription": "Full-featured visual builder, complex but powerful, requires desktop",
+        "url": "https://app.chatplace.io/builder/?f=01a0ba48-4d0c-72cc-8324-94e0d48e2447",
+        "status": "Active",
+        "platform": "instagram",
+        "botId": "01a0b9cb-af0a-7212-a8ec-68f79587d3f4",
+        "botUsername": "@alisa.vetrova.spb",
+        "triggerTypes": [
+          {
+            "value": 6,
+            "name": "Comment contains"
+          }
+        ],
+        "startMessages": [
+          "ДАЛЬШЕ"
+        ],
+        "startFrequency": 1,
+        "startFrequencyType": "Минуты",
+        "defaultStepId": "01a0ba48-4d0c-72cc-8324-94e0d48e2447",
+        "steps": [
+          {
+            "id": "01a0ba48-4d0c-72cc-8324-94e0d48e2447",
+            "name": "Flow 1",
+            "status": "InCompleted",
+            "isDefault": true,
+            "messages": [
+              {
+                "id": "01a0ba48-4d15-73d8-aba4-85aa38ad1f1a",
+                "isFirstMessage": true,
+                "coordinatesX": 100,
+                "coordinatesY": 100,
+                "commandType": "send_text",
+                "text": "Хочешь увидеть сцену после этого момента? В ленте её нет.",
+                "formType": 2,
+                "formTypeName": "Template",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba48-4e04-71bf-8b90-74d10e36fa87",
+                "inlineButtons": [
+                  {
+                    "id": "01a0ba48-4e69-72dd-bd09-0b32c865b102",
+                    "text": "Покажи",
+                    "type": 2,
+                    "typeName": "Button",
+                    "subtype": 1,
+                    "subtypeName": "NormalButton",
+                    "trackClicks": true,
+                    "oneTime": true,
+                    "position": 0,
+                    "clientsCount": 0,
+                    "ctr": 0,
+                    "url": null,
+                    "nextMessageId": "01a0ba48-4e04-71bf-8b90-74d10e36fa87",
+                    "tags": []
+                  }
+                ],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba48-4e33-73f5-8bce-7829d68a0029",
+                "isFirstMessage": false,
+                "coordinatesX": 1020,
+                "coordinatesY": 100,
+                "commandType": "send_text",
+                "text": "Когда дверь за ним закрылась, я ещё пару минут стояла в прихожей и пыталась понять, в какой момент вечер пошёл не туда.\n\nСамое неприятное было не то, что он сказал. А то, что я несколько раз хотела уйти — и каждый раз находила причину остаться.\n\nУтром эта мысль вернулась.",
+                "formType": 2,
+                "formTypeName": "Template",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba48-4e3c-71cf-9834-2d5cc6494c2a",
+                "inlineButtons": [
+                  {
+                    "id": "01a0ba48-4edc-7257-a727-290408a986b5",
+                    "text": "Что утром?",
+                    "type": 2,
+                    "typeName": "Button",
+                    "subtype": 1,
+                    "subtypeName": "NormalButton",
+                    "trackClicks": true,
+                    "oneTime": true,
+                    "position": 0,
+                    "clientsCount": 0,
+                    "ctr": 0,
+                    "url": null,
+                    "nextMessageId": "01a0ba48-4e3c-71cf-9834-2d5cc6494c2a",
+                    "tags": []
+                  }
+                ],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba48-4e3c-71cf-9834-2d5cc6494c2a",
+                "isFirstMessage": false,
+                "coordinatesX": 1480,
+                "coordinatesY": 100,
+                "commandType": "send_text",
+                "text": "Первым делом я открыла приложения знакомств. Не чтобы кого-то искать.\n\nЧтобы удалить их все.",
+                "formType": 2,
+                "formTypeName": "Template",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba48-4e46-70e1-a958-8221f420c739",
+                "inlineButtons": [
+                  {
+                    "id": "01a0ba48-4f02-7283-9631-aacc19e2805f",
+                    "text": "Смотреть #4",
+                    "type": 2,
+                    "typeName": "Button",
+                    "subtype": 2,
+                    "subtypeName": "UrlButton",
+                    "trackClicks": true,
+                    "oneTime": true,
+                    "position": 0,
+                    "clientsCount": 0,
+                    "ctr": 0,
+                    "url": "https://www.instagram.com/reel/DdacG4jMJp8/",
+                    "nextMessageId": "01a0ba48-4e46-70e1-a958-8221f420c739",
+                    "tags": []
+                  }
+                ],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba48-4e61-731c-83b3-9f1b38434d84",
+                "isFirstMessage": false,
+                "coordinatesX": 1020,
+                "coordinatesY": 380,
+                "commandType": "send_text",
+                "text": "Эта сцена только для подписчиков. Подпишись на Алису и нажми ещё раз.",
+                "formType": 2,
+                "formTypeName": "Template",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba48-4e04-71bf-8b90-74d10e36fa87",
+                "inlineButtons": [
+                  {
+                    "id": "01a0ba48-4fc6-70d2-88ae-abf392dd1cd6",
+                    "text": "Проверить снова",
+                    "type": 2,
+                    "typeName": "Button",
+                    "subtype": 1,
+                    "subtypeName": "NormalButton",
+                    "trackClicks": true,
+                    "oneTime": false,
+                    "position": 0,
+                    "clientsCount": 0,
+                    "ctr": 0,
+                    "url": null,
+                    "nextMessageId": "01a0ba48-4e04-71bf-8b90-74d10e36fa87",
+                    "tags": []
+                  }
+                ],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba48-4e04-71bf-8b90-74d10e36fa87",
+                "isFirstMessage": false,
+                "coordinatesX": 560,
+                "coordinatesY": 100,
+                "commandType": "send_text",
+                "text": null,
+                "formType": 3,
+                "formTypeName": "NoType",
+                "actionType": 2,
+                "actionTypeName": "Condition",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba48-4e33-73f5-8bce-7829d68a0029",
+                "inlineButtons": [],
+                "conditionButtons": [
+                  {
+                    "id": "01a0ba48-4e26-7043-8b77-59cd857ad30c",
+                    "isNoMatchButton": false,
+                    "matchType": 1,
+                    "matchTypeName": "Соответствует",
+                    "fulfilledType": 1,
+                    "fulfilledTypeName": "Соответствует всем",
+                    "nextMessageId": "01a0ba48-4e33-73f5-8bce-7829d68a0029",
+                    "subConditions": [
+                      {
+                        "id": "01a0ba48-4ebe-717f-b34f-6f3805813a16",
+                        "conditionLabel": "check_subscription",
+                        "fulfilledType": 1,
+                        "fulfilledTypeName": "Соответствует всем",
+                        "tags": [],
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": "01a0ba48-4e11-70fe-8a31-199ca31e891e",
+                    "isNoMatchButton": true,
+                    "matchType": 2,
+                    "matchTypeName": "Не соответствует",
+                    "fulfilledType": 1,
+                    "fulfilledTypeName": "Соответствует всем",
+                    "nextMessageId": "01a0ba48-4e61-731c-83b3-9f1b38434d84",
+                    "subConditions": []
+                  }
+                ],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba48-4e46-70e1-a958-8221f420c739",
+                "isFirstMessage": false,
+                "coordinatesX": 1940,
+                "coordinatesY": 100,
+                "commandType": "send_text",
+                "text": null,
+                "formType": 3,
+                "formTypeName": "NoType",
+                "actionType": 3,
+                "actionTypeName": "Action",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": null,
+                "inlineButtons": [],
+                "conditionButtons": [],
+                "actionButtons": [
+                  {
+                    "id": "01a0ba48-4e53-73be-841f-3d76e50e64e4",
+                    "subActions": [
+                      {
+                        "id": "01a0ba48-4fa8-706f-89ee-afc7f297e423",
+                        "actionLabel": "add_tag",
+                        "tags": [
+                          "story-дальше-3-complete"
+                        ],
+                        "fields": []
+                      },
+                      {
+                        "id": "01a0ba48-4fac-718c-91f2-bf25b23ce423",
+                        "actionLabel": "make_conversion",
+                        "tags": [],
+                        "fields": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "ДАЛЬШЕ #1",
+      "id": "01a0ba49-44dc-71d5-9d47-08b37a30d335",
+      "detail": {
+        "id": "01a0ba49-44dc-71d5-9d47-08b37a30d335",
+        "name": "ДАЛЬШЕ #1",
+        "type": "Regular",
+        "typeDescription": "Full-featured visual builder, complex but powerful, requires desktop",
+        "url": "https://app.chatplace.io/builder/?f=01a0ba49-44e4-72d1-be0d-b18827e8335f",
+        "status": "Active",
+        "platform": "instagram",
+        "botId": "01a0b9cb-af0a-7212-a8ec-68f79587d3f4",
+        "botUsername": "@alisa.vetrova.spb",
+        "triggerTypes": [
+          {
+            "value": 6,
+            "name": "Comment contains"
+          }
+        ],
+        "startMessages": [
+          "ДАЛЬШЕ"
+        ],
+        "startFrequency": 1,
+        "startFrequencyType": "Минуты",
+        "defaultStepId": "01a0ba49-44e4-72d1-be0d-b18827e8335f",
+        "steps": [
+          {
+            "id": "01a0ba49-44e4-72d1-be0d-b18827e8335f",
+            "name": "Flow 1",
+            "status": "InCompleted",
+            "isDefault": true,
+            "messages": [
+              {
+                "id": "01a0ba49-44ec-7325-8206-bc3a524e85a6",
+                "isFirstMessage": true,
+                "coordinatesX": 100,
+                "coordinatesY": 100,
+                "commandType": "send_text",
+                "text": "Хочешь увидеть, что было дальше? Эта сцена — только в Direct.",
+                "formType": 2,
+                "formTypeName": "Template",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba49-456b-705c-8a90-2059a87cf9e9",
+                "inlineButtons": [
+                  {
+                    "id": "01a0ba49-45ac-70e0-b610-33bd610bde63",
+                    "text": "Покажи",
+                    "type": 2,
+                    "typeName": "Button",
+                    "subtype": 1,
+                    "subtypeName": "NormalButton",
+                    "trackClicks": true,
+                    "oneTime": true,
+                    "position": 0,
+                    "clientsCount": 0,
+                    "ctr": 0,
+                    "url": null,
+                    "nextMessageId": "01a0ba49-456b-705c-8a90-2059a87cf9e9",
+                    "tags": []
+                  }
+                ],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba49-4585-7264-a1c3-4b7641a48e02",
+                "isFirstMessage": false,
+                "coordinatesX": 1020,
+                "coordinatesY": 100,
+                "commandType": "send_text",
+                "text": "За час до встречи я уже почти написала: «Извини, сегодня не получится».\n\nНе потому что передумала. Просто вдруг стало страшно снова оказаться в ситуации, где надо кому-то понравиться.",
+                "formType": 2,
+                "formTypeName": "Template",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba49-458e-7233-9a15-d8081aeca3e0",
+                "inlineButtons": [
+                  {
+                    "id": "01a0ba49-4609-72e0-bf5b-a3d8ba9dc356",
+                    "text": "Дальше",
+                    "type": 2,
+                    "typeName": "Button",
+                    "subtype": 1,
+                    "subtypeName": "NormalButton",
+                    "trackClicks": true,
+                    "oneTime": true,
+                    "position": 0,
+                    "clientsCount": 0,
+                    "ctr": 0,
+                    "url": null,
+                    "nextMessageId": "01a0ba49-458e-7233-9a15-d8081aeca3e0",
+                    "tags": []
+                  }
+                ],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba49-458e-7233-9a15-d8081aeca3e0",
+                "isFirstMessage": false,
+                "coordinatesX": 1480,
+                "coordinatesY": 100,
+                "commandType": "send_text",
+                "text": "Я стёрла сообщение, переоделась третий раз и всё-таки вышла из дома.\n\nЧерез несколько часов я уже сидела напротив него и думала совсем о другом.",
+                "formType": 2,
+                "formTypeName": "Template",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba49-4596-70f3-8f0e-50ee0308e099",
+                "inlineButtons": [
+                  {
+                    "id": "01a0ba49-4623-7263-aca8-b0442e4f4b74",
+                    "text": "Смотреть #2",
+                    "type": 2,
+                    "typeName": "Button",
+                    "subtype": 2,
+                    "subtypeName": "UrlButton",
+                    "trackClicks": true,
+                    "oneTime": true,
+                    "position": 0,
+                    "clientsCount": 0,
+                    "ctr": 0,
+                    "url": "https://www.instagram.com/reel/Ddaaft2sqf8/",
+                    "nextMessageId": "01a0ba49-4596-70f3-8f0e-50ee0308e099",
+                    "tags": []
+                  }
+                ],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba49-45a4-729d-bde4-f21518c3296e",
+                "isFirstMessage": false,
+                "coordinatesX": 1020,
+                "coordinatesY": 380,
+                "commandType": "send_text",
+                "text": "Эта сцена только для подписчиков. Подпишись на Алису и нажми ещё раз.",
+                "formType": 2,
+                "formTypeName": "Template",
+                "actionType": 1,
+                "actionTypeName": "Message",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba49-456b-705c-8a90-2059a87cf9e9",
+                "inlineButtons": [
+                  {
+                    "id": "01a0ba49-46c2-7107-af66-3e7eba781d69",
+                    "text": "Проверить снова",
+                    "type": 2,
+                    "typeName": "Button",
+                    "subtype": 1,
+                    "subtypeName": "NormalButton",
+                    "trackClicks": true,
+                    "oneTime": false,
+                    "position": 0,
+                    "clientsCount": 0,
+                    "ctr": 0,
+                    "url": null,
+                    "nextMessageId": "01a0ba49-456b-705c-8a90-2059a87cf9e9",
+                    "tags": []
+                  }
+                ],
+                "conditionButtons": [],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba49-456b-705c-8a90-2059a87cf9e9",
+                "isFirstMessage": false,
+                "coordinatesX": 560,
+                "coordinatesY": 100,
+                "commandType": "send_text",
+                "text": null,
+                "formType": 3,
+                "formTypeName": "NoType",
+                "actionType": 2,
+                "actionTypeName": "Condition",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": "01a0ba49-4585-7264-a1c3-4b7641a48e02",
+                "inlineButtons": [],
+                "conditionButtons": [
+                  {
+                    "id": "01a0ba49-457c-7208-8889-df5d06a36c1a",
+                    "isNoMatchButton": false,
+                    "matchType": 1,
+                    "matchTypeName": "Соответствует",
+                    "fulfilledType": 1,
+                    "fulfilledTypeName": "Соответствует всем",
+                    "nextMessageId": "01a0ba49-4585-7264-a1c3-4b7641a48e02",
+                    "subConditions": [
+                      {
+                        "id": "01a0ba49-45f2-73ae-b9ca-fc012c2bf14b",
+                        "conditionLabel": "check_subscription",
+                        "fulfilledType": 1,
+                        "fulfilledTypeName": "Соответствует всем",
+                        "tags": [],
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": "01a0ba49-4573-7355-ac4b-37c4c1613e29",
+                    "isNoMatchButton": true,
+                    "matchType": 2,
+                    "matchTypeName": "Не соответствует",
+                    "fulfilledType": 1,
+                    "fulfilledTypeName": "Соответствует всем",
+                    "nextMessageId": "01a0ba49-45a4-729d-bde4-f21518c3296e",
+                    "subConditions": []
+                  }
+                ],
+                "actionButtons": []
+              },
+              {
+                "id": "01a0ba49-4596-70f3-8f0e-50ee0308e099",
+                "isFirstMessage": false,
+                "coordinatesX": 1940,
+                "coordinatesY": 100,
+                "commandType": "send_text",
+                "text": null,
+                "formType": 3,
+                "formTypeName": "NoType",
+                "actionType": 3,
+                "actionTypeName": "Action",
+                "clientsCount": 0,
+                "hasMedia": false,
+                "mediaTypes": [],
+                "mediaFileIds": [],
+                "nextStepId": null,
+                "inlineButtons": [],
+                "conditionButtons": [],
+                "actionButtons": [
+                  {
+                    "id": "01a0ba49-459d-709d-9b8f-944a0a8b035f",
+                    "subActions": [
+                      {
+                        "id": "01a0ba49-46af-733a-aa2e-ac7d018085c8",
+                        "actionLabel": "add_tag",
+                        "tags": [
+                          "story-дальше-1-complete"
+                        ],
+                        "fields": []
+                      },
+                      {
+                        "id": "01a0ba49-46af-733a-aa2e-ac7d0187b1e0",
+                        "actionLabel": "make_conversion",
+                        "tags": [],
+                        "fields": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
