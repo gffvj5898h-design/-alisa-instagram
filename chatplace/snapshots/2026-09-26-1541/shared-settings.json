@@ -1,0 +1,262 @@
+{
+  "meta": {
+    "exported_at": "2026-09-26",
+    "source": "ChatPlace MCP",
+    "bot_username": "@alisa.vetrova.spb",
+    "secrets": "[REDACTED]",
+    "chat_histories": "excluded"
+  },
+  "bot": {
+    "id": "01a0b9cb-af0a-7212-a8ec-68f79587d3f4",
+    "name": "Alisa Vetrova",
+    "username": "@alisa.vetrova.spb",
+    "platform": {
+      "id": "b9e3880b-be40-48a1-a756-78f7d916c969",
+      "name": "Instagram",
+      "label": "instagram",
+      "fields": {
+        "token": "[REDACTED]"
+      }
+    },
+    "status": 1,
+    "statusName": "Active",
+    "followersCount": 433,
+    "createdAt": "2026-09-19 13:12:08"
+  },
+  "tags": [
+    {
+      "id": "01a0c547-e278-726c-81d1-d19ccec091ea",
+      "name": "av_declined",
+      "color": "#FCA5A5"
+    },
+    {
+      "id": "01a0c547-e582-70bb-b73e-afeb50ce4a87",
+      "name": "av_processing",
+      "color": "#FDE68A"
+    },
+    {
+      "id": "01a0c547-e805-725d-bcba-4912e6239861",
+      "name": "av_dialog",
+      "color": "#BFDBFE"
+    },
+    {
+      "id": "01a0c547-ea65-721e-8e48-f3884dffc040",
+      "name": "av_offer_sent",
+      "color": "#DDD6FE"
+    },
+    {
+      "id": "01a0c547-f39e-7117-a54e-fcaac1df5d9b",
+      "name": "av_paid",
+      "color": "#86EFAC"
+    },
+    {
+      "id": "01a0c547-f5f8-73b6-912d-0aa1053bb767",
+      "name": "av_repeat_buyer",
+      "color": "#6EE7B7"
+    },
+    {
+      "id": "01a0c547-fe3e-714f-a617-9dcd9fb6183f",
+      "name": "av_no_reply",
+      "color": "#E5E7EB"
+    },
+    {
+      "id": "01a0bcf8-d491-72d1-ac33-bee10f487863",
+      "name": "story-дальше-11-complete",
+      "color": "#BAF5A5"
+    },
+    {
+      "id": "01a0b9e3-2860-726d-a095-d232a18e12ae",
+      "name": "click-link-дальше-to-comment-2026-09-19-13-37",
+      "color": "#FAF19E"
+    },
+    {
+      "id": "01a0b9e3-28a4-7360-adf3-47fe0b187620",
+      "name": "start-automation-дальше-to-comment-2026-09-19-13-37",
+      "color": "#FAF19E"
+    },
+    {
+      "id": "01a0ba45-6e88-71da-8809-e0db5e4f67fd",
+      "name": "story-дальше-chapter-3-complete",
+      "color": "#FAF19E"
+    },
+    {
+      "id": "01a0ba48-4f32-7334-954b-c4fe9c46f7ff",
+      "name": "story-дальше-3-complete",
+      "color": "#BAF5A5"
+    },
+    {
+      "id": "01a0ba49-464a-7287-bdf8-b42c85fe5492",
+      "name": "story-дальше-1-complete",
+      "color": "#BAF5A5"
+    },
+    {
+      "id": "01a0ba49-511c-7178-9cef-d414d549b381",
+      "name": "story-дальше-4-complete",
+      "color": "#BAF5A5"
+    },
+    {
+      "id": "01a0ba49-5c73-7005-8c1d-fecb7cc194e5",
+      "name": "story-дальше-5-complete",
+      "color": "#BAF5A5"
+    },
+    {
+      "id": "01a0ba49-6481-7258-a276-5bfe6c3ad647",
+      "name": "story-дальше-6-complete",
+      "color": "#BAF5A5"
+    },
+    {
+      "id": "01a0ba49-6da8-7209-ade4-e792fb9f0f92",
+      "name": "story-дальше-7-complete",
+      "color": "#BAF5A5"
+    },
+    {
+      "id": "01a0ba49-7792-721f-994e-76fe0cfc9051",
+      "name": "story-дальше-8-complete",
+      "color": "#BAF5A5"
+    },
+    {
+      "id": "01a0ba49-8918-71f0-9368-e0e66c7b2e98",
+      "name": "story-дальше-10-complete",
+      "color": "#BAF5A5"
+    },
+    {
+      "id": "01a0ba49-8081-702a-94b6-875ecbb35a14",
+      "name": "story-дальше-9-complete",
+      "color": "#BAF5A5"
+    },
+    {
+      "id": "01a0c547-df87-7261-a526-52938d8d7a63",
+      "name": "av_excluded",
+      "color": "#D1D5DB"
+    },
+    {
+      "id": "01a0c547-f8b3-73a9-81aa-c43639f6bd42",
+      "name": "av_human_required",
+      "color": "#FDBA74"
+    },
+    {
+      "id": "01a0c547-ed49-7272-8d48-6ebf23a3f84b",
+      "name": "av_preview_requested",
+      "color": "#C4B5FD"
+    },
+    {
+      "id": "01a0c547-f067-7083-98cf-2dc270e8e4f3",
+      "name": "av_price_requested",
+      "color": "#A5B4FC"
+    },
+    {
+      "id": "01a0c547-fb79-707d-8de0-34ecfb803eb9",
+      "name": "av_awaiting_reply",
+      "color": "#BAE6FD"
+    },
+    {
+      "id": "01a0ca96-2ed4-7037-814c-33d2910b80ce",
+      "name": "clicked the button scheme",
+      "color": "#FAF19E"
+    },
+    {
+      "id": "01a0ca96-2edb-72a1-809c-7b5893428677",
+      "name": "following from bot",
+      "color": "#FAF19E"
+    },
+    {
+      "id": "01a0ca96-2edc-72b9-a899-35a048cf79e6",
+      "name": "went through the link scheme",
+      "color": "#FAF19E"
+    },
+    {
+      "id": "01a0ca96-2edf-72b3-8c0f-36ec924416d1",
+      "name": "Перешел по ссылке схема",
+      "color": "#FAF19E"
+    },
+    {
+      "id": "01a0ca96-2ee3-7336-900c-266339181252",
+      "name": "no subscirption",
+      "color": "#FAF19E"
+    },
+    {
+      "id": "01a0ca96-2ef6-7396-a230-8d4abaf659a7",
+      "name": "нажал на кнопку схема",
+      "color": "#FAF19E"
+    }
+  ],
+  "variables": [
+    {
+      "id": "01a0cbfd-d63d-710d-8248-f78ffdde56b3",
+      "name": "av_test_recovered_20260923",
+      "description": "Однократный сброс блокирующих статусов только тестового контакта __vasilyevich; yes запрещает повторный сброс"
+    },
+    {
+      "id": "01a0c547-ba4b-7072-86fe-ce1a5b6a7f58",
+      "name": "av_status",
+      "description": "Статус: новый / диалог / предложено_превью / запрос_превью / запрос_цены / получил_превью / получил_цену / оплатил / отказался / не_ответил"
+    },
+    {
+      "id": "01a0c547-bc7b-70af-a900-6f11f6ee3ece",
+      "name": "av_last_input",
+      "description": "Последнее входящее сообщение; недоверенные данные"
+    },
+    {
+      "id": "01a0c547-c083-7012-ba36-9ed52493f400",
+      "name": "av_route",
+      "description": "Результат классификации входящего события"
+    },
+    {
+      "id": "01a0c547-c40f-738b-9637-76c2fc04c470",
+      "name": "av_reply",
+      "description": "Короткий ответ на языке собеседника"
+    },
+    {
+      "id": "01a0c547-c793-7128-ae82-80a83ace8eb5",
+      "name": "av_language",
+      "description": "Язык по сообщению/явным данным; по умолчанию en"
+    },
+    {
+      "id": "01a0c547-caa5-70f6-853e-393b7fb85513",
+      "name": "av_intent",
+      "description": "photos / voice / bundle"
+    },
+    {
+      "id": "01a0c547-cd1a-703a-ab5c-4b33e3bb0b9c",
+      "name": "av_offer_version",
+      "description": "Версия уже предложенного коммерческого сообщения; непустая запрещает повтор"
+    },
+    {
+      "id": "01a0c547-cfcb-73bd-9b32-6efade0a21d4",
+      "name": "av_payment_verified",
+      "description": "yes только после реальной проверки платежа оператором/интеграцией"
+    },
+    {
+      "id": "01a0c547-d22c-72e8-84e5-6ef8a4f0932f",
+      "name": "av_purchased_product",
+      "description": "ID подтверждённо оплаченного продукта"
+    },
+    {
+      "id": "01a0c547-d55c-732b-a32b-336db1b7b47f",
+      "name": "av_handoff_reason",
+      "description": "Причина ручной обработки"
+    },
+    {
+      "id": "01a0c547-d7cc-726c-a4bb-75cf331ec3b1",
+      "name": "av_profile_evidence",
+      "description": "Только фактически доступные сведения профиля; не угадывать"
+    },
+    {
+      "id": "01a0c547-da11-7334-8b43-5b3b77689239",
+      "name": "av_human_hold",
+      "description": "yes — оператор ведёт диалог; молчать"
+    },
+    {
+      "id": "01a0c547-dcac-70c1-8ce3-a8f26eca613c",
+      "name": "av_last_event",
+      "description": "Счётчик обработанных входящих событий"
+    }
+  ],
+  "products": [],
+  "mailings": [],
+  "referral_links": [],
+  "ai_agent": {
+    "configured": false,
+    "note": "ChatPlace returned: AI assistant not exists"
+  }
+}
